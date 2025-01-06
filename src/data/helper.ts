@@ -1,25 +1,25 @@
-// Navbar
+// Navbar Icons Data
 export const navbarIcons = [
     {
-      name: "home",
+      name: "Home",
       icon: "/icons/home.png",
       iconDark: "/icons/homedark.png",
       pathname: "/",
     },
     {
-      name: "coffee",
+      name: "Coffee",
       icon: "/icons/coffee.png",
       iconDark: "/icons/coffeedark.png",
       pathname: "/products",
     },
     {
-      name: "cart",
+      name: "Cart",
       icon: "/icons/cart.png",
       iconDark: "/icons/cartdark.png",
       pathname: "/cart",
     },
     {
-      name: "user",
+      name: "User",
       icon: "/icons/user.png",
       iconDark: "/icons/userdark.png",
       pathname: "/profile",
@@ -38,5 +38,13 @@ export const navbarIcons = [
     "Vegetarian",
     "Fruity",
   ];
+
+  // Login & Signup 
+  export const inputClass = `text-3xl text-black p-4 rounded-lg`;
+
+  export const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("Submitted");
+  };
 
   

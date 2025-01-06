@@ -1,8 +1,9 @@
 import { useCallback, useState } from "react";
-import ProductContainer from "./ProductContainer";
-import ProductDetail from "./ProductDetail";
-import FilterOptions from "./FilterOptions";
-import Logo from "./Logo";
+import ProductContainer from "../components/ProductContainer";
+import ProductDetail from "../components/ProductDetail";
+import FilterOptions from "../components/FilterOptions";
+import Logo from "../components/Logo";
+import Navbar from "../components/Navbar";
 
 type ProductsProps = {
   toggle: boolean;
@@ -17,6 +18,7 @@ const Products: React.FC<ProductsProps> = ({
   setToggle,
   getLogoSrc,
 }) => {
+  
   const [openDetail, setOpenDetail] = useState(false);
 
   const handleClick = useCallback(() => {
@@ -26,15 +28,13 @@ const Products: React.FC<ProductsProps> = ({
 
   return (
     <div
-      className={`pt-6 ${getClassNames(
+      className={`${getClassNames(
         toggle
-      )} text-white flex flex-wrap justify-start gap-11 pb-32`}
+      )} text-white flex flex-wrap justify-start gap-3 pb-60`}
     >
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
-      <div className="px-8 flex flex-wrap gap-8 overflow-auto">
-        <FilterOptions toggle={toggle} />
-      </div>
-      <div className="px-8 flex flex-wrap gap-8">
+      <FilterOptions toggle={toggle} />
+      <div className="px-8 mt-10 flex flex-wrap justify-between items-center gap-11">
         <ProductContainer
           getClassNames={getClassNames}
           toggle={toggle}
@@ -54,6 +54,7 @@ const Products: React.FC<ProductsProps> = ({
       {openDetail && (
         <ProductDetail handleClick={handleClick} openDetail={openDetail} />
       )}
+      <Navbar toggle={toggle} getClassNames={getClassNames} />
     </div>
   );
 };

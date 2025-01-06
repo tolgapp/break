@@ -4,10 +4,7 @@ type FilterProps = {
   toggle: boolean;
 };
 
-const FilterOptions: React.FC<FilterProps> = () => {
-
-
-
+const FilterOptions: React.FC<FilterProps> = ({toggle}) => {
   const options = filterOptions.map((option, id) => {
     return (
       <div
