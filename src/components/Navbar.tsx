@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { navbarIcons } from "../data/helper";
 
 type NavbarProps = {
-  toggle: boolean;
+  toggle: boolean; // DarkMode toggle
   getClassNames: (value: boolean) => string;
 };
 
@@ -11,33 +11,32 @@ const Navbar: React.FC<NavbarProps> = ({ toggle, getClassNames }) => {
 
   const icons = navbarIcons.map((icon, id) => {
     const isActive = location.pathname === icon.pathname;
-    const dynamicClass = isActive && toggle ? "text-black text-xl" : "text-white text-xl"
+    const dynamicClass = `
+      ${isActive ? "text-xl font-bold" : "text-base"}
+      ${toggle ? "text-black" : "text-white"}
+    `;
+    const bgClass = isActive
+      ? toggle
+        ? "bg-gray-300"
+        : "bg-gray-700"
+      : "";
 
     return (
       <div
         key={id}
-        className={`cursor-pointer flex flex-col items-center justify-center p-3 ${
-          isActive && toggle ? "bg-slate-400" : ""
-        } transition-all duration-300`}
+        className={`flex items-center justify-center w-20 h-20 ${bgClass} transition-all duration-300 rounded-lg`}
       >
-        {toggle ? (
-          <Link
-            to={icon.pathname}
-            className="flex flex-col justify-center items-center"
-          >
-            <img className="w-10 h-10" src={icon.iconDark} alt={icon.name} />
-            <p className={`${dynamicClass}`}>{icon.name}</p>
-          </Link>
-        ) : (
-          <Link
-            to={icon.pathname}
-            className="flex flex-col justify-center items-center"
-          >
-            {" "}
-            <img className="w-10 h-10" src={icon.icon} alt={icon.name} />
-            <p className={`${dynamicClass}`}>{icon.name}</p>
-          </Link>
-        )}
+        <Link
+          to={icon.pathname}
+          className="flex flex-col justify-center items-center space-y-2"
+        >
+          <img
+            className="w-10 h-10"
+            src={toggle ? icon.iconDark : icon.icon}
+            alt={icon.name}
+          />
+          <p className={`text-center ${dynamicClass}`}>{icon.name}</p>
+        </Link>
       </div>
     );
   });

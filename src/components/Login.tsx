@@ -1,7 +1,7 @@
 import BackButton from "./BackButton";
 import Logo from "./Logo";
 import Navbar from "./Navbar";
-import { handleSubmit, inputClass } from "../data/helper";
+import { handleSubmit, inputClass, toggleButtonColor } from "../data/helper";
 import { useState } from "react";
 
 type LoginProps = {
@@ -31,7 +31,11 @@ const Login: React.FC<LoginProps> = ({
   };
 
   return (
-    <div className="flex flex-col w-full items-center justify-center h-screen">
+    <div
+      className={`flex flex-col w-full items-center justify-center h-screen ${getClassNames(
+        toggle
+      )}`}
+    >
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
       <BackButton toggle={toggle} />
       <h2 className="text-white text-4xl mb-10">Login</h2>
@@ -44,7 +48,7 @@ const Login: React.FC<LoginProps> = ({
           placeholder="Email"
           value={user.email}
           onChange={handleLogin}
-          />
+        />
         <input
           className={inputClass}
           type="password"
@@ -54,7 +58,13 @@ const Login: React.FC<LoginProps> = ({
           value={user.password}
           onChange={handleLogin}
         />
-        <button className="bg-slate-50 py-4 rounded-lg text-4xl">Login</button>
+        <button
+          className={`bg-slate-50 py-4 rounded-lg text-4xl ${toggleButtonColor(
+            toggle
+          )}`}
+        >
+          Login
+        </button>
       </form>
       <Navbar toggle={toggle} getClassNames={getClassNames} />
     </div>

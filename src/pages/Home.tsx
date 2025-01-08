@@ -18,7 +18,7 @@ const Home: React.FC<HomeProps> = ({
   return (
     <div className={`flex flex-col ${getClassNames(toggle)} h-dvh`}>
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
-      <FilterOptions toggle={toggle}/>
+      <FilterOptions toggle={toggle} />
       <Navbar toggle={toggle} getClassNames={getClassNames} />
     </div>
   );

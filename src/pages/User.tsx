@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import Logo from "../components/Logo";
 import Navbar from "../components/Navbar";
+import { toggleTextColor } from "../data/helper";
+
 
 type UserProps = {
   toggle: boolean;
@@ -16,16 +18,22 @@ const User: React.FC<UserProps> = ({
   getLogoSrc,
   getClassNames,
 }) => {
+
+
   return (
-    <div className="text-white flex justify-center items-center h-screen flex-col gap-5">
+    <div
+      className={`flex justify-center items-center h-screen flex-col gap-5 ${getClassNames(
+        toggle
+      )}`}
+    >
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
-      <BackButton toggle={toggle}/>
-      <h1 className="text-4xl text-center pb-10">USER</h1>
+      <BackButton toggle={toggle} />
+      <h1 className={`text-4xl text-center pb-10 ${toggleTextColor}`}>USER</h1>
       <Link to={"/signup"}>
-        <h2 className="text-4xl">Signup</h2>
+        <h2 className={`text-4xl ${toggleTextColor}`}>Signup</h2>
       </Link>
       <Link to={"/login"}>
-        <h2 className="text-4xl">Login</h2>
+        <h2 className={`text-4xl ${toggleTextColor}`}>Login</h2>
       </Link>
       <Navbar toggle={toggle} getClassNames={getClassNames} />
     </div>

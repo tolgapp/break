@@ -9,9 +9,9 @@ const FilterOptions: React.FC<FilterProps> = ({toggle}) => {
     return (
       <div
         key={id}
-        className={`flex cursor-pointer items-center border rounded-lg py-2 px-6 mt-24 bg-slate-800`}
+        className={`flex cursor-pointer items-center border rounded-lg py-2 px-6 mt-24 ${toggle ? "bg-white border-slate-800" : "bg-slate-800"}`}
       >
-        <p className="text-2xl">{option}</p>
+        <p className={`${toggle ? "text-black" : "text-white"} text-2xl`}>{option}</p>
       </div>
     );
   });

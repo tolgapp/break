@@ -2,8 +2,7 @@ import { useState } from "react";
 import BackButton from "./BackButton";
 import Logo from "./Logo";
 import Navbar from "./Navbar";
-import { handleSubmit, inputClass } from "../data/helper";
-
+import { handleSubmit, inputClass, toggleButtonColor } from "../data/helper";
 
 type SignupProps = {
   toggle: boolean;
@@ -18,7 +17,6 @@ const Signup: React.FC<SignupProps> = ({
   getLogoSrc,
   getClassNames,
 }) => {
- 
   const [value, setValue] = useState({
     name: "",
     surname: "",
@@ -34,13 +32,17 @@ const Signup: React.FC<SignupProps> = ({
     }));
   };
 
-
-
   return (
-    <div className="flex flex-col w-full items-center justify-center h-screen">
+    <div
+      className={`flex flex-col w-full items-center justify-center h-screen ${getClassNames(
+        toggle
+      )}`}
+    >
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
-      <BackButton toggle={toggle}/>
-      <h2 className="text-white text-4xl mb-10 w-[70%] text-center">Sign up and get points for every order ⭐️</h2>
+      <BackButton toggle={toggle} />
+      <h2 className="text-white text-4xl mb-10 w-[70%] text-center">
+        Sign up and get points for every order ⭐️
+      </h2>
       <form onSubmit={handleSubmit} className="flex flex-col w-[90%] gap-4">
         <input
           className={inputClass}
@@ -78,8 +80,12 @@ const Signup: React.FC<SignupProps> = ({
           onChange={handleData}
           placeholder="Password"
         />
-        <button className="bg-slate-50 px-4 py-6 rounded-lg text-4xl">
-          Submit
+        <button
+          className={`bg-slate-50 py-4 rounded-lg text-4xl ${toggleButtonColor(
+            toggle
+          )}`}
+        >
+          Signup
         </button>
       </form>
       <Navbar toggle={toggle} getClassNames={getClassNames} />

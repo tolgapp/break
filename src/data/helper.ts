@@ -47,4 +47,6 @@ export const navbarIcons = [
     console.log("Submitted");
   };
 
-  
+// Text Color 
+export const toggleTextColor = (toggle: boolean): string => toggle ? "text-black" : "text-white";
+export const toggleButtonColor = (toggle: boolean): string => toggle ? "text-black" : "text-black";

@@ -1,4 +1,8 @@
-const ItemContainer = () => {
+type ItemContainerProps = {
+  toggle: boolean
+}
+
+const ItemContainer: React.FC<ItemContainerProps> = ({toggle}) => {
   
   const handleRemove = (e: React.MouseEvent<HTMLButtonElement>) => {
     const element = e.currentTarget.closest(".item-container") as HTMLElement;
@@ -7,7 +11,7 @@ const ItemContainer = () => {
   
   return (
     <div
-      className="item-container mt-4 w-full max-w-3xl bg-gray-800 py-3 px-8 rounded-lg shadow-md"
+      className={`item-container mt-4 w-full max-w-3xl  py-3 px-8 rounded-lg shadow-md ${toggle ? "bg-gray-400" : "bg-gray-800"}`}
     >
       <li className="flex items-center justify-between py-4">
         <span className="text-2xl font-medium">Fresh brewed Coffee - M</span>

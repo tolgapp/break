@@ -4,6 +4,7 @@ import ProductDetail from "../components/ProductDetail";
 import FilterOptions from "../components/FilterOptions";
 import Logo from "../components/Logo";
 import Navbar from "../components/Navbar";
+import coffeeData from "../data/coffee.json";
 
 type ProductsProps = {
   toggle: boolean;
@@ -18,44 +19,55 @@ const Products: React.FC<ProductsProps> = ({
   setToggle,
   getLogoSrc,
 }) => {
-  
   const [openDetail, setOpenDetail] = useState(false);
+  const [selectedProductId, setSelectedProductId] = useState<number | null>(
+    null
+  );
 
-  const handleClick = useCallback(() => {
-    console.log("Detail Opened");
-    setOpenDetail((prev) => !prev);
+  const handleClick = useCallback((id: number) => {
+    console.log(`Detail Opened for Product ID: ${id}`);
+    setSelectedProductId(id);
+    setOpenDetail(true);
+  }, []);
+
+  const closeDetail = useCallback(() => {
+    setOpenDetail(false);
+    setSelectedProductId(null);
   }, []);
 
   return (
     <div
       className={`${getClassNames(
         toggle
-      )} text-white flex flex-wrap justify-start gap-3 pb-60`}
+      )} flex flex-wrap justify-start gap-3 pb-60`}
     >
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
       <FilterOptions toggle={toggle} />
       <div className="px-8 mt-10 flex flex-wrap justify-between items-center gap-11">
-        <ProductContainer
-          getClassNames={getClassNames}
-          toggle={toggle}
-          handleClick={handleClick}
-        />
-        <ProductContainer
-          getClassNames={getClassNames}
-          toggle={toggle}
-          handleClick={handleClick}
-        />
-        <ProductContainer
-          getClassNames={getClassNames}
-          toggle={toggle}
-          handleClick={handleClick}
-        />
+        {coffeeData.coffeeSpecialties.map((coffee) => (
+          <ProductContainer
+            key={coffee.id}
+            id={coffee.id}
+            getClassNames={getClassNames}
+            toggle={toggle}
+            name={coffee.name}
+            image={coffee.image}
+            price={coffee.prices}
+            handleClick={() => handleClick(coffee.id)}
+          />
+        ))}
       </div>
       {openDetail && (
-        <ProductDetail handleClick={handleClick} openDetail={openDetail} />
+        <ProductDetail
+          handleClick={closeDetail}
+          openDetail={openDetail}
+          productId={selectedProductId}
+        />
       )}
+
       <Navbar toggle={toggle} getClassNames={getClassNames} />
     </div>
   );
 };
+
 export default Products;

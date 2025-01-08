@@ -17,13 +17,13 @@ const Cart: React.FC<CartProps> = ({
   getClassNames,
 }) => {
   return (
-    <div className="flex flex-col mt-24 min-h-screen bg-gray-900 text-white">
+    <div className={`flex flex-col min-h-screen bg-gray-900 text-white ${getClassNames(toggle)}`}>
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
       <Navbar toggle={toggle} getClassNames={getClassNames} />
       <BackButton toggle={toggle} />
-      <h1 className="mt-8 text-5xl font-bold text-left pl-8">Your items:</h1>
-      <ItemContainer />
-      <div className="flex justify-between w-full bottom-32 fixed px-8 py-4 items-center mx-auto mt-10 gap-4 bg-gray-300">
+      <h1 className={` mt-32 mb-4 text-5xl font-bold text-left pl-8 ${getClassNames(toggle)}`}>Your items:</h1>
+      <ItemContainer toggle={toggle} />
+      <div className="flex rounded-t-lg h-32 justify-between w-full bottom-32 fixed px-8 py-4 items-center mx-auto mt-10 gap-4 bg-gray-300">
         <span className="text-3xl text-slate-900 font-semibold">Total: 4,95 €</span>
         <button className="px-6 py-3 text-2xl font-medium text-gray-900 bg-green-500 rounded-lg hover:bg-green-600">
           Checkout
