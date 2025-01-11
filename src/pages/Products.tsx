@@ -5,27 +5,37 @@ import FilterOptions from "../components/FilterOptions";
 import Logo from "../components/Logo";
 import Navbar from "../components/Navbar";
 import coffeeData from "../data/coffee.json";
+import { Product } from "../data/helper";
 
 type ProductsProps = {
   toggle: boolean;
   setToggle: (value: boolean) => void;
   getLogoSrc: (value: boolean) => string;
   getClassNames: (value: boolean) => string;
-};
+  addToCart: (product: Product) => void;
+  setAddedProducts: (value: ArrayLike) => void;
+} & Product;
 
 const Products: React.FC<ProductsProps> = ({
   toggle,
   getClassNames,
   setToggle,
   getLogoSrc,
+  addToCart
 }) => {
   const [openDetail, setOpenDetail] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState<number | null>(
     null
   );
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+
+  const filteredCoffee = selectedOption
+    ? coffeeData.coffeeSpecialties.filter((coffee) =>
+        coffee.tags.includes(selectedOption)
+      )
+    : coffeeData.coffeeSpecialties;
 
   const handleClick = useCallback((id: number) => {
-    console.log(`Detail Opened for Product ID: ${id}`);
     setSelectedProductId(id);
     setOpenDetail(true);
   }, []);
@@ -37,14 +47,14 @@ const Products: React.FC<ProductsProps> = ({
 
   return (
     <div
-      className={`${getClassNames(
-        toggle
-      )} flex flex-wrap justify-start gap-3 pb-60`}
-    >
+  className={`${getClassNames(
+    toggle
+  )} gap-3 pb-60 min-h-screen`}
+>
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
-      <FilterOptions toggle={toggle} />
-      <div className="px-8 mt-10 flex flex-wrap justify-between items-center gap-11">
-        {coffeeData.coffeeSpecialties.map((coffee) => (
+      <FilterOptions toggle={toggle} setSelectedOption={setSelectedOption} />
+      <div className="px-8 mt-10 flex flex-wrap justify-between gap-11">
+        {filteredCoffee.map((coffee) => (
           <ProductContainer
             key={coffee.id}
             id={coffee.id}
@@ -54,6 +64,7 @@ const Products: React.FC<ProductsProps> = ({
             image={coffee.image}
             price={coffee.prices}
             handleClick={() => handleClick(coffee.id)}
+            addToCart={addToCart}
           />
         ))}
       </div>
@@ -64,7 +75,6 @@ const Products: React.FC<ProductsProps> = ({
           productId={selectedProductId}
         />
       )}
-
       <Navbar toggle={toggle} getClassNames={getClassNames} />
     </div>
   );

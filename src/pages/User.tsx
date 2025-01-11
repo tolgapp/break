@@ -4,7 +4,6 @@ import Logo from "../components/Logo";
 import Navbar from "../components/Navbar";
 import { toggleTextColor } from "../data/helper";
 
-
 type UserProps = {
   toggle: boolean;
   setToggle: (value: boolean) => void;
@@ -15,28 +14,49 @@ type UserProps = {
 const User: React.FC<UserProps> = ({
   toggle,
   setToggle,
-  getLogoSrc,
   getClassNames,
+  getLogoSrc,
 }) => {
-
+  const textColor = toggle ? "text-gray-800" : "text-white";
+  const buttonBg = toggle ? "bg-gray-700 hover:bg-gray-600" : "bg-gray-300 hover:bg-gray-200";
 
   return (
-    <div
-      className={`flex justify-center items-center h-screen flex-col gap-5 ${getClassNames(
+    <main
+      className={`flex flex-col items-center justify-center h-screen p-6 gap-10 ${getClassNames(
         toggle
       )}`}
     >
+      {/* Logo Section */}
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
+
+      {/* Back Button */}
       <BackButton toggle={toggle} />
-      <h1 className={`text-4xl text-center pb-10 ${toggleTextColor}`}>USER</h1>
-      <Link to={"/signup"}>
-        <h2 className={`text-4xl ${toggleTextColor}`}>Signup</h2>
-      </Link>
-      <Link to={"/login"}>
-        <h2 className={`text-4xl ${toggleTextColor}`}>Login</h2>
-      </Link>
+
+      {/* Header */}
+      <h1 className={`text-5xl font-bold text-center pb-6 ${textColor}`}>
+        Welcome Back!
+      </h1>
+
+      {/* Action Buttons */}
+      <div className="flex flex-wrap gap-6 justify-center">
+        <Link
+          to="/signup"
+          className={`flex items-center justify-center w-48 h-24 rounded-lg text-2xl font-semibold transition-all duration-300 ${buttonBg} ${!textColor}`}
+        >
+          Signup
+        </Link>
+        <Link
+          to="/login"
+          className={`flex items-center justify-center w-48 h-24 rounded-lg text-2xl font-semibold transition-all duration-300 ${buttonBg} ${!textColor}`}
+        >
+          Login
+        </Link>
+      </div>
+
+      {/* Navbar */}
       <Navbar toggle={toggle} getClassNames={getClassNames} />
-    </div>
+    </main>
   );
 };
+
 export default User;

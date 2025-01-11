@@ -28,15 +28,13 @@ export const navbarIcons = [
 
   // Filter Options
   export const filterOptions: string[] = [
-    "Vegan",
     "Sugar-Free",
     "Fresh",
-    "Coffee",
-    "Cake",
-    "Lactose-Free",
-    "Gluten-Free",
-    "Vegetarian",
     "Fruity",
+    "Gluten-Free",
+    "Lactose-Free",
+    "Vegan",
+    "Vegetarian",
   ];
 
   // Login & Signup 
@@ -48,5 +46,24 @@ export const navbarIcons = [
   };
 
 // Text Color 
-export const toggleTextColor = (toggle: boolean): string => toggle ? "text-black" : "text-white";
+export const getClassNames = (toggle: boolean): string =>
+  `${toggle ? "bg-white text-black" : "bg-slate-900 text-white"}`;
+
+export const getLogoSrc = (toggle: boolean): string =>
+  `/logo${toggle ? "/breakblack" : "/breakwhite"}.png`;
+
+export const toggleTextColor = (toggle: boolean): string => toggle ? "text-white" : "text-black";
+
 export const toggleButtonColor = (toggle: boolean): string => toggle ? "text-black" : "text-black";
+
+export const backgroundColor = (toggle: boolean) => toggle ? "bg-black" : "bg-white"
+
+
+
+// Prodcut Type
+export type Product = {
+  id: number;
+  name: string;
+  image: string;
+  price: number[];
+};

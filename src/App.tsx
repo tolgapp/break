@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
@@ -7,15 +7,20 @@ import Products from "./pages/Products";
 import User from "./pages/User";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-
-const getClassNames = (toggle: boolean): string =>
-  `${toggle ? "bg-slate-50 text-black" : "bg-gray-900 text-white"}`;
-
-const getLogoSrc = (toggle: boolean): string =>
-  `/logo${toggle ? "/breakitblack" : "/breakitwhite"}.svg`;
+import { getLogoSrc, getClassNames, Product } from "./data/helper";
 
 const App = () => {
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(true);
+  const [addedProducts, setAddedProducts] = useState<Product[]>([]);
+
+  const addToCart = (product: Product) => {
+    setAddedProducts((prev) => [...prev, product]);
+  };
+  
+
+  useEffect(() => {
+    console.log(addedProducts)
+  }, [addedProducts])
 
   return (
     <>
@@ -28,6 +33,8 @@ const App = () => {
               setToggle={setToggle}
               getLogoSrc={getLogoSrc}
               getClassNames={getClassNames}
+              addToCart={addToCart}
+              setAddedProducts={setAddedProducts}
             />
           }
         />
@@ -39,6 +46,8 @@ const App = () => {
               getClassNames={getClassNames}
               setToggle={setToggle}
               getLogoSrc={getLogoSrc}
+              addToCart={addToCart}
+              setAddedProducts={setAddedProducts}
             />
           }
         />
@@ -50,6 +59,7 @@ const App = () => {
               getClassNames={getClassNames}
               setToggle={setToggle}
               getLogoSrc={getLogoSrc}
+              addedProdutcts={addedProducts}
             />
           }
         />

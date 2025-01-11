@@ -1,140 +1,154 @@
 {
-    "coffeeSpecialties": [
-      {
-        "id": 1,
-        "name": "Espresso",
-        "description": "A strong and bold coffee shot.",
-        "ingredients": ["Ground coffee", "Water"],
-        "sizes": ["Small", "Medium"],
-        "image": "coffeemock.png",
-        "prices": [2.0, 2.5]
-      },
-      {
-        "id": 2,
-        "name": "Americano",
-        "description": "Espresso diluted with hot water.",
-        "ingredients": ["Espresso", "Hot water"],
-        "sizes": ["Medium", "Large"],
-        "image": "coffeemock.png",
-        "prices": [2.5, 3.0]
-      },
-      {
-        "id": 3,
-        "name": "Latte",
-        "description": "A creamy coffee with steamed milk.",
-        "ingredients": ["Espresso", "Steamed milk", "Foamed milk"],
-        "sizes": ["Medium", "Large"],
-        "image": "coffeemock.png",
-        "prices": [3.5, 4.0]
-      },
-      {
-        "id": 4,
-        "name": "Cappuccino",
-        "description": "A classic blend of espresso, steamed milk, and foam.",
-        "ingredients": ["Espresso", "Steamed milk", "Foamed milk"],
-        "sizes": ["Small", "Medium"],
-        "image": "coffeemock.png",
-        "prices": [2.5, 3.0]
-      },
-      {
-        "id": 5,
-        "name": "Mocha",
-        "description": "Chocolate-flavored coffee with milk and foam.",
-        "ingredients": ["Espresso", "Steamed milk", "Chocolate syrup", "Whipped cream"],
-        "sizes": ["Medium", "Large"],
-        "image": "coffeemock.png",
-        "prices": [3.5, 4.5]
-      },
-      {
-        "id": 6,
-        "name": "Macchiato",
-        "description": "Espresso with a dollop of milk foam.",
-        "ingredients": ["Espresso", "Milk foam"],
-        "sizes": ["Small"],
-        "image": "coffeemock.png",
-        "prices": [2.5]
-      },
-      {
-        "id": 7,
-        "name": "Flat White",
-        "description": "A velvety smooth espresso with steamed milk.",
-        "ingredients": ["Espresso", "Steamed milk"],
-        "sizes": ["Medium"],
-        "image": "coffeemock.png",
-        "prices": [3.0]
-      },
-      {
-        "id": 8,
-        "name": "Irish Coffee",
-        "description": "Coffee with Irish whiskey and cream.",
-        "ingredients": ["Coffee", "Irish whiskey", "Sugar", "Cream"],
-        "sizes": ["Medium", "Large"],
-        "image": "coffeemock.png",
-        "prices": [4.5, 5.5]
-      },
-      {
-        "id": 9,
-        "name": "Ristretto",
-        "description": "A shorter and more concentrated espresso.",
-        "ingredients": ["Ground coffee", "Water"],
-        "sizes": ["Small"],
-        "image": "coffeemock.png",
-        "prices": [2.0]
-      },
-      {
-        "id": 10,
-        "name": "Affogato",
-        "description": "Espresso poured over vanilla ice cream.",
-        "ingredients": ["Espresso", "Vanilla ice cream"],
-        "sizes": ["Small"],
-        "image": "coffeemock.png",
-        "prices": [3.5]
-      },
-      {
-        "id": 11,
-        "name": "Cold Brew",
-        "description": "Smooth and chilled coffee, brewed slowly.",
-        "ingredients": ["Coffee", "Cold water"],
-        "sizes": ["Medium", "Large"],
-        "image": "coffeemock.png",
-        "prices": [3.0, 3.5]
-      },
-      {
-        "id": 12,
-        "name": "Iced Latte",
-        "description": "A chilled latte served over ice.",
-        "ingredients": ["Espresso", "Cold milk", "Ice"],
-        "sizes": ["Medium", "Large"],
-        "image": "coffeemock.png",
-        "prices": [3.5, 4.0]
-      },
-      {
-        "id": 13,
-        "name": "Chai Latte",
-        "description": "A spiced tea and milk-based beverage.",
-        "ingredients": ["Chai tea", "Steamed milk", "Sugar"],
-        "sizes": ["Medium", "Large"],
-        "image": "coffeemock.png",
-        "prices": [3.5, 4.0]
-      },
-      {
-        "id": 14,
-        "name": "Cortado",
-        "description": "A balanced mix of espresso and steamed milk.",
-        "ingredients": ["Espresso", "Steamed milk"],
-        "sizes": ["Small", "Medium"],
-        "image": "coffeemock.png",
-        "prices": [2.5, 3.0]
-      },
-      {
-        "id": 15,
-        "name": "Espresso Tonic",
-        "description": "A refreshing mix of espresso and tonic water.",
-        "ingredients": ["Espresso", "Tonic water", "Ice"],
-        "sizes": ["Medium", "Large"],
-        "image": "coffeemock.png",
-        "prices": [3.5, 4.0]
-      }
-    ]
-  }
-  
+  "coffeeSpecialties": [
+    {
+      "id": 1,
+      "name": "Espresso",
+      "description": "A strong and bold coffee shot.",
+      "ingredients": ["Ground coffee", "Water"],
+      "sizes": ["Small", "Medium"],
+      "image": "coffeemock.png",
+      "prices": [2.0, 2.5],
+      "tags": ["Vegan", "Sugar-Free", "Lactose-Free", "Gluten-Free"]
+    },
+    {
+      "id": 2,
+      "name": "Americano",
+      "description": "Espresso diluted with hot water.",
+      "ingredients": ["Espresso", "Hot water"],
+      "sizes": ["Medium", "Large"],
+      "image": "coffeemock.png",
+      "prices": [2.5, 3.0],
+      "tags": ["Vegan", "Sugar-Free", "Lactose-Free", "Gluten-Free"]
+    },
+    {
+      "id": 3,
+      "name": "Latte",
+      "description": "A creamy coffee with steamed milk.",
+      "ingredients": ["Espresso", "Steamed milk", "Foamed milk"],
+      "sizes": ["Medium", "Large"],
+      "image": "coffeemock.png",
+      "prices": [3.5, 4.0],
+      "tags": ["Vegetarian", "Fresh"]
+    },
+    {
+      "id": 4,
+      "name": "Cappuccino",
+      "description": "A classic blend of espresso, steamed milk, and foam.",
+      "ingredients": ["Espresso", "Steamed milk", "Foamed milk"],
+      "sizes": ["Small", "Medium"],
+      "image": "coffeemock.png",
+      "prices": [2.5, 3.0],
+      "tags": ["Vegetarian", "Fresh"]
+    },
+    {
+      "id": 5,
+      "name": "Mocha",
+      "description": "Chocolate-flavored coffee with milk and foam.",
+      "ingredients": ["Espresso", "Steamed milk", "Chocolate syrup", "Whipped cream"],
+      "sizes": ["Medium", "Large"],
+      "image": "coffeemock.png",
+      "prices": [3.5, 4.5],
+      "tags": ["Vegetarian", "Fruity"]
+    },
+    {
+      "id": 6,
+      "name": "Macchiato",
+      "description": "Espresso with a dollop of milk foam.",
+      "ingredients": ["Espresso", "Milk foam"],
+      "sizes": ["Small"],
+      "image": "coffeemock.png",
+      "prices": [2.5],
+      "tags": ["Vegetarian"]
+    },
+    {
+      "id": 7,
+      "name": "Flat White",
+      "description": "A velvety smooth espresso with steamed milk.",
+      "ingredients": ["Espresso", "Steamed milk"],
+      "sizes": ["Medium"],
+      "image": "coffeemock.png",
+      "prices": [3.0],
+      "tags": ["Vegetarian", "Fresh"]
+    },
+    {
+      "id": 8,
+      "name": "Irish Coffee",
+      "description": "Coffee with Irish whiskey and cream.",
+      "ingredients": ["Coffee", "Irish whiskey", "Sugar", "Cream"],
+      "sizes": ["Medium", "Large"],
+      "image": "coffeemock.png",
+      "prices": [4.5, 5.5],
+      "tags": ["Fresh"]
+    },
+    {
+      "id": 9,
+      "name": "Ristretto",
+      "description": "A shorter and more concentrated espresso.",
+      "ingredients": ["Ground coffee", "Water"],
+      "sizes": ["Small"],
+      "image": "coffeemock.png",
+      "prices": [2.0],
+      "tags": ["Vegan", "Sugar-Free", "Lactose-Free", "Gluten-Free"]
+    },
+    {
+      "id": 10,
+      "name": "Affogato",
+      "description": "Espresso poured over vanilla ice cream.",
+      "ingredients": ["Espresso", "Vanilla ice cream"],
+      "sizes": ["Small"],
+      "image": "coffeemock.png",
+      "prices": [3.5],
+      "tags": ["Vegetarian"]
+    },
+    {
+      "id": 11,
+      "name": "Cold Brew",
+      "description": "Smooth and chilled coffee, brewed slowly.",
+      "ingredients": ["Coffee", "Cold water"],
+      "sizes": ["Medium", "Large"],
+      "image": "coffeemock.png",
+      "prices": [3.0, 3.5],
+      "tags": ["Vegan", "Sugar-Free", "Lactose-Free", "Gluten-Free", "Fresh"]
+    },
+    {
+      "id": 12,
+      "name": "Iced Latte",
+      "description": "A chilled latte served over ice.",
+      "ingredients": ["Espresso", "Cold milk", "Ice"],
+      "sizes": ["Medium", "Large"],
+      "image": "coffeemock.png",
+      "prices": [3.5, 4.0],
+      "tags": ["Vegetarian", "Fresh"]
+    },
+    {
+      "id": 13,
+      "name": "Chai Latte",
+      "description": "A spiced tea and milk-based beverage.",
+      "ingredients": ["Chai tea", "Steamed milk", "Sugar"],
+      "sizes": ["Medium", "Large"],
+      "image": "coffeemock.png",
+      "prices": [3.5, 4.0],
+      "tags": ["Vegetarian", "Fruity"]
+    },
+    {
+      "id": 14,
+      "name": "Cortado",
+      "description": "A balanced mix of espresso and steamed milk.",
+      "ingredients": ["Espresso", "Steamed milk"],
+      "sizes": ["Small", "Medium"],
+      "image": "coffeemock.png",
+      "prices": [2.5, 3.0],
+      "tags": ["Vegetarian"]
+    },
+    {
+      "id": 15,
+      "name": "Espresso Tonic",
+      "description": "A refreshing mix of espresso and tonic water.",
+      "ingredients": ["Espresso", "Tonic water", "Ice"],
+      "sizes": ["Medium", "Large"],
+      "image": "coffeemock.png",
+      "prices": [3.5, 4.0],
+      "tags": ["Vegan", "Sugar-Free", "Fresh"]
+    }
+  ]
+}
