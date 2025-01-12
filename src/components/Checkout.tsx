@@ -1,10 +1,12 @@
 type CheckoutProps = {
-  total: string;
+  total: number
 };
 
 const Checkout: React.FC<CheckoutProps> = ({ total }) => {
+
   return (
-    <div className="flex rounded-t-lg h-32 justify-between w-full bottom-32 fixed px-8 py-4 items-center mx-auto mt-10 gap-4 bg-gray-300">
+    <div className="flex rounded-t-lg h-auto justify-between w-full fixed bottom-32 px-8 py-4 items-center mx-auto mt-10 gap-4 bg-gray-300">
+      
       <span className="text-3xl text-slate-900 font-semibold">
         Total: {total} €
       </span>
@@ -14,4 +16,5 @@ const Checkout: React.FC<CheckoutProps> = ({ total }) => {
     </div>
   );
 };
+
 export default Checkout;

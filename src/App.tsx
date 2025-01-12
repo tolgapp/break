@@ -12,15 +12,18 @@ import { getLogoSrc, getClassNames, Product } from "./data/helper";
 const App = () => {
   const [toggle, setToggle] = useState(true);
   const [addedProducts, setAddedProducts] = useState<Product[]>([]);
+  const [total, setTotal] = useState(0);
 
   const addToCart = (product: Product) => {
     setAddedProducts((prev) => [...prev, product]);
   };
-  
 
   useEffect(() => {
-    console.log(addedProducts)
-  }, [addedProducts])
+    const totalPrice = addedProducts.reduce((acc, product) => acc + product.price[0], 0);
+    setTotal(totalPrice);
+  }, [addedProducts]);
+
+  console.log(addedProducts)
 
   return (
     <>
@@ -59,7 +62,8 @@ const App = () => {
               getClassNames={getClassNames}
               setToggle={setToggle}
               getLogoSrc={getLogoSrc}
-              addedProdutcts={addedProducts}
+              addedProducts={addedProducts}
+              total={total}
             />
           }
         />

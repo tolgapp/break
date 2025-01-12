@@ -14,7 +14,7 @@ type ProductsProps = {
   getClassNames: (value: boolean) => string;
   addToCart: (product: Product) => void;
   setAddedProducts: (value: ArrayLike) => void;
-} & Product;
+};
 
 const Products: React.FC<ProductsProps> = ({
   toggle,

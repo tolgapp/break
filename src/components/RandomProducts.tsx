@@ -6,12 +6,13 @@ import { getClassNames, Product } from "../data/helper";
 type RandomProductsProps = {
   toggle: boolean;
   addToCart: (product: Product) => void;
+  handleClick: (value: boolean) => void;
 } & Product;
 
 const RandomProducts: React.FC<RandomProductsProps> = ({
   toggle,
   handleClick,
-  addToCart,
+  addToCart
 }) => {
   const [randomProducts, setRandomProducts] = useState<any[]>([]);
 
