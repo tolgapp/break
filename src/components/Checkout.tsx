@@ -1,12 +1,10 @@
 type CheckoutProps = {
-  total: number
+  total: number;
 };
 
 const Checkout: React.FC<CheckoutProps> = ({ total }) => {
-
   return (
-    <div className="flex rounded-t-lg h-auto justify-between w-full fixed bottom-32 px-8 py-4 items-center mx-auto mt-10 gap-4 bg-gray-300">
-      
+    <div className="flex rounded-t-lg h-auto justify-between w-full fixed bottom-32 px-8 py-4 items-center mx-auto mt-10 gap-4 bg-gray-200">
       <span className="text-3xl text-slate-900 font-semibold">
         Total: {total} €
       </span>

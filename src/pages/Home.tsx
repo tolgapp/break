@@ -1,5 +1,6 @@
 import Logo from "../components/Logo";
 import Navbar from "../components/Navbar";
+import ProductDetail from "../components/ProductDetail";
 import RandomProducts from "../components/RandomProducts";
 import { Product } from "../data/helper";
 
@@ -9,7 +10,11 @@ type HomeProps = {
   getLogoSrc: (value: boolean) => string;
   getClassNames: (value: boolean) => string;
   addToCart: (product: Product) => void;
-  setAddedProducts: (value: ArrayLike) => void;
+  setAddedProducts: (value: Product[]) => void;
+  handleClick: (id: number) => void;
+  closeDetail: () => void;
+  openDetail: boolean;
+  selectedProductId: number | null;
 };
 
 const Home: React.FC<HomeProps> = ({
@@ -18,6 +23,10 @@ const Home: React.FC<HomeProps> = ({
   getLogoSrc,
   getClassNames,
   addToCart,
+  handleClick,
+  openDetail,
+  closeDetail,
+  selectedProductId,
 }) => {
   return (
     <div
@@ -41,7 +50,18 @@ const Home: React.FC<HomeProps> = ({
           className="mx-auto mt-2 rounded-3xl w-[17rem]"
         />
       </div>
-      <RandomProducts toggle={toggle} addToCart={addToCart} />
+      <RandomProducts
+        toggle={toggle}
+        addToCart={addToCart}
+        handleClick={handleClick}
+      />
+      {openDetail && (
+        <ProductDetail
+          handleClick={closeDetail}
+          openDetail={openDetail}
+          productId={selectedProductId}
+        />
+      )}
       <Navbar toggle={toggle} getClassNames={getClassNames} />
     </div>
   );

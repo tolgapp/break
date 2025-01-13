@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import ProductContainer from "../components/ProductContainer";
 import ProductDetail from "../components/ProductDetail";
 import FilterOptions from "../components/FilterOptions";
@@ -13,7 +13,12 @@ type ProductsProps = {
   getLogoSrc: (value: boolean) => string;
   getClassNames: (value: boolean) => string;
   addToCart: (product: Product) => void;
-  setAddedProducts: (value: ArrayLike) => void;
+  setAddedProducts: (value: Product[]) => void;
+  handleClick: (id: number) => void;
+  openDetail: boolean;
+  productId: number | null;
+  closeDetail: () => void;
+  selectedProductId: number | null
 };
 
 const Products: React.FC<ProductsProps> = ({
@@ -21,12 +26,12 @@ const Products: React.FC<ProductsProps> = ({
   getClassNames,
   setToggle,
   getLogoSrc,
-  addToCart
+  addToCart,
+  openDetail,
+  handleClick,
+  closeDetail,
+  selectedProductId,
 }) => {
-  const [openDetail, setOpenDetail] = useState(false);
-  const [selectedProductId, setSelectedProductId] = useState<number | null>(
-    null
-  );
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
   const filteredCoffee = selectedOption
@@ -35,22 +40,8 @@ const Products: React.FC<ProductsProps> = ({
       )
     : coffeeData.coffeeSpecialties;
 
-  const handleClick = useCallback((id: number) => {
-    setSelectedProductId(id);
-    setOpenDetail(true);
-  }, []);
-
-  const closeDetail = useCallback(() => {
-    setOpenDetail(false);
-    setSelectedProductId(null);
-  }, []);
-
   return (
-    <div
-  className={`${getClassNames(
-    toggle
-  )} gap-3 pb-60 min-h-screen`}
->
+    <div className={`${getClassNames(toggle)} gap-3 pb-60 min-h-screen`}>
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
       <FilterOptions toggle={toggle} setSelectedOption={setSelectedOption} />
       <div className="px-8 mt-10 flex flex-wrap justify-between gap-11">
@@ -63,7 +54,7 @@ const Products: React.FC<ProductsProps> = ({
             name={coffee.name}
             image={coffee.image}
             price={coffee.prices}
-            handleClick={() => handleClick(coffee.id)}
+            handleClick={handleClick}
             addToCart={addToCart}
           />
         ))}

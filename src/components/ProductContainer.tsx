@@ -3,12 +3,14 @@ import { backgroundColor, Product, toggleTextColor } from "../data/helper";
 type ProductContainerProps = {
   toggle: boolean;
   getClassNames: (value: boolean) => string;
-  handleClick: () => void;
+  addToCart: (product: Product) => void;
+  handleClick: (id: number) => void;
   id: number;
   name: string;
   image: string;
   price: number[];
-  addToCart: (product: Product) => void; 
+  openDetail: boolean;
+  productId: number | null;
 } & Product;
 
 const ProductContainer: React.FC<ProductContainerProps> = ({
@@ -28,7 +30,7 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
       } h-fit w-64 rounded-xl flex flex-col ${getClassNames(toggle)}`}
     >
       <img
-        onClick={handleClick}
+        onClick={() => handleClick(id)} 
         className="rounded-t-xl"
         src="/coffeemock.png"
         alt="coffee cup"

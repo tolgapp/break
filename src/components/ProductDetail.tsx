@@ -1,7 +1,7 @@
 import coffeeData from "../data/coffee.json";
 
 type ProductDetail = {
-  handleClick: () => void;
+  handleClick: (id: number | null) => void;
   openDetail: boolean;
   productId: number | null;
 };
@@ -16,7 +16,7 @@ const ProductDetail: React.FC<ProductDetail> = ({
   );
 
   if (!selectedCoffee) {
-    return null; // Keine Anzeige, wenn kein Produkt ausgewählt ist
+    return null;
   }
 
   return (
@@ -26,11 +26,12 @@ const ProductDetail: React.FC<ProductDetail> = ({
       }`}
     >
       <button
-        onClick={handleClick}
+        onClick={() => handleClick(null)} // Aktualisiert den Status, um die Detailansicht zu schließen.
         className="absolute top-4 right-4 w-12 h-12 flex justify-center items-center border border-white text-white text-3xl rounded-full bg-black z-50"
       >
         X
       </button>
+
       <div className="w-full px-8">
         <img
           className="top-0 rounded-t-3xl absolute left-0"
@@ -51,26 +52,26 @@ const ProductDetail: React.FC<ProductDetail> = ({
         </p>
       </div>
       <div className="flex justify-between text-black mt-4 w-full px-8">
-     <div>
-     <h3 className="text-3xl font-semibold mb-2">Ingredients:</h3>
-        <ul className="list-disc list-inside">
-          {selectedCoffee.ingredients.map((ingredient, index) => (
-            <li key={index} className="text-gray-600 text-2xl">
-              {ingredient}
-            </li>
-          ))}
-        </ul>
-     </div>
-       <div>
-       <h3 className="text-3xl font-semibold mb-2">Sizes and Prices:</h3>
-        <ul>
-          {selectedCoffee.sizes.map((size, index) => (
-            <li key={index} className="text-gray-600 text-2xl">
-              {size}: {selectedCoffee.prices[index].toFixed(2) } €
-            </li>
-          ))}
-        </ul>
-       </div>
+        <div>
+          <h3 className="text-3xl font-semibold mb-2">Ingredients:</h3>
+          <ul className="list-disc list-inside">
+            {selectedCoffee.ingredients.map((ingredient, index) => (
+              <li key={index} className="text-gray-600 text-2xl">
+                {ingredient}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h3 className="text-3xl font-semibold mb-2">Sizes and Prices:</h3>
+          <ul>
+            {selectedCoffee.sizes.map((size, index) => (
+              <li key={index} className="text-gray-600 text-2xl">
+                {size}: {selectedCoffee.prices[index].toFixed(2)} €
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

@@ -6,19 +6,19 @@ import { getClassNames, Product } from "../data/helper";
 type RandomProductsProps = {
   toggle: boolean;
   addToCart: (product: Product) => void;
-  handleClick: (value: boolean) => void;
-} & Product;
+  handleClick: (id: number) => void;
+} ;
 
 const RandomProducts: React.FC<RandomProductsProps> = ({
   toggle,
   handleClick,
   addToCart
 }) => {
-  const [randomProducts, setRandomProducts] = useState<any[]>([]);
+  const [randomProducts, setRandomProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     const selectRandomProducts = () => {
-      const selectedProducts: any[] = [];
+      const selectedProducts: Product[] = [];
       const specialties = coffeeData.coffeeSpecialties;
 
       while (selectedProducts.length <= 5) {

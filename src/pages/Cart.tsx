@@ -10,8 +10,9 @@ type CartProps = {
   setToggle: (value: boolean) => void;
   getClassNames: (value: boolean) => string;
   getLogoSrc: (value: boolean) => string;
-  addedProducts: Product[],
-  total: number
+  addedProducts: Product[];
+  setAddedProducts: React.Dispatch<React.SetStateAction<Product[]>>;
+  total: number;
 };
 
 const Cart: React.FC<CartProps> = ({
@@ -20,11 +21,10 @@ const Cart: React.FC<CartProps> = ({
   getLogoSrc,
   getClassNames,
   addedProducts,
-  total
+  setAddedProducts,
+  total,
 }) => {
-
-
-  console.log(typeof addedProducts)
+  console.log(typeof addedProducts);
 
   return (
     <div
@@ -42,8 +42,12 @@ const Cart: React.FC<CartProps> = ({
       >
         Your items:
       </h1>
-      <CartItemContainer toggle={toggle} addedProducts={addedProducts} />
-      <Checkout total={total}/>
+      <CartItemContainer
+        toggle={toggle}
+        addedProducts={addedProducts}
+        setAddedProducts={setAddedProducts}
+      />
+      <Checkout total={total} />
     </div>
   );
 };
