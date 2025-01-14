@@ -40,7 +40,7 @@ const Home: React.FC<HomeProps> = ({
         className="mt-24 grid grid-cols-2 gap-5 px-8"
         style={{ gridTemplateRows: "auto auto" }}
       >
-        <img src="/offer01.jpg" className="col-span-2 rounded-3xl w-[35rem]" />
+        <img src="/offer01.png" className="col-span-2 rounded-3xl w-[35rem]" />
         <img
           src="/offer02.jpg"
           className="mx-auto mt-2 rounded-3xl w-[17rem]"

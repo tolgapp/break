@@ -26,13 +26,13 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
   return (
     <div
       className={`cursor-pointer border ${
-        toggle ? "border-black" : "border-white"
+        toggle ? "border-slate-500" : "border-gray-100"
       } h-fit w-64 rounded-xl flex flex-col ${getClassNames(toggle)}`}
     >
       <img
         onClick={() => handleClick(id)} 
-        className="rounded-t-xl"
-        src="/coffeemock.png"
+        className="rounded-t-xl p-4 bg-gray-300"
+        src={image}
         alt="coffee cup"
       />
       <h3 className="text-3xl font-semibold text-left translate-y-3 px-4">

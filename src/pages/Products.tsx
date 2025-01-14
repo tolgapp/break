@@ -41,7 +41,7 @@ const Products: React.FC<ProductsProps> = ({
     : coffeeData.coffeeSpecialties;
 
   return (
-    <div className={`${getClassNames(toggle)} gap-3 pb-60 min-h-screen`}>
+    <main className={`${getClassNames(toggle)} gap-3 pb-60 min-h-screen`}>
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
       <FilterOptions toggle={toggle} setSelectedOption={setSelectedOption} />
       <div className="px-8 mt-10 flex flex-wrap justify-between gap-11">
@@ -67,7 +67,7 @@ const Products: React.FC<ProductsProps> = ({
         />
       )}
       <Navbar toggle={toggle} getClassNames={getClassNames} />
-    </div>
+    </main>
   );
 };
 

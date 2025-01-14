@@ -13,7 +13,7 @@ const NotFound: React.FC<NotFoundProps> = ({ toggle, getClassNames, setToggle, g
   const textColorClass = toggle ? "text-gray-900" : "text-white"; // Dunkle Farbe bei true, sonst weiß
   
   return (
-    <div
+    <main
       className={`flex flex-col h-dvh justify-center items-center w-full gap-3 ${getClassNames(
         toggle
       )}`}
@@ -23,7 +23,7 @@ const NotFound: React.FC<NotFoundProps> = ({ toggle, getClassNames, setToggle, g
       <h2 className={`text-8xl font-semibold ${textColorClass}`}>404</h2>
       <h3 className={`text-2xl font-black ${textColorClass}`}>Not Found</h3>
       <Navbar toggle={toggle} getClassNames={getClassNames} />
-    </div>
+    </main>
   );
 };
 

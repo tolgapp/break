@@ -24,10 +24,9 @@ const Cart: React.FC<CartProps> = ({
   setAddedProducts,
   total,
 }) => {
-  console.log(typeof addedProducts);
 
   return (
-    <div
+    <main
       className={`flex flex-col min-h-screen bg-gray-900 text-white ${getClassNames(
         toggle
       )}`}
@@ -48,7 +47,7 @@ const Cart: React.FC<CartProps> = ({
         setAddedProducts={setAddedProducts}
       />
       <Checkout total={total} />
-    </div>
+    </main>
   );
 };
 

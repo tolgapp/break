@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { useEffect, useState, useCallback } from "react";
+import { getLogoSrc, getClassNames, Product } from "./data/helper";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
@@ -8,16 +9,16 @@ import User from "./pages/User";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import { nanoid } from "nanoid";
-import { getLogoSrc, getClassNames, Product } from "./data/helper";
 
 const App = () => {
-  const [toggle, setToggle] = useState(true);
+  const [toggle, setToggle] = useState(false);
   const [addedProducts, setAddedProducts] = useState<Product[]>([]);
   const [total, setTotal] = useState(0);
   const [openDetail, setOpenDetail] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState<number | null>(
     null
   );
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const addToCart = (product: Product) => {
     const productWithInstanceId = { ...product, instanceId: nanoid() };
@@ -40,6 +41,12 @@ const App = () => {
       (acc, product) => acc + product.price[0],
       0
     );
+
+    // TODO: Check for overspending to protect user
+    // if (totalPrice > 30) {
+    //   alert("Order is over 30, is there maybe an typo?")
+    // }
+
     setTotal(totalPrice);
   }, [addedProducts]);
 

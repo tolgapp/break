@@ -35,7 +35,7 @@ const ProductDetail: React.FC<ProductDetail> = ({
       <div className="w-full px-8">
         <img
           className="top-0 rounded-t-3xl absolute left-0"
-          src="/coffeemock.png"
+          src={selectedCoffee.image}
           alt="coffee mockup cup"
         />
         {/* TODO: Dynamic Src Selector */}

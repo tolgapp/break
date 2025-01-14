@@ -1,8 +1,9 @@
 import BackButton from "./BackButton";
 import Logo from "./Logo";
 import Navbar from "./Navbar";
-import { handleSubmit, inputClass, toggleButtonColor } from "../data/helper";
+import { inputClass, toggleButtonColor } from "../data/helper";
 import { useState } from "react";
+import axios from "axios";
 
 type LoginProps = {
   toggle: boolean;
@@ -30,6 +31,15 @@ const Login: React.FC<LoginProps> = ({
     }));
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    axios.post("http://localhost:5002/api/login", user).then((response) => {
+      console.log(response);
+    });
+    
+  };
+
   return (
     <div
       className={`flex flex-col w-full items-center justify-center h-screen ${getClassNames(
@@ -38,10 +48,10 @@ const Login: React.FC<LoginProps> = ({
     >
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
       <BackButton toggle={toggle} />
-      <h2 className="text-white text-4xl mb-10">Login</h2>
+      <h2 className="text-4xl font-semibold text-center mb-10 w-[90%]">Login and get points for each 1€</h2>
       <form onSubmit={handleSubmit} className="flex flex-col w-[90%] gap-4">
         <input
-          className={inputClass}
+          className={` ${inputClass}  ${toggle ? "bg-slate-700" : ""}`}
           type="email"
           name="email"
           id="email"
@@ -50,7 +60,7 @@ const Login: React.FC<LoginProps> = ({
           onChange={handleLogin}
         />
         <input
-          className={inputClass}
+          className={` ${inputClass}  ${toggle ? "bg-slate-700" : ""}`}
           type="password"
           name="password"
           id="password"
@@ -59,7 +69,7 @@ const Login: React.FC<LoginProps> = ({
           onChange={handleLogin}
         />
         <button
-          className={`bg-slate-50 py-4 rounded-lg text-4xl ${toggleButtonColor(
+          className={`${toggle ? "bg-slate-700 text-white" : "bg-slate-100"} py-4 rounded-lg text-4xl ${toggleButtonColor(
             toggle
           )}`}
         >

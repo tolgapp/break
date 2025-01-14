@@ -41,13 +41,13 @@ const User: React.FC<UserProps> = ({
       <div className="flex flex-wrap gap-6 justify-center">
         <Link
           to="/signup"
-          className={`flex items-center justify-center w-48 h-24 rounded-lg text-2xl font-semibold transition-all duration-300 ${buttonBg} ${!textColor}`}
+          className={`flex items-center justify-center w-48 h-24 rounded-lg text-2xl font-semibold transition-all duration-300 ${buttonBg} ${getClassNames(!toggle)}`}
         >
           Signup
         </Link>
         <Link
           to="/login"
-          className={`flex items-center justify-center w-48 h-24 rounded-lg text-2xl font-semibold transition-all duration-300 ${buttonBg} ${!textColor}`}
+          className={`flex items-center justify-center w-48 h-24 rounded-lg text-2xl font-semibold transition-all duration-300 ${buttonBg} ${getClassNames(!toggle)}`}
         >
           Login
         </Link>

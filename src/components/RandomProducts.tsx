@@ -38,7 +38,7 @@ const RandomProducts: React.FC<RandomProductsProps> = ({
 
   return (
     <div className="px-8 flex flex-col gap-4">
-      <h1 className="mt-6 text-slate-500 text-3xl font-medium">
+      <h1 className={`mt-6 text-3xl font-medium ${getClassNames(toggle)}`}>
         Selected Coffee Specialties
       </h1>
       <ul className="flex flex-wrap overflow-auto justify-between items-center gap-11">

@@ -2,7 +2,8 @@ import { useState } from "react";
 import BackButton from "./BackButton";
 import Logo from "./Logo";
 import Navbar from "./Navbar";
-import { handleSubmit, inputClass, toggleButtonColor } from "../data/helper";
+import { inputClass, toggleButtonColor } from "../data/helper";
+import axios from "axios";
 
 type SignupProps = {
   toggle: boolean;
@@ -32,6 +33,16 @@ const Signup: React.FC<SignupProps> = ({
     }));
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    axios.post("http://localhost:5002/api/signup", value).then((response) => {
+      console.log(response);
+    });
+    
+  };
+  
+
   return (
     <div
       className={`flex flex-col w-full items-center justify-center h-screen ${getClassNames(
@@ -40,12 +51,12 @@ const Signup: React.FC<SignupProps> = ({
     >
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
       <BackButton toggle={toggle} />
-      <h2 className="text-white text-4xl mb-10 w-[70%] text-center">
+      <h2 className={`text-4xl mb-10 w-[70%] text-center`}>
         Sign up and get points for every order ⭐️
       </h2>
       <form onSubmit={handleSubmit} className="flex flex-col w-[90%] gap-4">
         <input
-          className={inputClass}
+          className={`${inputClass} ${toggle ? "bg-slate-700" : ""}`}
           type="text"
           name="name"
           id="name"
@@ -54,7 +65,7 @@ const Signup: React.FC<SignupProps> = ({
           placeholder="Name"
         />
         <input
-          className={inputClass}
+          className={`${inputClass} ${toggle ? "bg-slate-700" : ""}`}
           type="text"
           name="surname"
           id="surname"
@@ -63,7 +74,7 @@ const Signup: React.FC<SignupProps> = ({
           placeholder="Surname"
         />
         <input
-          className={inputClass}
+          className={`${inputClass} ${toggle ? "bg-slate-700" : ""}`}
           type="email"
           name="email"
           id="email"
@@ -72,7 +83,7 @@ const Signup: React.FC<SignupProps> = ({
           placeholder="Email"
         />
         <input
-          className={inputClass}
+          className={`${inputClass} ${toggle ? "bg-slate-700" : ""}`}
           type="password"
           name="password"
           id="password"
@@ -81,7 +92,7 @@ const Signup: React.FC<SignupProps> = ({
           placeholder="Password"
         />
         <button
-          className={`bg-slate-50 py-4 rounded-lg text-4xl ${toggleButtonColor(
+          className={`${toggle ? "bg-slate-700 text-white" : "bg-slate-100"} py-4 rounded-lg text-4xl ${toggleButtonColor(
             toggle
           )}`}
         >
