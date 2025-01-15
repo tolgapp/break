@@ -18,7 +18,7 @@ type ProductsProps = {
   openDetail: boolean;
   productId: number | null;
   closeDetail: () => void;
-  selectedProductId: number | null
+  selectedProductId: number | null;
 };
 
 const Products: React.FC<ProductsProps> = ({
@@ -56,6 +56,8 @@ const Products: React.FC<ProductsProps> = ({
             price={coffee.prices}
             handleClick={handleClick}
             addToCart={addToCart}
+            openDetail={false}
+            productId={null}
           />
         ))}
       </div>

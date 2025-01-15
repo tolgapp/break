@@ -1,4 +1,4 @@
-import { Product } from "../data/helper";
+import { getClassNames, Product } from "../data/helper";
 
 type CartItemContainerProps = {
   toggle: boolean;
@@ -11,8 +11,7 @@ const CartItemContainer: React.FC<CartItemContainerProps> = ({
   addedProducts,
   setAddedProducts,
 }) => {
-  
-  const handleRemove = (instanceId: string) => {
+  const handleRemove = (instanceId: string | undefined) => {
     setAddedProducts((prev) =>
       prev.filter((product) => product.instanceId !== instanceId)
     );
@@ -21,8 +20,8 @@ const CartItemContainer: React.FC<CartItemContainerProps> = ({
   if (addedProducts.length === 0) {
     return (
       <div className="h-[70vh] flex justify-center items-center">
-        <h3 className="text-3xl text-slate-900 text-center">
-          Your daily coffee cart is empty
+        <h3 className={`text-3xl text-center ${getClassNames(toggle)}`}>
+          No coffein detected
         </h3>
       </div>
     );
@@ -39,9 +38,9 @@ const CartItemContainer: React.FC<CartItemContainerProps> = ({
             toggle ? "bg-gray-400" : "bg-gray-700"
           }`}
         >
-          <span className="text-2xl font-medium">{product.name}</span>
+          <span className="text-2xl font-medium">{product.name} - {product.size}</span>
           <div className="flex items-center space-x-4">
-            <span className="text-xl">{product.price[0]} €</span>
+            <span className="text-xl">{product.price} €</span>
             <button
               onClick={() => handleRemove(product.instanceId)}
               className="p-2 px-4 text-lg bg-red-500 rounded-lg hover:bg-red-600"

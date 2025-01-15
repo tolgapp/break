@@ -56,7 +56,7 @@ const Signup: React.FC<SignupProps> = ({
       </h2>
       <form onSubmit={handleSubmit} className="flex flex-col w-[90%] gap-4">
         <input
-          className={`${inputClass} ${toggle ? "bg-slate-700" : ""}`}
+          className={`${inputClass} ${toggle ? "bg-slate-900" : ""}`}
           type="text"
           name="name"
           id="name"
@@ -65,7 +65,7 @@ const Signup: React.FC<SignupProps> = ({
           placeholder="Name"
         />
         <input
-          className={`${inputClass} ${toggle ? "bg-slate-700" : ""}`}
+          className={`${inputClass} ${toggle ? "bg-slate-900" : ""}`}
           type="text"
           name="surname"
           id="surname"
@@ -74,7 +74,7 @@ const Signup: React.FC<SignupProps> = ({
           placeholder="Surname"
         />
         <input
-          className={`${inputClass} ${toggle ? "bg-slate-700" : ""}`}
+          className={`${inputClass} ${toggle ? "bg-slate-900" : ""}`}
           type="email"
           name="email"
           id="email"
@@ -83,7 +83,7 @@ const Signup: React.FC<SignupProps> = ({
           placeholder="Email"
         />
         <input
-          className={`${inputClass} ${toggle ? "bg-slate-700" : ""}`}
+          className={`${inputClass} ${toggle ? "bg-slate-900" : ""}`}
           type="password"
           name="password"
           id="password"
@@ -92,7 +92,7 @@ const Signup: React.FC<SignupProps> = ({
           placeholder="Password"
         />
         <button
-          className={`${toggle ? "bg-slate-700 text-white" : "bg-slate-100"} py-4 rounded-lg text-4xl ${toggleButtonColor(
+          className={`${toggle ? "bg-slate-900 text-white" : "bg-slate-100"} py-4 rounded-lg text-4xl ${toggleButtonColor(
             toggle
           )}`}
         >

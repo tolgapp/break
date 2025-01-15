@@ -18,7 +18,7 @@
       "sizes": ["Small", "Medium", "Large"],
       "image": "americano.png",
       "prices": [3.45, 4.45, 4.95],
-      "tags": ["Vegan", "Sugar-Free", "Lactose-Free", "Gluten-Free"]
+      "tags": ["Vegan", "Sugar-Free", "Lactose-Free"]
     },
     {
       "id": 3,

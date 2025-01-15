@@ -24,7 +24,6 @@ const Cart: React.FC<CartProps> = ({
   setAddedProducts,
   total,
 }) => {
-
   return (
     <main
       className={`flex flex-col min-h-screen bg-gray-900 text-white ${getClassNames(

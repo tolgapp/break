@@ -3,14 +3,12 @@ import { backgroundColor, Product, toggleTextColor } from "../data/helper";
 type ProductContainerProps = {
   toggle: boolean;
   getClassNames: (value: boolean) => string;
-  addToCart: (product: Product) => void;
+  addToCart?: (product: Product) => void;
   handleClick: (id: number) => void;
   id: number;
   name: string;
   image: string;
   price: number[];
-  openDetail: boolean;
-  productId: number | null;
 } & Product;
 
 const ProductContainer: React.FC<ProductContainerProps> = ({
@@ -21,7 +19,6 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
   name,
   image,
   price,
-  addToCart,
 }) => {
   return (
     <div
@@ -30,7 +27,6 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
       } h-fit w-64 rounded-xl flex flex-col ${getClassNames(toggle)}`}
     >
       <img
-        onClick={() => handleClick(id)} 
         className="rounded-t-xl p-4 bg-gray-300"
         src={image}
         alt="coffee cup"
@@ -41,19 +37,13 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
       <div className="flex items-center justify-between w-full px-4 py-2 mt-4">
         <h4 className="text-3xl">{"from " + price[0]} €</h4>
         <button
-          onClick={() =>
-            addToCart({
-              id,
-              name,
-              image,
-              price,
-            })
+          onClick={() => handleClick(id)
           }
           className={`pointer rounded-lg px-4 py-2 text-2xl hover:bg-gray-400 hover:text-white ${toggleTextColor(
             toggle
           )} ${backgroundColor(toggle)}`}
         >
-          +
+          ▶︎
         </button>
       </div>
     </div>

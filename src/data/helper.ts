@@ -30,14 +30,13 @@ export const navbarIcons = [
 export const filterOptions: string[] = [
   "Sugar-Free",
   "Fresh",
-  "Gluten-Free",
   "Lactose-Free",
   "Vegan",
   "Vegetarian",
 ];
 
 // Login & Signup
-export const inputClass = `text-3xl text-black p-4 rounded-lg`;
+export const inputClass = `text-3xl p-4 rounded-lg`;
 
 // Text Color
 export const getClassNames = (toggle: boolean): string =>
@@ -61,5 +60,6 @@ export type Product = {
   name: string;
   image: string;
   price: number[];
-  instanceId: string
+  instanceId?: string,
+  size: string
 };

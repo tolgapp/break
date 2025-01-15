@@ -10,6 +10,11 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import { nanoid } from "nanoid";
 
+// ***** TODOS *****
+// TODO: 1. + Button mit > austauschen und die Zum Warenkorb hinzufügen funktionalität an Detail geben
+// TODO: 2. UserPage nach login "replacen" und die Option mit letzte Käufe, password änderung integr.
+// TODO: 3. Offer Komponente mit ansprechendem UI versehen als absolute komponente
+
 const App = () => {
   const [toggle, setToggle] = useState(false);
   const [addedProducts, setAddedProducts] = useState<Product[]>([]);
@@ -18,6 +23,7 @@ const App = () => {
   const [selectedProductId, setSelectedProductId] = useState<number | null>(
     null
   );
+  // TODO: Create consistency after user is logged in
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const addToCart = (product: Product) => {
@@ -38,15 +44,16 @@ const App = () => {
 
   useEffect(() => {
     const totalPrice = addedProducts.reduce(
-      (acc, product) => acc + product.price[0],
+      (acc, product) => acc + product.price,
       0
     );
 
-    // TODO: Check for overspending to protect user
-    // if (totalPrice > 30) {
-    //   alert("Order is over 30, is there maybe an typo?")
-    // }
 
+    //    TODO: Check for overspending to protect user
+    //  TODO: Implement the funct. with the Quest. like "Is the Orderamount ok?" if ok go ahead, if not ..
+    if (totalPrice > 30) {
+      alert("Order is over 30, is there maybe an typo?");
+    }
     setTotal(totalPrice);
   }, [addedProducts]);
 

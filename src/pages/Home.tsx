@@ -1,5 +1,6 @@
 import Logo from "../components/Logo";
 import Navbar from "../components/Navbar";
+import OfferContainer from "../components/OfferContainer";
 import ProductDetail from "../components/ProductDetail";
 import RandomProducts from "../components/RandomProducts";
 import { Product } from "../data/helper";
@@ -35,24 +36,10 @@ const Home: React.FC<HomeProps> = ({
       )} min-h-dvh overflow-y-scroll pb-48 `}
     >
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
-      {/* Outsourcing the img elt as component with automatic slider every 4s without arrows */}
-      <div
-        className="mt-24 grid grid-cols-2 gap-5 px-8"
-        style={{ gridTemplateRows: "auto auto" }}
-      >
-        <img src="/offer01.png" className="col-span-2 rounded-3xl w-[35rem]" />
-        <img
-          src="/offer02.jpg"
-          className="mx-auto mt-2 rounded-3xl w-[17rem]"
-        />
-        <img
-          src="/offer03.jpg"
-          className="mx-auto mt-2 rounded-3xl w-[17rem]"
-        />
-      </div>
+      <OfferContainer toggle={toggle} />
       <RandomProducts
         toggle={toggle}
-        addToCart={addToCart}
+        // addToCart={addToCart}
         handleClick={handleClick}
       />
       {openDetail && (
@@ -60,6 +47,7 @@ const Home: React.FC<HomeProps> = ({
           handleClick={closeDetail}
           openDetail={openDetail}
           productId={selectedProductId}
+          addToCart={addToCart}
         />
       )}
       <Navbar toggle={toggle} getClassNames={getClassNames} />

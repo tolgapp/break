@@ -12,8 +12,9 @@ type RandomProductsProps = {
 const RandomProducts: React.FC<RandomProductsProps> = ({
   toggle,
   handleClick,
-  addToCart
+  // addToCart
 }) => {
+  
   const [randomProducts, setRandomProducts] = useState<Product[]>([]);
 
   useEffect(() => {
@@ -52,7 +53,7 @@ const RandomProducts: React.FC<RandomProductsProps> = ({
             image={coffee.image}
             price={coffee.prices}
             handleClick={() => handleClick(coffee.id)}
-            addToCart={addToCart}
+            // addToCart={addToCart}
           />
         ))}
       </ul>
