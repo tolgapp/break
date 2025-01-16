@@ -37,14 +37,10 @@ const Home: React.FC<HomeProps> = ({
     >
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
       <OfferContainer toggle={toggle} />
-      <RandomProducts
-        toggle={toggle}
-        // addToCart={addToCart}
-        handleClick={handleClick}
-      />
+      <RandomProducts toggle={toggle} handleClick={handleClick} />
       {openDetail && (
         <ProductDetail
-          handleClick={closeDetail}
+          closeDetail={closeDetail}
           openDetail={openDetail}
           productId={selectedProductId}
           addToCart={addToCart}

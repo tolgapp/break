@@ -1,61 +1,64 @@
-import { Route, Routes } from "react-router-dom";
 import { useEffect, useState, useCallback } from "react";
-import { getLogoSrc, getClassNames, Product } from "./data/helper";
+import { nanoid } from "nanoid";
+import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import Cart from "./pages/Cart";
-import NotFound from "./pages/NotFound";
 import Products from "./pages/Products";
+import Cart from "./pages/Cart";
 import User from "./pages/User";
+import NotFound from "./pages/NotFound";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import { nanoid } from "nanoid";
-
-// ***** TODOS *****
-// TODO: 1. + Button mit > austauschen und die Zum Warenkorb hinzufügen funktionalität an Detail geben
-// TODO: 2. UserPage nach login "replacen" und die Option mit letzte Käufe, password änderung integr.
-// TODO: 3. Offer Komponente mit ansprechendem UI versehen als absolute komponente
+import { Product, getLogoSrc, getClassNames } from "./data/helper";
 
 const App = () => {
   const [toggle, setToggle] = useState(false);
   const [addedProducts, setAddedProducts] = useState<Product[]>([]);
   const [total, setTotal] = useState(0);
   const [openDetail, setOpenDetail] = useState(false);
-  const [selectedProductId, setSelectedProductId] = useState<number | null>(
-    null
-  );
-  // TODO: Create consistency after user is logged in
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [selectedProductId, setSelectedProductId] = useState<number | null>(null);
+
+  useEffect(() => {
+    const storedProducts = localStorage.getItem("addedProducts");
+    const storedTotal = localStorage.getItem("total");
+
+    if (storedProducts) {
+      setAddedProducts(JSON.parse(storedProducts));
+    }
+    if (storedTotal) {
+      setTotal(Number(storedTotal));
+    }
+  }, []);
 
   const addToCart = (product: Product) => {
     const productWithInstanceId = { ...product, instanceId: nanoid() };
-    setAddedProducts((prev) => [...prev, productWithInstanceId]);
+    setAddedProducts((prev) => {
+      const updatedProducts = [...prev, productWithInstanceId];
+      localStorage.setItem("addedProducts", JSON.stringify(updatedProducts));
+      return updatedProducts;
+    });
   };
+
+  useEffect(() => {
+    const totalPrice = addedProducts.reduce((acc, product) => {
+      const productPrice = Array.isArray(product.price)
+        ? product.price.reduce((sum, p) => sum + p, 0) 
+        : product.price; 
+      return acc + productPrice;
+    }, 0);
+
+    setTotal(totalPrice);
+    localStorage.setItem("total", totalPrice.toString());
+  }, [addedProducts]);
 
   const handleClick = useCallback((id: number) => {
     setSelectedProductId(id);
     setOpenDetail(true);
-    console.log("Clicked Container", id);
   }, []);
 
   const closeDetail = useCallback(() => {
     setOpenDetail(false);
     setSelectedProductId(null);
   }, []);
-
-  useEffect(() => {
-    const totalPrice = addedProducts.reduce(
-      (acc, product) => acc + product.price,
-      0
-    );
-
-
-    //    TODO: Check for overspending to protect user
-    //  TODO: Implement the funct. with the Quest. like "Is the Orderamount ok?" if ok go ahead, if not ..
-    if (totalPrice > 30) {
-      alert("Order is over 30, is there maybe an typo?");
-    }
-    setTotal(totalPrice);
-  }, [addedProducts]);
 
   return (
     <>

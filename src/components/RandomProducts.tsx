@@ -5,14 +5,12 @@ import { getClassNames, Product } from "../data/helper";
 
 type RandomProductsProps = {
   toggle: boolean;
-  addToCart: (product: Product) => void;
   handleClick: (id: number) => void;
 } ;
 
 const RandomProducts: React.FC<RandomProductsProps> = ({
   toggle,
   handleClick,
-  // addToCart
 }) => {
   
   const [randomProducts, setRandomProducts] = useState<Product[]>([]);
@@ -42,7 +40,7 @@ const RandomProducts: React.FC<RandomProductsProps> = ({
       <h1 className={`mt-6 text-3xl font-medium ${getClassNames(toggle)}`}>
         Selected Coffee Specialties
       </h1>
-      <ul className="flex flex-wrap overflow-auto justify-between items-center gap-11">
+      <ul className="flex flex-wrap overflow-auto justify-between gap-10">
         {randomProducts.map((coffee) => (
           <ProductContainer
             key={coffee.id}

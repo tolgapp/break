@@ -4,7 +4,7 @@ type OfferContainerProps = {
   
   const OfferContainer: React.FC<OfferContainerProps> = () => {
     const offers = {
-      image: ["/offer/offer01.png", "/offer/offer02.jpg", "/offer/offer03.jpg"],
+      image: ["/offer/offer01.png", "/offer/offer02.jpg", "/offer/offer03.png"],
     };
 
     return (

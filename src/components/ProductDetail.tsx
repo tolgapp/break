@@ -3,14 +3,14 @@ import coffeeData from "../data/coffee.json";
 import { Product } from "../data/helper";
 
 type ProductDetail = {
-  handleClick: (id: number | null) => void;
+  closeDetail: (id: number | null) => void;
   addToCart: (product: Product) => void;
   openDetail: boolean;
   productId: number | null;
-} & Product;
+};
 
 const ProductDetail: React.FC<ProductDetail> = ({
-  handleClick,
+  closeDetail,
   openDetail,
   productId,
   addToCart,
@@ -36,10 +36,9 @@ const ProductDetail: React.FC<ProductDetail> = ({
       const productWithDetails = {
         ...selectedCoffee,
         size: selectedSize,
-        price, // Preis basierend auf der ausgewählten Größe
+        price, 
       };
       addToCart(productWithDetails);
-      handleClick(null)
     } else {
       alert("Please select a size before adding to the cart.");
     }
@@ -52,8 +51,8 @@ const ProductDetail: React.FC<ProductDetail> = ({
       <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-xl"></div>
       <div className="fixed flex flex-col justify-center items-center bottom-0 z-[200] h-[75%] w-full bg-slate-50 rounded-t-3xl rounded-xl">
         <button
-          onClick={() => handleClick(null)}
-          className="absolute top-4 right-4 w-12 h-12 flex justify-center items-center border border-white text-white text-3xl rounded-full bg-black z-50"
+          onClick={() => closeDetail(null)}
+          className="absolute top-4 right-4 w-12 h-12 flex justify-center items-center border border-white text-white text-3xl rounded-full bg-black z-50 hover:bg-red-700"
         >
           X
         </button>
@@ -105,7 +104,7 @@ const ProductDetail: React.FC<ProductDetail> = ({
         </div>
         <button
           onClick={handleAddToCart}
-          className="mt-8 bg-black text-white text-2xl px-6 py-3 rounded-lg"
+          className="mt-8 bg-black text-white text-2xl px-6 py-3 rounded-lg hover:bg-orange-800 hover:text-white"
         >
           In den Warenkorb
         </button>

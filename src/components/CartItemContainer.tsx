@@ -34,16 +34,16 @@ const CartItemContainer: React.FC<CartItemContainerProps> = ({
       {addedProducts.map((product) => (
         <li
           key={product.instanceId}
-          className={`rounded-lg shadow-md flex items-center justify-between py-4 px-3 ${
-            toggle ? "bg-gray-400" : "bg-gray-700"
+          className={`rounded-lg shadow-lg flex items-center justify-between py-4 px-3 ${
+            toggle ? "bg-white border text-black" : "bg-slate-700 shadow-sm "
           }`}
         >
-          <span className="text-2xl font-medium">{product.name} - {product.size}</span>
+          <span className="text-2xl">{product.name} - {product.size}</span>
           <div className="flex items-center space-x-4">
-            <span className="text-xl">{product.price} €</span>
+            <span className="text-2xl font-semibold">{product.price} €</span>
             <button
               onClick={() => handleRemove(product.instanceId)}
-              className="p-2 px-4 text-lg bg-red-500 rounded-lg hover:bg-red-600"
+              className={`p-2 px-4 text-lg text-black bg-slate-50 rounded-lg hover:bg-red-600 hover:text-white`}
             >
               X
             </button>

@@ -8,7 +8,7 @@
       "sizes": ["Small", "Medium", "Large"],
       "image": "cappuccino.png",
       "prices": [3.45, 4.45, 4.95],
-      "tags": ["Vegetarian", "Fresh"]
+      "tags": ["Vegetarian", "Fresh", "All"]
     },
     {
       "id": 2,
@@ -18,7 +18,7 @@
       "sizes": ["Small", "Medium", "Large"],
       "image": "americano.png",
       "prices": [3.45, 4.45, 4.95],
-      "tags": ["Vegan", "Sugar-Free", "Lactose-Free"]
+      "tags": ["Vegan", "Sugar-Free", "Lactose-Free", "All"]
     },
     {
       "id": 3,
@@ -28,7 +28,7 @@
       "sizes": ["Small", "Medium", "Large"],
       "image": "cafeaulait.png",
       "prices": [3.45, 4.45, 4.95],
-      "tags": ["Vegetarian", "Fresh"]
+      "tags": ["Vegetarian", "Fresh", "All"]
     },
     {
       "id": 4,
@@ -38,7 +38,7 @@
       "sizes": ["Small", "Medium", "Large"],
       "image": "icedcaramellmacchiato.png",
       "prices": [4.45, 5.45, 6.95],
-      "tags": ["Vegetarian", "Fresh"]
+      "tags": ["Vegetarian", "Fresh", "All"]
     },
     {
       "id": 5,
@@ -48,7 +48,7 @@
       "sizes": ["Small"],
       "image": "affogato.png",
       "prices": [4.95],
-      "tags": ["Vegetarian"]
+      "tags": ["Vegetarian", "All"]
     },
     {
       "id": 6,
@@ -58,7 +58,7 @@
       "sizes": ["Small", "Medium", "Large"],
       "image": "flatwhite.png",
       "prices": [3.45, 4.45, 4.95],
-      "tags": ["Vegetarian", "Fresh"]
+      "tags": ["Vegetarian", "Fresh", "All"]
     },
     {
       "id": 7,
@@ -68,7 +68,7 @@
       "sizes": ["Small", "Medium", "Large"],
       "image": "icedlatte.png",
       "prices": [3.45, 4.45, 4.95],
-      "tags": ["Vegetarian", "Fresh"]
+      "tags": ["Vegetarian", "Fresh", "All"]
     },
     {
       "id": 8,
@@ -78,7 +78,7 @@
       "sizes": ["Small", "Medium", "Large"],
       "image": "vietnameseiced.png",
       "prices": [4.45, 5.45, 6.95],
-      "tags": ["Vegetarian", "Sweet"]
+      "tags": ["Vegetarian", "Sweet", "All"]
     },
     {
       "id": 9,
@@ -88,7 +88,7 @@
       "sizes": ["Small", "Medium", "Large"],
       "image": "mocha.png",
       "prices": [4.45, 5.45, 6.95],
-      "tags": ["Vegetarian", "Sweet"]
+      "tags": ["Vegetarian", "Sweet", "All"]
     },
     {
       "id": 10,
@@ -98,7 +98,7 @@
       "sizes": ["Small", "Medium", "Large"],
       "image": "hotchocolate.png",
       "prices": [3.45, 4.45, 4.95],
-      "tags": ["Vegetarian", "Sweet"]
+      "tags": ["Vegetarian", "Sweet", "All"]
     }
   ]
 }

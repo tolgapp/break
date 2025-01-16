@@ -51,7 +51,7 @@ const Login: React.FC<LoginProps> = ({
       <h2 className="text-4xl font-semibold text-center mb-10 w-[90%]">Login and get points for each 1€</h2>
       <form onSubmit={handleSubmit} className="flex flex-col w-[90%] gap-4">
         <input
-          className={` ${inputClass}  ${toggle ? "bg-slate-900" : ""}`}
+          className={` ${inputClass}  ${toggle ? "bg-slate-900 text-white" : "text-black"}`}
           type="email"
           name="email"
           id="email"
@@ -60,7 +60,7 @@ const Login: React.FC<LoginProps> = ({
           onChange={handleLogin}
         />
         <input
-          className={` ${inputClass}  ${toggle ? "bg-slate-900" : ""}`}
+          className={` ${inputClass}  ${toggle ? "bg-slate-900 text-white" : "text-black"}`}
           type="password"
           name="password"
           id="password"

@@ -24,10 +24,10 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
     <div
       className={`cursor-pointer border ${
         toggle ? "border-slate-500" : "border-gray-100"
-      } h-fit w-64 rounded-xl flex flex-col ${getClassNames(toggle)}`}
+      } h-fit w-[16.1rem] rounded-xl flex flex-col ${getClassNames(toggle)}`}
     >
       <img
-        className="rounded-t-xl p-4 bg-gray-300"
+        className="rounded-t-xl pt-3 pb-6 bg-gray-300"
         src={image}
         alt="coffee cup"
       />
@@ -35,10 +35,11 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
         {name}
       </h3>
       <div className="flex items-center justify-between w-full px-4 py-2 mt-4">
-        <h4 className="text-3xl">{"from " + price[0]} €</h4>
+        <h4 className="text-2xl font-light">
+          from <strong className="text-2xl font-semibold">{price[0]}</strong> €
+        </h4>
         <button
-          onClick={() => handleClick(id)
-          }
+          onClick={() => handleClick(id)}
           className={`pointer rounded-lg px-4 py-2 text-2xl hover:bg-gray-400 hover:text-white ${toggleTextColor(
             toggle
           )} ${backgroundColor(toggle)}`}

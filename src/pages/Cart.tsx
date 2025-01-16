@@ -1,9 +1,10 @@
+import axios from "axios";
+import { Product } from "../data/helper";
+import Logo from "../components/Logo";
+import Navbar from "../components/Navbar";
 import BackButton from "../components/BackButton";
 import CartItemContainer from "../components/CartItemContainer";
 import Checkout from "../components/Checkout";
-import Logo from "../components/Logo";
-import Navbar from "../components/Navbar";
-import { Product } from "../data/helper";
 
 type CartProps = {
   toggle: boolean;
@@ -24,9 +25,23 @@ const Cart: React.FC<CartProps> = ({
   setAddedProducts,
   total,
 }) => {
+
+  const handleCheckout = () => {
+    axios
+      .post("http://localhost:5002/api/checkout", addedProducts)
+      .then((response) => {
+        console.log("Checkout successful:", response.data);
+      })
+      .catch((error) => {
+        console.error("Checkout error:", error);
+      });
+    setAddedProducts([]);
+    localStorage.clear();
+  };
+
   return (
     <main
-      className={`flex flex-col min-h-screen bg-gray-900 text-white ${getClassNames(
+      className={`relative flex flex-col min-h-screen bg-gray-900 text-white ${getClassNames(
         toggle
       )}`}
     >
@@ -45,7 +60,7 @@ const Cart: React.FC<CartProps> = ({
         addedProducts={addedProducts}
         setAddedProducts={setAddedProducts}
       />
-      <Checkout total={total} />
+      <Checkout total={total} handleCheckout={handleCheckout} toggle={toggle} />
     </main>
   );
 };

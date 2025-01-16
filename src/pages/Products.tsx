@@ -56,17 +56,15 @@ const Products: React.FC<ProductsProps> = ({
             price={coffee.prices}
             handleClick={handleClick}
             addToCart={addToCart}
-            openDetail={false}
-            productId={null}
           />
         ))}
       </div>
       {openDetail && (
         <ProductDetail
-          handleClick={closeDetail}
+          closeDetail={closeDetail}
           openDetail={openDetail}
           productId={selectedProductId}
-        />
+          addToCart={addToCart}         />
       )}
       <Navbar toggle={toggle} getClassNames={getClassNames} />
     </main>

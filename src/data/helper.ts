@@ -28,11 +28,12 @@ export const navbarIcons = [
 
 // Filter Options
 export const filterOptions: string[] = [
-  "Sugar-Free",
+  "All",
   "Fresh",
-  "Lactose-Free",
   "Vegan",
+  "Sugar-Free",
   "Vegetarian",
+  "Lactose-Free",
 ];
 
 // Login & Signup
@@ -59,7 +60,7 @@ export type Product = {
   id: number;
   name: string;
   image: string;
-  price: number[];
+  price: number | number[];
   instanceId?: string,
-  size: string
+  size?: string
 };
