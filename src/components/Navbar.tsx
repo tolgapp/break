@@ -4,9 +4,16 @@ import { navbarIcons } from "../data/helper";
 type NavbarProps = {
   toggle: boolean; // DarkMode toggle
   getClassNames: (value: boolean) => string;
+  userName?: string;
+  isLoggedIn?: boolean;
 };
 
-const Navbar: React.FC<NavbarProps> = ({ toggle, getClassNames }) => {
+const Navbar: React.FC<NavbarProps> = ({
+  toggle,
+  getClassNames,
+  userName,
+  isLoggedIn,
+}) => {
   const location = useLocation();
 
   const icons = navbarIcons.map((icon, id) => {
@@ -15,11 +22,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggle, getClassNames }) => {
       ${isActive ? "text-xl font-bold" : "text-base"}
       ${toggle ? "text-black" : "text-white"}
     `;
-    const bgClass = isActive
-      ? toggle
-        ? "bg-gray-300"
-        : "bg-gray-700"
-      : "";
+    const bgClass = isActive ? (toggle ? "bg-gray-300" : "bg-gray-700") : "";
 
     return (
       <div
@@ -35,7 +38,9 @@ const Navbar: React.FC<NavbarProps> = ({ toggle, getClassNames }) => {
             src={toggle ? icon.iconDark : icon.icon}
             alt={icon.name}
           />
-          <p className={`text-center ${dynamicClass}`}>{icon.name}</p>
+           <p className={`text-center ${dynamicClass}`}>
+           {icon.name === "User" && isLoggedIn ? userName : icon.name}
+           </p>
         </Link>
       </div>
     );

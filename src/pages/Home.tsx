@@ -16,6 +16,8 @@ type HomeProps = {
   closeDetail: () => void;
   openDetail: boolean;
   selectedProductId: number | null;
+  isLoggedIn: boolean;
+  userName: string;
 };
 
 const Home: React.FC<HomeProps> = ({
@@ -28,6 +30,8 @@ const Home: React.FC<HomeProps> = ({
   openDetail,
   closeDetail,
   selectedProductId,
+  isLoggedIn,
+  userName,
 }) => {
   return (
     <div
@@ -46,7 +50,12 @@ const Home: React.FC<HomeProps> = ({
           addToCart={addToCart}
         />
       )}
-      <Navbar toggle={toggle} getClassNames={getClassNames} />
+      <Navbar
+        toggle={toggle}
+        getClassNames={getClassNames}
+        isLoggedIn={isLoggedIn}
+        userName={userName}
+      />
     </div>
   );
 };

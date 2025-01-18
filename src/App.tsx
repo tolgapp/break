@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { nanoid } from "nanoid";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
@@ -9,13 +9,19 @@ import NotFound from "./pages/NotFound";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import { Product, getLogoSrc, getClassNames } from "./data/helper";
+import UpdateData from "./components/UpdateData";
 
 const App = () => {
   const [toggle, setToggle] = useState(false);
   const [addedProducts, setAddedProducts] = useState<Product[]>([]);
   const [total, setTotal] = useState(0);
   const [openDetail, setOpenDetail] = useState(false);
-  const [selectedProductId, setSelectedProductId] = useState<number | null>(null);
+  const [selectedProductId, setSelectedProductId] = useState<number | null>(
+    null
+  );
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     const storedProducts = localStorage.getItem("addedProducts");
@@ -29,6 +35,12 @@ const App = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (isLoggedIn === true) {
+      setIsLoggedIn(true);
+    }
+  }, [isLoggedIn]);
+
   const addToCart = (product: Product) => {
     const productWithInstanceId = { ...product, instanceId: nanoid() };
     setAddedProducts((prev) => {
@@ -40,9 +52,9 @@ const App = () => {
 
   useEffect(() => {
     const totalPrice = addedProducts.reduce((acc, product) => {
-      const productPrice = Array.isArray(product.price)
-        ? product.price.reduce((sum, p) => sum + p, 0) 
-        : product.price; 
+      const productPrice = Array.isArray(product.prices)
+        ? product.prices.reduce((sum, price) => sum + price, 0)
+        : product.prices;
       return acc + productPrice;
     }, 0);
 
@@ -77,6 +89,8 @@ const App = () => {
               closeDetail={closeDetail}
               selectedProductId={selectedProductId}
               handleClick={handleClick}
+              isLoggedIn={isLoggedIn}
+              userName={userName}
             />
           }
         />
@@ -95,6 +109,8 @@ const App = () => {
               handleClick={handleClick}
               closeDetail={closeDetail}
               selectedProductId={selectedProductId}
+              isLoggedIn={isLoggedIn}
+              userName={userName}
             />
           }
         />
@@ -109,6 +125,8 @@ const App = () => {
               addedProducts={addedProducts}
               setAddedProducts={setAddedProducts}
               total={total}
+              isLoggedIn={isLoggedIn}
+              userName={userName}
             />
           }
         />
@@ -120,6 +138,9 @@ const App = () => {
               getClassNames={getClassNames}
               setToggle={setToggle}
               getLogoSrc={getLogoSrc}
+              isLoggedIn={isLoggedIn}
+              setIsLoggedIn={setIsLoggedIn}
+              userName={userName}
             />
           }
         />
@@ -137,11 +158,30 @@ const App = () => {
         <Route
           path="/login"
           element={
-            <Login
+            isLoggedIn ? (
+              <Navigate to="/" replace />
+            ) : (
+              <Login
+                toggle={toggle}
+                getClassNames={getClassNames}
+                setToggle={setToggle}
+                getLogoSrc={getLogoSrc}
+                setIsLoggedIn={setIsLoggedIn}
+                isLoggedIn={isLoggedIn}
+                setUserName={setUserName}
+                setUserId={setUserId}
+              />
+            )
+          }
+        />
+        <Route
+          path="/user/update-data"
+          element={
+            <UpdateData
               toggle={toggle}
-              getClassNames={getClassNames}
               setToggle={setToggle}
-              getLogoSrc={getLogoSrc}
+              userId={userId}
+              userName={userName}
             />
           }
         />

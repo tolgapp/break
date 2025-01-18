@@ -14,6 +14,8 @@ type CartProps = {
   addedProducts: Product[];
   setAddedProducts: React.Dispatch<React.SetStateAction<Product[]>>;
   total: number;
+  userName: string;
+  isLoggedIn: boolean
 };
 
 const Cart: React.FC<CartProps> = ({
@@ -24,8 +26,9 @@ const Cart: React.FC<CartProps> = ({
   addedProducts,
   setAddedProducts,
   total,
+  userName,
+  isLoggedIn
 }) => {
-
   const handleCheckout = () => {
     axios
       .post("http://localhost:5002/api/checkout", addedProducts)
@@ -46,7 +49,12 @@ const Cart: React.FC<CartProps> = ({
       )}`}
     >
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
-      <Navbar toggle={toggle} getClassNames={getClassNames} />
+      <Navbar
+        toggle={toggle}
+        getClassNames={getClassNames}
+        userName={userName}
+        isLoggedIn={isLoggedIn}
+      />
       <BackButton toggle={toggle} />
       <h1
         className={` mt-32 mb-4 text-5xl font-bold text-left pl-8 ${getClassNames(

@@ -19,6 +19,8 @@ type ProductsProps = {
   productId: number | null;
   closeDetail: () => void;
   selectedProductId: number | null;
+  userName: string;
+  isLoggedIn: boolean;
 };
 
 const Products: React.FC<ProductsProps> = ({
@@ -31,6 +33,8 @@ const Products: React.FC<ProductsProps> = ({
   handleClick,
   closeDetail,
   selectedProductId,
+  userName,
+  isLoggedIn,
 }) => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
@@ -53,7 +57,7 @@ const Products: React.FC<ProductsProps> = ({
             toggle={toggle}
             name={coffee.name}
             image={coffee.image}
-            price={coffee.prices}
+            prices={coffee.prices}
             handleClick={handleClick}
             addToCart={addToCart}
           />
@@ -64,9 +68,15 @@ const Products: React.FC<ProductsProps> = ({
           closeDetail={closeDetail}
           openDetail={openDetail}
           productId={selectedProductId}
-          addToCart={addToCart}         />
+          addToCart={addToCart}
+        />
       )}
-      <Navbar toggle={toggle} getClassNames={getClassNames} />
+      <Navbar
+        toggle={toggle}
+        getClassNames={getClassNames}
+        userName={userName}
+        isLoggedIn={isLoggedIn}
+      />
     </main>
   );
 };

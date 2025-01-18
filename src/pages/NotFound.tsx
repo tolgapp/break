@@ -10,7 +10,7 @@ type NotFoundProps = {
 };
 
 const NotFound: React.FC<NotFoundProps> = ({ toggle, getClassNames, setToggle, getLogoSrc }) => {
-  const textColorClass = toggle ? "text-gray-900" : "text-white"; // Dunkle Farbe bei true, sonst weiß
+  const textColorClass = toggle ? "text-gray-900" : "text-white"; 
   
   return (
     <main
@@ -19,7 +19,7 @@ const NotFound: React.FC<NotFoundProps> = ({ toggle, getClassNames, setToggle, g
       )}`}
     >
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc}/>
-      <BackButton />
+      <BackButton toggle={toggle}/>
       <h2 className={`text-8xl font-semibold ${textColorClass}`}>404</h2>
       <h3 className={`text-2xl font-black ${textColorClass}`}>Not Found</h3>
       <Navbar toggle={toggle} getClassNames={getClassNames} />

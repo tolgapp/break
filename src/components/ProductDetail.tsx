@@ -58,7 +58,7 @@ const ProductDetail: React.FC<ProductDetail> = ({
         </button>
         <div className="w-full px-8">
           <img
-            className="top-0 rounded-t-3xl translate-y-[-20rem] absolute left-0"
+            className={`top-0 rounded-t-3xl translate-y-[-20rem] absolute left-0 ${selectedCoffee.name === "Iced Coffee" ? "translate-y-[-19rem]" : ""}`}
             src={selectedCoffee.image}
             alt="coffee mockup cup"
           />

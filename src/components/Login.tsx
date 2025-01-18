@@ -10,6 +10,10 @@ type LoginProps = {
   setToggle: (value: boolean) => void;
   getClassNames: (value: boolean) => string;
   getLogoSrc: (value: boolean) => string;
+  setIsLoggedIn: (value: boolean) => void;
+  isLoggedIn: boolean
+  setUserName: (value: string) => void;
+  setUserId: (value: string) => void;
 };
 
 const Login: React.FC<LoginProps> = ({
@@ -17,10 +21,13 @@ const Login: React.FC<LoginProps> = ({
   setToggle,
   getLogoSrc,
   getClassNames,
+  setIsLoggedIn,
+  setUserName,
+  setUserId
 }) => {
   const [user, setUser] = useState({
     email: "",
-    password: "",
+    password: ""
   });
 
   const handleLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,9 +42,13 @@ const Login: React.FC<LoginProps> = ({
     e.preventDefault();
 
     axios.post("http://localhost:5002/api/login", user).then((response) => {
-      console.log(response);
+      setUserName(response.data.userName)
+
+      if(response.status === 200) {
+        setIsLoggedIn(true);
+        setUserId(response.data.userId)
+      }
     });
-    
   };
 
   return (
@@ -48,10 +59,14 @@ const Login: React.FC<LoginProps> = ({
     >
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
       <BackButton toggle={toggle} />
-      <h2 className="text-4xl font-semibold text-center mb-10 w-[90%]">Login and get points for each 1€</h2>
+      <h2 className="text-4xl font-semibold text-center mb-10 w-[90%]">
+        Login and get points for each 1€
+      </h2>
       <form onSubmit={handleSubmit} className="flex flex-col w-[90%] gap-4">
         <input
-          className={` ${inputClass}  ${toggle ? "bg-slate-900 text-white" : "text-black"}`}
+          className={` ${inputClass}  ${
+            toggle ? "bg-slate-900 text-white" : "text-black"
+          }`}
           type="email"
           name="email"
           id="email"
@@ -60,7 +75,9 @@ const Login: React.FC<LoginProps> = ({
           onChange={handleLogin}
         />
         <input
-          className={` ${inputClass}  ${toggle ? "bg-slate-900 text-white" : "text-black"}`}
+          className={` ${inputClass}  ${
+            toggle ? "bg-slate-900 text-white" : "text-black"
+          }`}
           type="password"
           name="password"
           id="password"
@@ -69,9 +86,9 @@ const Login: React.FC<LoginProps> = ({
           onChange={handleLogin}
         />
         <button
-          className={`${toggle ? "bg-slate-900 text-white" : "bg-slate-100"} py-4 rounded-lg text-4xl ${toggleButtonColor(
-            toggle
-          )}`}
+          className={`${
+            toggle ? "bg-slate-900 text-white" : "bg-slate-100"
+          } py-4 rounded-lg text-4xl ${toggleButtonColor(toggle)}`}
         >
           Login
         </button>

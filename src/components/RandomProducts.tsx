@@ -49,9 +49,8 @@ const RandomProducts: React.FC<RandomProductsProps> = ({
             toggle={toggle}
             name={coffee.name}
             image={coffee.image}
-            price={coffee.prices}
+            prices={coffee.prices}
             handleClick={() => handleClick(coffee.id)}
-            // addToCart={addToCart}
           />
         ))}
       </ul>

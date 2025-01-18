@@ -8,7 +8,7 @@ type ProductContainerProps = {
   id: number;
   name: string;
   image: string;
-  price: number[];
+  prices: number[];
 } & Product;
 
 const ProductContainer: React.FC<ProductContainerProps> = ({
@@ -18,8 +18,12 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
   id,
   name,
   image,
-  price,
+  prices,
 }) => {
+  
+  const allPrices = prices.map((price) => price);
+  const smallPrice = allPrices[0];
+
   return (
     <div
       className={`cursor-pointer border ${
@@ -36,7 +40,8 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
       </h3>
       <div className="flex items-center justify-between w-full px-4 py-2 mt-4">
         <h4 className="text-2xl font-light">
-          from <strong className="text-2xl font-semibold">{price[0]}</strong> €
+          from <strong className="text-2xl font-semibold">{smallPrice}</strong>{" "}
+          €
         </h4>
         <button
           onClick={() => handleClick(id)}

@@ -1,0 +1,114 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { getClassNames, getLogoSrc, inputClass, toggleButtonColor } from "../data/helper";
+import Logo from "./Logo";
+import BackButton from "./BackButton";
+import Navbar from "./Navbar";
+
+type UpdateDataProps = {
+  toggle: boolean;
+  setToggle: (value: boolean) => void;
+  userId: string;
+  userName: string
+};
+
+const UpdateData: React.FC<UpdateDataProps> = ({ toggle, setToggle, userId, userName }) => {
+  const [value, setValue] = useState({
+    name: "",
+    surname: "",
+    email: "",
+    password: "",
+  });
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5002/api/users/${userId}`);
+        const { name, surname, email } = response.data; 
+        console.log(response.data)
+        setValue((prev) => ({ ...prev, name, surname, email }));
+      } catch (error) {
+        console.error("Fehler beim Laden der Benutzerdaten:", error);
+      }
+    };
+
+    fetchUserData();
+  }, [userId]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setValue((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      await axios.put(`http://localhost:5002/api/users/${userId}`, {
+        name: value.name,
+        surname: value.surname,
+        email: value.email,
+        password: value.password
+      });
+      alert("Profil erfolgreich aktualisiert!");
+    } catch (error) {
+      console.error("Fehler beim Aktualisieren der Benutzerdaten:", error);
+    }
+  };
+
+  return (
+    <div className="flex flex-col min-h-screen w-full items-center justify-center">
+      <Logo toggle={toggle} getLogoSrc={getLogoSrc} setToggle={setToggle} />
+      <BackButton toggle={toggle} />
+      <h2 className={`text-5xl text-left text-white mb-12`}>Update Profile</h2>
+      <form onSubmit={handleSubmit} className="flex flex-col w-[90%] gap-4">
+        <input
+          className={`${inputClass} ${toggle ? "bg-slate-900 text-white" : "text-black"}`}
+          type="text"
+          name="name"
+          id="name"
+          value={value.name}
+          onChange={handleChange}
+          placeholder="Name"
+        />
+        <input
+          className={`${inputClass} ${toggle ? "bg-slate-900 text-white" : "text-black"}`}
+          type="text"
+          name="surname"
+          id="surname"
+          value={value.surname}
+          onChange={handleChange}
+          placeholder="Surname"
+        />
+        <input
+          className={`${inputClass} ${toggle ? "bg-slate-900 text-white" : "text-black"}`}
+          type="email"
+          name="email"
+          id="email"
+          value={value.email}
+          onChange={handleChange}
+          placeholder="Email"
+        />
+        <input
+          className={`${inputClass} ${toggle ? "bg-slate-900 text-white" : "text-black"}`}
+          type="password"
+          name="password"
+          id="password"
+          value={value.password}
+          onChange={handleChange}
+          placeholder="Password"
+        />
+        <button
+          className={`${
+            toggle ? "bg-slate-900 text-white" : "bg-slate-100"
+          } py-4 rounded-lg text-4xl ${toggleButtonColor(toggle)}`}
+        >
+          Update
+        </button>
+      </form>
+      <Navbar toggle={toggle} getClassNames={getClassNames} userName={userName}/>
+    </div>
+  );
+};
+
+export default UpdateData;

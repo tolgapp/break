@@ -60,7 +60,8 @@ export type Product = {
   id: number;
   name: string;
   image: string;
-  price: number | number[];
+  prices: number[];
   instanceId?: string,
   size?: string
 };
+
