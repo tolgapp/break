@@ -1,11 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
-import { navbarIcons } from "../data/helper";
+import { navbarIcons, Product } from "../data/helper";
 
 type NavbarProps = {
   toggle: boolean; // DarkMode toggle
   getClassNames: (value: boolean) => string;
   userName?: string;
   isLoggedIn?: boolean;
+  addedProducts: Product[];
 };
 
 const Navbar: React.FC<NavbarProps> = ({
@@ -13,6 +14,7 @@ const Navbar: React.FC<NavbarProps> = ({
   getClassNames,
   userName,
   isLoggedIn,
+  addedProducts,
 }) => {
   const location = useLocation();
 
@@ -27,20 +29,25 @@ const Navbar: React.FC<NavbarProps> = ({
     return (
       <div
         key={id}
-        className={`flex items-center justify-center w-20 h-20 ${bgClass} transition-all duration-300 rounded-lg`}
+        className={`relative flex items-center justify-center w-20 h-20 ${bgClass} transition-all duration-300 rounded-lg`}
       >
         <Link
           to={icon.pathname}
           className="flex flex-col justify-center items-center space-y-2"
         >
+          {icon.name === "Cart" && addedProducts.length > 0 && (
+            <span className="absolute -top-2 -right-1 bg-red-600 text-white text-lg w-9 h-9 font-bold rounded-full flex items-center justify-center">
+              {addedProducts.length > 9 ? "9+" : addedProducts.length}
+            </span>
+          )}
           <img
             className="w-10 h-10"
             src={toggle ? icon.iconDark : icon.icon}
             alt={icon.name}
           />
-           <p className={`text-center ${dynamicClass}`}>
-           {icon.name === "User" && isLoggedIn ? userName : icon.name}
-           </p>
+          <p className={`text-center ${dynamicClass}`}>
+            {icon.name === "User" && isLoggedIn ? userName : icon.name}
+          </p>
         </Link>
       </div>
     );

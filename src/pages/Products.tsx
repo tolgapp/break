@@ -3,7 +3,6 @@ import ProductContainer from "../components/ProductContainer";
 import ProductDetail from "../components/ProductDetail";
 import FilterOptions from "../components/FilterOptions";
 import Logo from "../components/Logo";
-import Navbar from "../components/Navbar";
 import coffeeData from "../data/coffee.json";
 import { Product } from "../data/helper";
 
@@ -19,8 +18,6 @@ type ProductsProps = {
   productId: number | null;
   closeDetail: () => void;
   selectedProductId: number | null;
-  userName: string;
-  isLoggedIn: boolean;
 };
 
 const Products: React.FC<ProductsProps> = ({
@@ -33,8 +30,6 @@ const Products: React.FC<ProductsProps> = ({
   handleClick,
   closeDetail,
   selectedProductId,
-  userName,
-  isLoggedIn,
 }) => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
@@ -71,12 +66,6 @@ const Products: React.FC<ProductsProps> = ({
           addToCart={addToCart}
         />
       )}
-      <Navbar
-        toggle={toggle}
-        getClassNames={getClassNames}
-        userName={userName}
-        isLoggedIn={isLoggedIn}
-      />
     </main>
   );
 };

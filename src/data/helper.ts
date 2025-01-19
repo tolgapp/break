@@ -62,6 +62,7 @@ export type Product = {
   image: string;
   prices: number[];
   instanceId?: string,
-  size?: string
+  size?: string,
+  price: number
 };
 

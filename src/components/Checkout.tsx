@@ -1,9 +1,7 @@
-import { getClassNames } from "../data/helper";
-
 type CheckoutProps = {
   toggle: boolean;
   total: number;
-  handleCheckout: () => void; // Keine Argumente, da die Funktion selbstständig operiert
+  handleCheckout: () => void;
 };
 
 const Checkout: React.FC<CheckoutProps> = ({

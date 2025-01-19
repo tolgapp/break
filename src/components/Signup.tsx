@@ -1,9 +1,9 @@
 import { useState } from "react";
 import BackButton from "./BackButton";
 import Logo from "./Logo";
-import Navbar from "./Navbar";
 import { inputClass, toggleButtonColor } from "../data/helper";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 type SignupProps = {
   toggle: boolean;
@@ -18,6 +18,7 @@ const Signup: React.FC<SignupProps> = ({
   getLogoSrc,
   getClassNames,
 }) => {
+  const navigate = useNavigate();
   const [value, setValue] = useState({
     name: "",
     surname: "",
@@ -48,6 +49,10 @@ const Signup: React.FC<SignupProps> = ({
     }).catch((error) => {
       console.error("Signup failed:", error);
     });
+
+    setTimeout(() => {
+      navigate("/login");
+    }, 300)
   };
   
 
@@ -115,7 +120,6 @@ const Signup: React.FC<SignupProps> = ({
           Signup
         </button>
       </form>
-      <Navbar toggle={toggle} getClassNames={getClassNames} />
     </div>
   );
 };

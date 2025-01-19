@@ -40,7 +40,7 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
       </h3>
       <div className="flex items-center justify-between w-full px-4 py-2 mt-4">
         <h4 className="text-2xl font-light">
-          from <strong className="text-2xl font-semibold">{smallPrice}</strong>{" "}
+          from <strong className="text-2xl font-semibold">{smallPrice}</strong>
           €
         </h4>
         <button

@@ -1,6 +1,5 @@
 import BackButton from "../components/BackButton";
 import Logo from "../components/Logo";
-import Navbar from "../components/Navbar";
 import UserAction from "../components/UserAction";
 import UserPage from "../components/Userpage";
 
@@ -58,12 +57,6 @@ const User: React.FC<UserProps> = ({
           <UserAction toggle={toggle} />
         </>
       )}
-      <Navbar
-        toggle={toggle}
-        getClassNames={getClassNames}
-        userName={userName}
-        isLoggedIn={isLoggedIn}
-      />
     </main>
   );
 };

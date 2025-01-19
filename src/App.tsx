@@ -10,6 +10,7 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import { Product, getLogoSrc, getClassNames } from "./data/helper";
 import UpdateData from "./components/UpdateData";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   const [toggle, setToggle] = useState(false);
@@ -52,12 +53,11 @@ const App = () => {
 
   useEffect(() => {
     const totalPrice = addedProducts.reduce((acc, product) => {
-      const productPrice = Array.isArray(product.prices)
+      const productPrice = Array.isArray(product.price)
         ? product.prices.reduce((sum, price) => sum + price, 0)
-        : product.prices;
+        : product.price;
       return acc + productPrice;
     }, 0);
-
     setTotal(totalPrice);
     localStorage.setItem("total", totalPrice.toString());
   }, [addedProducts]);
@@ -109,8 +109,6 @@ const App = () => {
               handleClick={handleClick}
               closeDetail={closeDetail}
               selectedProductId={selectedProductId}
-              isLoggedIn={isLoggedIn}
-              userName={userName}
             />
           }
         />
@@ -125,8 +123,6 @@ const App = () => {
               addedProducts={addedProducts}
               setAddedProducts={setAddedProducts}
               total={total}
-              isLoggedIn={isLoggedIn}
-              userName={userName}
             />
           }
         />
@@ -167,7 +163,6 @@ const App = () => {
                 setToggle={setToggle}
                 getLogoSrc={getLogoSrc}
                 setIsLoggedIn={setIsLoggedIn}
-                isLoggedIn={isLoggedIn}
                 setUserName={setUserName}
                 setUserId={setUserId}
               />
@@ -177,12 +172,7 @@ const App = () => {
         <Route
           path="/user/update-data"
           element={
-            <UpdateData
-              toggle={toggle}
-              setToggle={setToggle}
-              userId={userId}
-              userName={userName}
-            />
+            <UpdateData toggle={toggle} setToggle={setToggle} userId={userId} />
           }
         />
         <Route
@@ -197,6 +187,13 @@ const App = () => {
           }
         />
       </Routes>
+      <Navbar
+        toggle={toggle}
+        getClassNames={getClassNames}
+        userName={userName}
+        isLoggedIn={isLoggedIn}
+        addedProducts={addedProducts}
+      />
     </>
   );
 };

@@ -1,6 +1,5 @@
 import BackButton from "./BackButton";
 import Logo from "./Logo";
-import Navbar from "./Navbar";
 import { inputClass, toggleButtonColor } from "../data/helper";
 import { useState } from "react";
 import axios from "axios";
@@ -11,7 +10,6 @@ type LoginProps = {
   getClassNames: (value: boolean) => string;
   getLogoSrc: (value: boolean) => string;
   setIsLoggedIn: (value: boolean) => void;
-  isLoggedIn: boolean
   setUserName: (value: string) => void;
   setUserId: (value: string) => void;
 };
@@ -93,7 +91,6 @@ const Login: React.FC<LoginProps> = ({
           Login
         </button>
       </form>
-      <Navbar toggle={toggle} getClassNames={getClassNames} />
     </div>
   );
 };

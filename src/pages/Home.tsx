@@ -1,5 +1,4 @@
 import Logo from "../components/Logo";
-import Navbar from "../components/Navbar";
 import OfferContainer from "../components/OfferContainer";
 import ProductDetail from "../components/ProductDetail";
 import RandomProducts from "../components/RandomProducts";
@@ -30,8 +29,6 @@ const Home: React.FC<HomeProps> = ({
   openDetail,
   closeDetail,
   selectedProductId,
-  isLoggedIn,
-  userName,
 }) => {
   return (
     <div
@@ -50,12 +47,6 @@ const Home: React.FC<HomeProps> = ({
           addToCart={addToCart}
         />
       )}
-      <Navbar
-        toggle={toggle}
-        getClassNames={getClassNames}
-        isLoggedIn={isLoggedIn}
-        userName={userName}
-      />
     </div>
   );
 };

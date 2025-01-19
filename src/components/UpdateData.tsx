@@ -1,18 +1,25 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { getClassNames, getLogoSrc, inputClass, toggleButtonColor } from "../data/helper";
+import {
+  getClassNames,
+  getLogoSrc,
+  inputClass,
+  toggleButtonColor,
+} from "../data/helper";
 import Logo from "./Logo";
 import BackButton from "./BackButton";
-import Navbar from "./Navbar";
 
 type UpdateDataProps = {
   toggle: boolean;
   setToggle: (value: boolean) => void;
   userId: string;
-  userName: string
 };
 
-const UpdateData: React.FC<UpdateDataProps> = ({ toggle, setToggle, userId, userName }) => {
+const UpdateData: React.FC<UpdateDataProps> = ({
+  toggle,
+  setToggle,
+  userId,
+}) => {
   const [value, setValue] = useState({
     name: "",
     surname: "",
@@ -23,9 +30,11 @@ const UpdateData: React.FC<UpdateDataProps> = ({ toggle, setToggle, userId, user
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5002/api/users/${userId}`);
-        const { name, surname, email } = response.data; 
-        console.log(response.data)
+        const response = await axios.get(
+          `http://localhost:5002/api/users/${userId}`
+        );
+        const { name, surname, email } = response.data;
+        console.log(response.data);
         setValue((prev) => ({ ...prev, name, surname, email }));
       } catch (error) {
         console.error("Fehler beim Laden der Benutzerdaten:", error);
@@ -44,11 +53,11 @@ const UpdateData: React.FC<UpdateDataProps> = ({ toggle, setToggle, userId, user
     e.preventDefault();
 
     try {
-      await axios.put(`http://localhost:5002/api/users/${userId}`, {
+      await axios.post(`http://localhost:5002/api/users/${userId}`, {
         name: value.name,
         surname: value.surname,
         email: value.email,
-        password: value.password
+        password: value.password,
       });
       alert("Profil erfolgreich aktualisiert!");
     } catch (error) {
@@ -57,13 +66,25 @@ const UpdateData: React.FC<UpdateDataProps> = ({ toggle, setToggle, userId, user
   };
 
   return (
-    <div className="flex flex-col min-h-screen w-full items-center justify-center">
+    <div
+      className={`flex flex-col min-h-screen w-full items-center justify-center ${getClassNames(
+        toggle
+      )}`}
+    >
       <Logo toggle={toggle} getLogoSrc={getLogoSrc} setToggle={setToggle} />
       <BackButton toggle={toggle} />
-      <h2 className={`text-5xl text-left text-white mb-12`}>Update Profile</h2>
+      <h2
+        className={`text-5xl text-left mb-12 ${
+          toggle ? "text-slate-900" : "text-white"
+        }`}
+      >
+        Update Profile
+      </h2>
       <form onSubmit={handleSubmit} className="flex flex-col w-[90%] gap-4">
         <input
-          className={`${inputClass} ${toggle ? "bg-slate-900 text-white" : "text-black"}`}
+          className={`${inputClass} ${
+            toggle ? "bg-slate-900 text-white" : "text-black"
+          }`}
           type="text"
           name="name"
           id="name"
@@ -72,7 +93,9 @@ const UpdateData: React.FC<UpdateDataProps> = ({ toggle, setToggle, userId, user
           placeholder="Name"
         />
         <input
-          className={`${inputClass} ${toggle ? "bg-slate-900 text-white" : "text-black"}`}
+          className={`${inputClass} ${
+            toggle ? "bg-slate-900 text-white" : "text-black"
+          }`}
           type="text"
           name="surname"
           id="surname"
@@ -81,7 +104,9 @@ const UpdateData: React.FC<UpdateDataProps> = ({ toggle, setToggle, userId, user
           placeholder="Surname"
         />
         <input
-          className={`${inputClass} ${toggle ? "bg-slate-900 text-white" : "text-black"}`}
+          className={`${inputClass} ${
+            toggle ? "bg-slate-900 text-white" : "text-black"
+          }`}
           type="email"
           name="email"
           id="email"
@@ -90,7 +115,9 @@ const UpdateData: React.FC<UpdateDataProps> = ({ toggle, setToggle, userId, user
           placeholder="Email"
         />
         <input
-          className={`${inputClass} ${toggle ? "bg-slate-900 text-white" : "text-black"}`}
+          className={`${inputClass} ${
+            toggle ? "bg-slate-900 text-white" : "text-black"
+          }`}
           type="password"
           name="password"
           id="password"
@@ -106,7 +133,6 @@ const UpdateData: React.FC<UpdateDataProps> = ({ toggle, setToggle, userId, user
           Update
         </button>
       </form>
-      <Navbar toggle={toggle} getClassNames={getClassNames} userName={userName}/>
     </div>
   );
 };
