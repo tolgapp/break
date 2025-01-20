@@ -57,8 +57,8 @@ const Login: React.FC<LoginProps> = ({
     >
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
       <BackButton toggle={toggle} />
-      <h2 className="text-4xl font-semibold text-center mb-10 w-[90%]">
-        Login and get points for each 1€
+      <h2 className="text-5xl font-medium text-center text-balance mb-10 w-[90%]">
+        Login and get points for every order
       </h2>
       <form onSubmit={handleSubmit} className="flex flex-col w-[90%] gap-4">
         <input

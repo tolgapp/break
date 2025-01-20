@@ -11,18 +11,31 @@ import Signup from "./components/Signup";
 import { Product, getLogoSrc, getClassNames } from "./data/helper";
 import UpdateData from "./components/UpdateData";
 import Navbar from "./components/Navbar";
+import LastOrders from "./components/LastOrders";
 
 const App = () => {
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(true);
   const [addedProducts, setAddedProducts] = useState<Product[]>([]);
   const [total, setTotal] = useState(0);
   const [openDetail, setOpenDetail] = useState(false);
-  const [selectedProductId, setSelectedProductId] = useState<number | null>(
-    null
-  );
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
   const [userId, setUserId] = useState("");
+  const [selectedProductId, setSelectedProductId] = useState<number | null>(
+    null
+  );
+
+  useEffect(() => {
+    const storedIsLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const storedUserName = localStorage.getItem("userName");
+    const storedUserId = localStorage.getItem("userId");
+  
+    if (storedIsLoggedIn) {
+      setIsLoggedIn(true);
+      if (storedUserName) setUserName(storedUserName);
+      if (storedUserId) setUserId(storedUserId);
+    }
+  }, []);
 
   useEffect(() => {
     const storedProducts = localStorage.getItem("addedProducts");
@@ -36,11 +49,17 @@ const App = () => {
     }
   }, []);
 
-  useEffect(() => {
-    if (isLoggedIn === true) {
-      setIsLoggedIn(true);
-    }
-  }, [isLoggedIn]);
+useEffect(() => {
+  if (isLoggedIn) {
+    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("userName", userName);
+    localStorage.setItem("userId", userId);
+  } else {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userName");
+    localStorage.removeItem("userId");
+  }
+}, [isLoggedIn, userName, userId]);
 
   const addToCart = (product: Product) => {
     const productWithInstanceId = { ...product, instanceId: nanoid() };
@@ -123,6 +142,7 @@ const App = () => {
               addedProducts={addedProducts}
               setAddedProducts={setAddedProducts}
               total={total}
+              userId={userId}
             />
           }
         />
@@ -173,6 +193,12 @@ const App = () => {
           path="/user/update-data"
           element={
             <UpdateData toggle={toggle} setToggle={setToggle} userId={userId} />
+          }
+        />
+        <Route
+          path="/user/last-orders"
+          element={
+            <LastOrders toggle={toggle} setToggle={setToggle} userId={userId} />
           }
         />
         <Route

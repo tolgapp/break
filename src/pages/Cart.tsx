@@ -4,6 +4,7 @@ import Logo from "../components/Logo";
 import BackButton from "../components/BackButton";
 import CartItemContainer from "../components/CartItemContainer";
 import Checkout from "../components/Checkout";
+import { nanoid } from "nanoid";
 
 type CartProps = {
   toggle: boolean;
@@ -13,6 +14,7 @@ type CartProps = {
   addedProducts: Product[];
   setAddedProducts: React.Dispatch<React.SetStateAction<Product[]>>;
   total: number;
+  userId: string;
 };
 
 const Cart: React.FC<CartProps> = ({
@@ -23,16 +25,30 @@ const Cart: React.FC<CartProps> = ({
   addedProducts,
   setAddedProducts,
   total,
+  userId,
 }) => {
   const handleCheckout = () => {
+    if (!addedProducts || addedProducts.length === 0) {
+      console.error("No products to checkout.");
+      return;
+    }
+
+    const orderId = nanoid();
+
     axios
-      .post("http://localhost:5002/api/checkout", addedProducts)
+      .post("http://localhost:5002/api/checkout", {
+        userId,
+        orderId, 
+        total,
+        products: addedProducts, 
+      })
       .then((response) => {
         console.log("Checkout successful:", response.data);
       })
       .catch((error) => {
         console.error("Checkout error:", error);
       });
+
     setAddedProducts([]);
     localStorage.clear();
   };

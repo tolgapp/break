@@ -24,8 +24,11 @@ const User: React.FC<UserProps> = ({
 }) => {
   const textColor = toggle ? "text-gray-800" : "text-white";
 
-  const logout = () => {
+  const handleLogout = () => {
     setIsLoggedIn(false);
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userName");
+    localStorage.removeItem("userId");
   };
 
   return (
@@ -41,7 +44,7 @@ const User: React.FC<UserProps> = ({
           <div className="gap-6 flex px-6 upper-container justify-around items-center w-full">
             <h2 className="text-5xl">Welcome back, {userName}</h2>
             <img
-            onClick={logout}
+            onClick={handleLogout}
               className="w-14 hover:grayscale"
               src="/icons/logout.png"
               alt="shutdown icon in red"

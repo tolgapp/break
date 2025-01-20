@@ -26,9 +26,9 @@ const UserPage: React.FC = () => {
       description: "Adjust the app theme",
     },
     {
-      id: "favorites",
-      title: "Favorites",
-      description: "Manage your favorite items",
+      id: "points",
+      title: "Points",
+      description: "Your actual Points",
     },
   ];
 
