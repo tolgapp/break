@@ -12,6 +12,8 @@ import { Product, getLogoSrc, getClassNames } from "./data/helper";
 import UpdateData from "./components/UpdateData";
 import Navbar from "./components/Navbar";
 import LastOrders from "./components/LastOrders";
+import Points from "./components/Points";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   const [toggle, setToggle] = useState(true);
@@ -29,7 +31,7 @@ const App = () => {
     const storedIsLoggedIn = localStorage.getItem("isLoggedIn") === "true";
     const storedUserName = localStorage.getItem("userName");
     const storedUserId = localStorage.getItem("userId");
-  
+
     if (storedIsLoggedIn) {
       setIsLoggedIn(true);
       if (storedUserName) setUserName(storedUserName);
@@ -49,17 +51,17 @@ const App = () => {
     }
   }, []);
 
-useEffect(() => {
-  if (isLoggedIn) {
-    localStorage.setItem("isLoggedIn", "true");
-    localStorage.setItem("userName", userName);
-    localStorage.setItem("userId", userId);
-  } else {
-    localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("userName");
-    localStorage.removeItem("userId");
-  }
-}, [isLoggedIn, userName, userId]);
+  useEffect(() => {
+    if (isLoggedIn) {
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("userName", userName);
+      localStorage.setItem("userId", userId);
+    } else {
+      localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("userName");
+      localStorage.removeItem("userId");
+    }
+  }, [isLoggedIn, userName, userId]);
 
   const addToCart = (product: Product) => {
     const productWithInstanceId = { ...product, instanceId: nanoid() };
@@ -160,6 +162,32 @@ useEffect(() => {
             />
           }
         />
+        <Route element={<ProtectedRoute isLoggedIn={isLoggedIn} />}>
+          <Route
+            path="/user/update-data"
+            element={
+              <UpdateData
+                toggle={toggle}
+                setToggle={setToggle}
+                userId={userId}
+              />
+            }
+          />
+          <Route
+            path="/user/last-orders"
+            element={
+              <LastOrders
+                toggle={toggle}
+                setToggle={setToggle}
+                userId={userId}
+              />
+            }
+          />
+          <Route
+            path="/user/points"
+            element={<Points toggle={toggle} setToggle={setToggle} />}
+          />
+        </Route>
         <Route
           path="/signup"
           element={
@@ -187,18 +215,6 @@ useEffect(() => {
                 setUserId={setUserId}
               />
             )
-          }
-        />
-        <Route
-          path="/user/update-data"
-          element={
-            <UpdateData toggle={toggle} setToggle={setToggle} userId={userId} />
-          }
-        />
-        <Route
-          path="/user/last-orders"
-          element={
-            <LastOrders toggle={toggle} setToggle={setToggle} userId={userId} />
           }
         />
         <Route

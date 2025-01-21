@@ -21,7 +21,7 @@ const CartItemContainer: React.FC<CartItemContainerProps> = ({
     return (
       <div className="h-[70vh] flex justify-center items-center">
         <h3 className={`text-3xl text-center ${getClassNames(toggle)}`}>
-          No coffein detected
+          No caffeine detected
         </h3>
       </div>
     );

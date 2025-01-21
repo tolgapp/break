@@ -56,13 +56,32 @@ export const backgroundColor = (toggle: boolean) =>
   toggle ? "bg-black" : "bg-white";
 
 // Prodcut Type
+// export type Product = {
+//   id: number;
+//   name: string;
+//   image: string;
+//   prices: number[];
+//   instanceId?: string,
+//   size?: string,
+//   price: number,
+// };
+
 export type Product = {
   id: number;
   name: string;
   image: string;
   prices: number[];
-  instanceId?: string,
-  size?: string,
-  price: number
+  instanceId?: string;
+  size?: string;
+  price: number;
+  timestamp?: string;
 };
 
+export type Order = {
+  receiptId: string;
+  timestamp: string;
+  total: number;
+  products: Product[];
+};
+
+export type LastOrderType = Order[];

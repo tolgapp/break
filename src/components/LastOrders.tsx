@@ -1,8 +1,9 @@
 import axios from "axios";
-import { getClassNames, getLogoSrc, toggleTextColor } from "../data/helper";
+import { getClassNames, getLogoSrc, LastOrderType, toggleTextColor } from "../data/helper";
 import BackButton from "./BackButton";
 import Logo from "./Logo";
 import { useEffect, useState } from "react";
+
 
 type LastOrdersProps = {
   toggle: boolean;
@@ -10,17 +11,13 @@ type LastOrdersProps = {
   userId: string;
 };
 
-const LastOrders: React.FC<LastOrdersProps> = ({
-  toggle,
-  setToggle,
-  userId,
-}) => {
-  const [lastOrders, setLastOrders] = useState([]);
+const LastOrders: React.FC<LastOrdersProps> = ({ toggle, setToggle, userId }) => {
+  const [lastOrders, setLastOrders] = useState<LastOrderType>([]);
 
   useEffect(() => {
     const getRecipes = async () => {
       try {
-        const response = await axios.get(
+        const response = await axios.get<LastOrderType>(
           `http://localhost:5002/api/users/${userId}/receipts`
         );
         setLastOrders(response.data);
@@ -32,41 +29,43 @@ const LastOrders: React.FC<LastOrdersProps> = ({
     getRecipes();
   }, [userId]);
 
-  const eachOrder = lastOrders.map((order: any, index) => {
-    return (
-      <div
-        key={index}
-        className="p-6 m-2 border-dotted border-2 border-gray-300 w-full bg-white shadow-sm"
-      >
-        <div className="text-center border-b-2 border-dotted border-gray-300 pb-4 mb-4">
-          <p className="font-mono text-xl font-bold text-slate-900">ORDER #{index + 1}</p>
-          <p className="font-mono text-sm text-gray-600">
-            {order.timestamp.slice(0, 10)}
-          </p>
-        </div>
-        <div className="space-y-3 mb-6">
-          {order.products?.map((product: any) => (
-            <div className="flex justify-between items-center font-mono text-sm">
-              <div className="flex gap-2">
-                <span className="font-medium text-slate-900">{product.name}</span>
-                <span className="text-gray-500">({product.size})</span>
-              </div>
-              <span className="font-semibold text-slate-900">
-                {product.price.toFixed(2)} €
-              </span>
-            </div>
-          ))}
-        </div>
-        <div className="border-t-2 border-dotted border-gray-300 my-4"></div>
-        <div className="flex justify-between items-center pt-2">
-          <p className="font-mono font-bold text-2xl text-slate-900">TOTAL</p>
-          <p className="font-mono font-bold text-2xl text-slate-900">
-            {order.total.toFixed(2)} €
-          </p>
-        </div>
+
+  const eachOrder = lastOrders.map((order, index) => (
+    <div
+      key={order.receiptId}
+      className="p-6 m-2 border-dotted border-2 border-gray-300 w-full bg-white shadow-sm"
+    >
+      <div className="text-center border-b-2 border-dotted border-gray-300 pb-4 mb-4">
+        <p className="font-mono text-xl font-bold text-slate-900">ORDER #{index + 1}</p>
+        <p className="font-mono text-sm text-gray-600">
+          {new Date(order.timestamp).toLocaleDateString()}
+        </p>
       </div>
-    );
-  });
+      <div className="space-y-3 mb-6">
+        {order.products.map((product) => (
+          <div
+            key={product.id}
+            className="flex justify-between items-center font-mono text-sm"
+          >
+            <div className="flex gap-2">
+              <span className="font-medium text-slate-900">{product.name}</span>
+              <span className="text-gray-500">({product.size || "N/A"})</span>
+            </div>
+            <span className="font-semibold text-slate-900">
+              {product.price.toFixed(2)} €
+            </span>
+          </div>
+        ))}
+      </div>
+      <div className="border-t-2 border-dotted border-gray-300 my-4"></div>
+      <div className="flex justify-between items-center pt-2">
+        <p className="font-mono font-bold text-2xl text-slate-900">TOTAL</p>
+        <p className="font-mono font-bold text-2xl text-slate-900">
+          {order.total.toFixed(2)} €
+        </p>
+      </div>
+    </div>
+  ));
 
   return (
     <div
@@ -85,8 +84,7 @@ const LastOrders: React.FC<LastOrdersProps> = ({
           {eachOrder}
         </div>
       ) : (
-        <p className={`${toggleTextColor} text-xl font-mono`}>
-No orders found        </p>
+        <p className={`${toggleTextColor} text-xl font-mono`}>No orders found</p>
       )}
     </div>
   );
