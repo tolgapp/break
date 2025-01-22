@@ -13,9 +13,9 @@ const BackButton: React.FC<ButtonProps> = ({ toggle }) => {
     return (
       <img
         onClick={() => navigate("/profile")}
-        src={toggle ? "/icons/backdark.png" : "/icons/back.png"}
-        className={` ${
-          toggle ? "border-black" : ""
+        src={toggle ? "/icons/back.png" : "/icons/backdark.png"}
+        className={`${
+          toggle ? "border-white" : "border-slate-900"
         } border cursor-pointer fixed left-8 top-6  p-2 rounded-xl w-16`}
       />
     );
@@ -24,9 +24,9 @@ const BackButton: React.FC<ButtonProps> = ({ toggle }) => {
   return (
     <img
       onClick={() => navigate(-1)}
-      src={toggle ? "/icons/backdark.png" : "/icons/back.png"}
+      src={toggle ? "/icons/back.png" : "/icons/backdark.png"}
       className={`${
-        toggle ? "border-black" : ""
+        toggle ? "border-white" : "border-slate-900"
       } border cursor-pointer fixed left-8 top-6  p-2 rounded-xl w-16`}
     />
   );

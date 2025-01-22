@@ -21,7 +21,7 @@ const UserPage: React.FC = () => {
       description: "View your recent orders",
     },
     {
-      id: "change-theme",
+      id: "theme-color",
       title: "Change Theme Color",
       description: "Adjust the app theme",
     },

@@ -34,7 +34,7 @@ const Home: React.FC<HomeProps> = ({
     <div
       className={`relative flex flex-col ${getClassNames(
         toggle
-      )} min-h-dvh overflow-y-scroll pb-48 `}
+      )} min-h-dvh overflow-y-scroll pb-48`}
     >
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
       <OfferContainer toggle={toggle} />

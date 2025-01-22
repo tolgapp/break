@@ -21,11 +21,11 @@ const Login: React.FC<LoginProps> = ({
   getClassNames,
   setIsLoggedIn,
   setUserName,
-  setUserId
+  setUserId,
 }) => {
   const [user, setUser] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
   const handleLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,11 +40,11 @@ const Login: React.FC<LoginProps> = ({
     e.preventDefault();
 
     axios.post("http://localhost:5002/api/login", user).then((response) => {
-      setUserName(response.data.userName)
+      setUserName(response.data.userName);
 
-      if(response.status === 200) {
+      if (response.status === 200) {
         setIsLoggedIn(true);
-        setUserId(response.data.userId)
+        setUserId(response.data.userId);
       }
     });
   };
@@ -57,14 +57,12 @@ const Login: React.FC<LoginProps> = ({
     >
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
       <BackButton toggle={toggle} />
-      <h2 className="text-5xl font-medium text-center text-balance mb-10 w-[90%]">
-        Login and get points for every order
+      <h2 className="text-4xl font-semibold text-center text-balance mb-10 w-[90%]">
+        Login and get BEANS for every order
       </h2>
       <form onSubmit={handleSubmit} className="flex flex-col w-[90%] gap-4">
         <input
-          className={` ${inputClass}  ${
-            toggle ? "bg-slate-900 text-white" : "text-black"
-          }`}
+          className={` ${inputClass}  ${toggleButtonColor(toggle)}`}
           type="email"
           name="email"
           id="email"
@@ -73,9 +71,7 @@ const Login: React.FC<LoginProps> = ({
           onChange={handleLogin}
         />
         <input
-          className={` ${inputClass}  ${
-            toggle ? "bg-slate-900 text-white" : "text-black"
-          }`}
+          className={` ${inputClass}  ${toggleButtonColor(toggle)}`}
           type="password"
           name="password"
           id="password"
@@ -84,9 +80,7 @@ const Login: React.FC<LoginProps> = ({
           onChange={handleLogin}
         />
         <button
-          className={`${
-            toggle ? "bg-slate-900 text-white" : "bg-slate-100"
-          } py-4 rounded-lg text-4xl ${toggleButtonColor(toggle)}`}
+          className={`py-4 rounded-lg text-4xl ${toggleButtonColor(toggle)}`}
         >
           Login
         </button>

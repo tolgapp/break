@@ -36,36 +36,7 @@ export const filterOptions: string[] = [
   "Lactose-Free",
 ];
 
-// Login & Signup
-export const inputClass = `text-3xl p-4 rounded-lg`;
-
-// Text Color
-export const getClassNames = (toggle: boolean): string =>
-  `${toggle ? "bg-white text-black" : "bg-slate-900 text-white"}`;
-
-export const getLogoSrc = (toggle: boolean): string =>
-  `/logo${toggle ? "/breakblack" : "/breakwhite"}.png`;
-
-export const toggleTextColor = (toggle: boolean): string =>
-  toggle ? "text-white" : "text-black";
-
-export const toggleButtonColor = (toggle: boolean): string =>
-  toggle ? "text-black" : "text-black";
-
-export const backgroundColor = (toggle: boolean) =>
-  toggle ? "bg-black" : "bg-white";
-
-// Prodcut Type
-// export type Product = {
-//   id: number;
-//   name: string;
-//   image: string;
-//   prices: number[];
-//   instanceId?: string,
-//   size?: string,
-//   price: number,
-// };
-
+// Order Types
 export type Product = {
   id: number;
   name: string;
@@ -85,3 +56,22 @@ export type Order = {
 };
 
 export type LastOrderType = Order[];
+
+// Login & Signup
+export const inputClass = `text-3xl p-4 rounded-lg`;
+
+// Text Color
+export const getClassNames = (toggle: boolean): string =>
+  `${toggle ? "bg-slate-900 text-white" : "bg-white text-black"}`;
+
+export const getLogoSrc = (toggle: boolean): string =>
+  `/logo${toggle ? "/breakwhite" : "/breakblack"}.png`;
+
+export const toggleTextColor = (toggle: boolean): string =>
+  toggle ? "text-black" : "text-white";
+
+export const toggleButtonColor = (toggle: boolean): string =>
+  toggle ? "bg-slate-100 text-slate-900" : "text-white bg-slate-900";
+
+export const backgroundColor = (toggle: boolean) =>
+  toggle ? "bg-white" : "bg-slate-900";

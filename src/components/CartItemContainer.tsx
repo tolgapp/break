@@ -35,7 +35,7 @@ const CartItemContainer: React.FC<CartItemContainerProps> = ({
         <li
           key={product.instanceId}
           className={`rounded-lg shadow-lg flex items-center justify-between py-4 px-3 ${
-            toggle ? "bg-white border text-black" : "bg-slate-700 shadow-sm "
+            toggle ? "bg-slate-600  text-white" : "bg-slate-200 shadow-sm text-black"
           }`}
         >
           <span className="text-2xl">{product.name} - {product.size}</span>

@@ -5,6 +5,7 @@ import BackButton from "../components/BackButton";
 import CartItemContainer from "../components/CartItemContainer";
 import Checkout from "../components/Checkout";
 import { nanoid } from "nanoid";
+import { useNavigate } from "react-router-dom";
 
 type CartProps = {
   toggle: boolean;
@@ -27,6 +28,8 @@ const Cart: React.FC<CartProps> = ({
   total,
   userId,
 }) => {
+  const navigate = useNavigate()
+
   const handleCheckout = () => {
     if (!addedProducts || addedProducts.length === 0) {
       console.error("No products to checkout.");
@@ -51,6 +54,10 @@ const Cart: React.FC<CartProps> = ({
 
     setAddedProducts([]);
     localStorage.clear();
+    
+    setTimeout(() => {
+      navigate("/user/last-orders")
+    }, 2000)
   };
 
   return (

@@ -22,7 +22,6 @@ const User: React.FC<UserProps> = ({
   isLoggedIn,
   userName,
 }) => {
-  const textColor = toggle ? "text-gray-800" : "text-white";
 
   const handleLogout = () => {
     setIsLoggedIn(false);
@@ -42,7 +41,7 @@ const User: React.FC<UserProps> = ({
       {isLoggedIn ? (
         <>
           <div className="gap-6 flex px-6 upper-container justify-around items-center w-full">
-            <h2 className="text-5xl">Welcome back, {userName}</h2>
+            <h2 className={`${getClassNames(toggle)} text-5xl font-semibold`}>Welcome back, {userName}</h2>
             <img
             onClick={handleLogout}
               className="w-14 hover:grayscale"
@@ -54,7 +53,7 @@ const User: React.FC<UserProps> = ({
         </>
       ) : (
         <>
-          <h1 className={`text-5xl font-bold text-center pb-6 ${textColor}`}>
+          <h1 className={`text-5xl font-bold text-center pb-6 ${getClassNames(toggle)}`}>
             Welcome Back!
           </h1>
           <UserAction toggle={toggle} />

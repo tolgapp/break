@@ -17,10 +17,10 @@ const FilterOptions: React.FC<FilterProps> = ({
         className={`flex cursor-pointer items-center border rounded-lg py-2 ${
           option === "All" ? "px-11" : "px-7"
         } mt-24 max-h-20 ${
-          toggle ? "bg-white border-slate-800" : "bg-slate-800"
+          toggle ? "bg-slate-800" : "bg-white border-slate-800"
         }`}
       >
-        <p className={`${toggle ? "text-black" : "text-white"} text-2xl`}>
+        <p className={`${toggle ? "text-white" : "text-slate-900"} text-2xl`}>
           {option}
         </p>
       </div>

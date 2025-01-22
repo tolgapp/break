@@ -74,17 +74,13 @@ const UpdateData: React.FC<UpdateDataProps> = ({
       <Logo toggle={toggle} getLogoSrc={getLogoSrc} setToggle={setToggle} />
       <BackButton toggle={toggle} />
       <h2
-        className={`text-5xl text-left mb-12 ${
-          toggle ? "text-slate-900" : "text-white"
-        }`}
+        className={`text-5xl text-left mb-12 ${getClassNames(toggle)}`}
       >
         Update Profile
       </h2>
       <form onSubmit={handleSubmit} className="flex flex-col w-[90%] gap-4">
         <input
-          className={`${inputClass} ${
-            toggle ? "bg-slate-900 text-white" : "text-black"
-          }`}
+          className={`${inputClass} ${toggleButtonColor(toggle)}`}
           type="text"
           name="name"
           id="name"
@@ -93,9 +89,7 @@ const UpdateData: React.FC<UpdateDataProps> = ({
           placeholder="Name"
         />
         <input
-          className={`${inputClass} ${
-            toggle ? "bg-slate-900 text-white" : "text-black"
-          }`}
+          className={`${inputClass} ${toggleButtonColor(toggle)}`}
           type="text"
           name="surname"
           id="surname"
@@ -104,9 +98,7 @@ const UpdateData: React.FC<UpdateDataProps> = ({
           placeholder="Surname"
         />
         <input
-          className={`${inputClass} ${
-            toggle ? "bg-slate-900 text-white" : "text-black"
-          }`}
+          className={`${inputClass} ${toggleButtonColor(toggle)}`}
           type="email"
           name="email"
           id="email"
@@ -115,9 +107,7 @@ const UpdateData: React.FC<UpdateDataProps> = ({
           placeholder="Email"
         />
         <input
-          className={`${inputClass} ${
-            toggle ? "bg-slate-900 text-white" : "text-black"
-          }`}
+          className={`${inputClass} ${toggleButtonColor(toggle)}`}
           type="password"
           name="password"
           id="password"
@@ -126,9 +116,7 @@ const UpdateData: React.FC<UpdateDataProps> = ({
           placeholder="Password"
         />
         <button
-          className={`${
-            toggle ? "bg-slate-900 text-white" : "bg-slate-100"
-          } py-4 rounded-lg text-4xl ${toggleButtonColor(toggle)}`}
+          className={`py-4 rounded-lg text-4xl ${toggleButtonColor(toggle)}`}
         >
           Update
         </button>

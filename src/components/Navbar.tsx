@@ -22,9 +22,9 @@ const Navbar: React.FC<NavbarProps> = ({
     const isActive = location.pathname === icon.pathname;
     const dynamicClass = `
       ${isActive ? "text-xl font-bold" : "text-base"}
-      ${toggle ? "text-black" : "text-white"}
+      ${toggle ? "text-white" : "text-black"}
     `;
-    const bgClass = isActive ? (toggle ? "bg-gray-300" : "bg-gray-700") : "";
+    const bgClass = isActive ? (toggle ? "bg-gray-700" : "bg-gray-300") : "";
 
     return (
       <div
@@ -42,7 +42,7 @@ const Navbar: React.FC<NavbarProps> = ({
           )}
           <img
             className="w-10 h-10"
-            src={toggle ? icon.iconDark : icon.icon}
+            src={toggle ? icon.icon : icon.iconDark}
             alt={icon.name}
           />
           <p className={`text-center ${dynamicClass}`}>

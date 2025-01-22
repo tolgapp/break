@@ -14,9 +14,10 @@ import Navbar from "./components/Navbar";
 import LastOrders from "./components/LastOrders";
 import Points from "./components/Points";
 import ProtectedRoute from "./components/ProtectedRoute";
+import ToggleTheme from "./components/ToggleTheme";
 
 const App = () => {
-  const [toggle, setToggle] = useState(true);
+  const [toggle, setToggle] = useState(false);
   const [addedProducts, setAddedProducts] = useState<Product[]>([]);
   const [total, setTotal] = useState(0);
   const [openDetail, setOpenDetail] = useState(false);
@@ -26,6 +27,10 @@ const App = () => {
   const [selectedProductId, setSelectedProductId] = useState<number | null>(
     null
   );
+
+  // TODO: Upgrade Points UI
+  // TODO: After Checkout show "Thank you for your Order "Name" + ID "XY123"." message
+  // TODO: OfferContainerDetail finishing
 
   useEffect(() => {
     const storedIsLoggedIn = localStorage.getItem("isLoggedIn") === "true";
@@ -149,6 +154,35 @@ const App = () => {
           }
         />
         <Route
+          path="/signup"
+          element={
+            <Signup
+              toggle={toggle}
+              getClassNames={getClassNames}
+              setToggle={setToggle}
+              getLogoSrc={getLogoSrc}
+            />
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            isLoggedIn ? (
+              <Navigate to="/" replace />
+            ) : (
+              <Login
+                toggle={toggle}
+                getClassNames={getClassNames}
+                setToggle={setToggle}
+                getLogoSrc={getLogoSrc}
+                setIsLoggedIn={setIsLoggedIn}
+                setUserName={setUserName}
+                setUserId={setUserId}
+              />
+            )
+          }
+        />
+        <Route
           path="/profile"
           element={
             <User
@@ -184,39 +218,22 @@ const App = () => {
             }
           />
           <Route
+            path="/user/theme-color"
+            element={
+              <ToggleTheme
+                toggle={toggle}
+                setToggle={setToggle}
+                toggle={toggle}
+              />
+            }
+          />
+          <Route
             path="/user/points"
-            element={<Points toggle={toggle} setToggle={setToggle} />}
+            element={
+              <Points toggle={toggle} setToggle={setToggle} userId={userId} />
+            }
           />
         </Route>
-        <Route
-          path="/signup"
-          element={
-            <Signup
-              toggle={toggle}
-              getClassNames={getClassNames}
-              setToggle={setToggle}
-              getLogoSrc={getLogoSrc}
-            />
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            isLoggedIn ? (
-              <Navigate to="/" replace />
-            ) : (
-              <Login
-                toggle={toggle}
-                getClassNames={getClassNames}
-                setToggle={setToggle}
-                getLogoSrc={getLogoSrc}
-                setIsLoggedIn={setIsLoggedIn}
-                setUserName={setUserName}
-                setUserId={setUserId}
-              />
-            )
-          }
-        />
         <Route
           path="*"
           element={

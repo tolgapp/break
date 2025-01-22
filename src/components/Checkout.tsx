@@ -12,7 +12,7 @@ const Checkout: React.FC<CheckoutProps> = ({
   return (
     <div
       className={`flex rounded-t-lg h-auto justify-between w-full fixed bottom-32 px-8 py-4 items-center mx-auto mt-10 gap-4 ${
-        toggle ? "bg-gray-200" : "bg-slate-50"
+        toggle ? "bg-gray-100" : "bg-slate-300"
       }`}
     >
       <span className={`text-3xl font-semibold text-slate-900`}>

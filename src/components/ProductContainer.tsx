@@ -27,7 +27,7 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
   return (
     <div
       className={`cursor-pointer border ${
-        toggle ? "border-slate-300" : "border-gray-100"
+        toggle ? "border-slate-400" : "border-gray-300"
       } h-fit w-[16.1rem] rounded-xl flex flex-col ${getClassNames(toggle)}`}
     >
       <img
