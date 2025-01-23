@@ -17,11 +17,11 @@ const ToggleTheme: React.FC<ThemeProps> = ({ toggle, setToggle }) => {
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
       <BackButton toggle={toggle} />
       <h2
-        className={`text-9xl font-black ${toggleTextColor(
+        className={`text-8xl font-black ${toggleTextColor(
           !toggle
         )}`}
       >
-        Click
+        Click on
       </h2>
       <h3
         className={`text-7xl font-black ${toggleTextColor(

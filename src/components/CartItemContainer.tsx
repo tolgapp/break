@@ -11,6 +11,8 @@ const CartItemContainer: React.FC<CartItemContainerProps> = ({
   addedProducts,
   setAddedProducts,
 }) => {
+
+
   const handleRemove = (instanceId: string | undefined) => {
     setAddedProducts((prev) =>
       prev.filter((product) => product.instanceId !== instanceId)

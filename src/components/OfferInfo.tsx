@@ -17,7 +17,7 @@ const OfferInfo: React.FC<OfferInfoProps> = ({
     <div
       className={`${getClassNames(
         toggle
-      )} fixed bottom-0 left-0 min-h-[91%] rounded-t-3xl  bg-slate-50 w-full flex flex-col items-center ${
+      )} fixed bottom-0 left-0 min-h-[91%] rounded-t-3xl z-[51]  bg-slate-50 w-full flex flex-col items-center ${
         showDetail ? "fade-in" : "fade-out"
       }`}
     >

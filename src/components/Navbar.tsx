@@ -36,7 +36,7 @@ const Navbar: React.FC<NavbarProps> = ({
           className="flex flex-col justify-center items-center space-y-2"
         >
           {icon.name === "Cart" && addedProducts.length > 0 && (
-            <span className="absolute -top-2 -right-1 bg-red-600 text-white text-lg w-9 h-9 font-bold rounded-full flex items-center justify-center">
+            <span className="absolute -top-2 right-0 bg-red-600 text-white text-lg w-9 h-9 font-bold rounded-full flex items-center justify-center">
               {addedProducts.length > 9 ? "9+" : addedProducts.length}
             </span>
           )}

@@ -23,7 +23,7 @@ const UserPage: React.FC = () => {
     {
       id: "theme-color",
       title: "Change Theme Color",
-      description: "Adjust the app theme",
+      description: "Light | Dark",
     },
     {
       id: "points",
@@ -35,6 +35,8 @@ const UserPage: React.FC = () => {
   const handleContainerClick = (id: string) => {
     navigate(`/user/${id}`);
   };
+
+
 
   return (
     <div className={`flex flex-wrap gap-8 justify-between items-center px-8`}>
