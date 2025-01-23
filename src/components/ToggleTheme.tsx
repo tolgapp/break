@@ -24,7 +24,7 @@ const ToggleTheme: React.FC<ThemeProps> = ({ toggle, setToggle }) => {
         Click
       </h2>
       <h3
-        className={`text-9xl font-black ${toggleTextColor(
+        className={`text-7xl font-black ${toggleTextColor(
           !toggle
         )}`}
       >

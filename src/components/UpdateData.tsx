@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import {
+  BACKEND_URL,
   getClassNames,
   getLogoSrc,
   inputClass,
@@ -30,11 +31,8 @@ const UpdateData: React.FC<UpdateDataProps> = ({
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:5002/api/users/${userId}`
-        );
+        const response = await axios.get(`${BACKEND_URL}/users/${userId}`);
         const { name, surname, email } = response.data;
-        console.log(response.data);
         setValue((prev) => ({ ...prev, name, surname, email }));
       } catch (error) {
         console.error("Fehler beim Laden der Benutzerdaten:", error);
@@ -53,7 +51,7 @@ const UpdateData: React.FC<UpdateDataProps> = ({
     e.preventDefault();
 
     try {
-      await axios.post(`http://localhost:5002/api/users/${userId}`, {
+      await axios.post(`${BACKEND_URL}/users/${userId}`, {
         name: value.name,
         surname: value.surname,
         email: value.email,
@@ -73,9 +71,7 @@ const UpdateData: React.FC<UpdateDataProps> = ({
     >
       <Logo toggle={toggle} getLogoSrc={getLogoSrc} setToggle={setToggle} />
       <BackButton toggle={toggle} />
-      <h2
-        className={`text-5xl text-left mb-12 ${getClassNames(toggle)}`}
-      >
+      <h2 className={`text-5xl text-left mb-12 ${getClassNames(toggle)}`}>
         Update Profile
       </h2>
       <form onSubmit={handleSubmit} className="flex flex-col w-[90%] gap-4">

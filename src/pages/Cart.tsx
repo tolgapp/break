@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Product } from "../data/helper";
+import { BACKEND_URL, Product } from "../data/helper";
 import Logo from "../components/Logo";
 import BackButton from "../components/BackButton";
 import CartItemContainer from "../components/CartItemContainer";
@@ -28,7 +28,7 @@ const Cart: React.FC<CartProps> = ({
   total,
   userId,
 }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleCheckout = () => {
     if (!addedProducts || addedProducts.length === 0) {
@@ -39,11 +39,11 @@ const Cart: React.FC<CartProps> = ({
     const orderId = nanoid();
 
     axios
-      .post("http://localhost:5002/api/checkout", {
+      .post(`${BACKEND_URL}/checkout`, {
         userId,
-        orderId, 
+        orderId,
         total,
-        products: addedProducts, 
+        products: addedProducts,
       })
       .then((response) => {
         console.log("Checkout successful:", response.data);
@@ -54,10 +54,10 @@ const Cart: React.FC<CartProps> = ({
 
     setAddedProducts([]);
     localStorage.clear();
-    
+
     setTimeout(() => {
-      navigate("/user/last-orders")
-    }, 2000)
+      navigate("/user/last-orders");
+    }, 2000);
   };
 
   return (

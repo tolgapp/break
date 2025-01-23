@@ -1,7 +1,7 @@
 import { useState } from "react";
 import BackButton from "./BackButton";
 import Logo from "./Logo";
-import { inputClass, toggleButtonColor } from "../data/helper";
+import { BACKEND_URL, inputClass, toggleButtonColor } from "../data/helper";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -36,25 +36,27 @@ const Signup: React.FC<SignupProps> = ({
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
-    axios.post("http://localhost:5002/api/signup", value).then((response) => {
-      if (response.status === 200 || response.status === 201) {
-        setValue({
-          name: "",
-          surname: "",
-          email: "",
-          password: "",
-        });
-      }
-    }).catch((error) => {
-      console.error("Signup failed:", error);
-    });
+
+    axios
+      .post(`${BACKEND_URL}/signup`, value)
+      .then((response) => {
+        if (response.status === 200 || response.status === 201) {
+          setValue({
+            name: "",
+            surname: "",
+            email: "",
+            password: "",
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("Signup failed:", error);
+      });
 
     setTimeout(() => {
       navigate("/login");
-    }, 300)
+    }, 300);
   };
-  
 
   return (
     <div

@@ -75,3 +75,6 @@ export const toggleButtonColor = (toggle: boolean): string =>
 
 export const backgroundColor = (toggle: boolean) =>
   toggle ? "bg-white" : "bg-slate-900";
+
+// Backend URL
+export const BACKEND_URL = import.meta.env.VITE_BACKEND_URL

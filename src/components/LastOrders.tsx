@@ -1,5 +1,6 @@
 import axios from "axios";
 import {
+  BACKEND_URL,
   getClassNames,
   getLogoSrc,
   LastOrderType,
@@ -22,13 +23,14 @@ const LastOrders: React.FC<LastOrdersProps> = ({
   setToggle,
   userId,
 }) => {
+
   const [lastOrders, setLastOrders] = useState<LastOrderType>([]);
 
   useEffect(() => {
     const getRecipes = async () => {
       try {
         const response = await axios.get<LastOrderType>(
-          `http://localhost:5002/api/users/${userId}/receipts`
+          `${BACKEND_URL}/users/${userId}/receipts`
         );
         setLastOrders(response.data);
       } catch (error) {

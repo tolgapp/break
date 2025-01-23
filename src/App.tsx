@@ -223,7 +223,6 @@ const App = () => {
               <ToggleTheme
                 toggle={toggle}
                 setToggle={setToggle}
-                toggle={toggle}
               />
             }
           />

@@ -1,8 +1,10 @@
+import { useState } from "react";
 import Logo from "../components/Logo";
 import OfferContainer from "../components/OfferContainer";
 import ProductDetail from "../components/ProductDetail";
 import RandomProducts from "../components/RandomProducts";
 import { Product } from "../data/helper";
+import OfferInfo from "../components/OfferInfo";
 
 type HomeProps = {
   toggle: boolean;
@@ -14,7 +16,7 @@ type HomeProps = {
   handleClick: (id: number) => void;
   closeDetail: () => void;
   openDetail: boolean;
-  selectedProductId: number | null;
+  selectedProductId: number | null; // Kann null sein
   isLoggedIn: boolean;
   userName: string;
 };
@@ -30,6 +32,16 @@ const Home: React.FC<HomeProps> = ({
   closeDetail,
   selectedProductId,
 }) => {
+  const [showDetail, setShowDetail] = useState(false);
+  const [offerId, setOfferId] = useState<number | undefined>(undefined); // Hinzugefügt
+
+  const toggleDetail = (id: number) => {
+    if (id === 0) {
+      setShowDetail((prev) => !prev);
+      setOfferId(id); // Setze die ID
+    }
+  };
+
   return (
     <div
       className={`relative flex flex-col ${getClassNames(
@@ -37,7 +49,7 @@ const Home: React.FC<HomeProps> = ({
       )} min-h-dvh overflow-y-scroll pb-48`}
     >
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
-      <OfferContainer toggle={toggle} />
+      <OfferContainer toggle={toggle} toggleDetail={toggleDetail} />
       <RandomProducts toggle={toggle} handleClick={handleClick} />
       {openDetail && (
         <ProductDetail
@@ -47,8 +59,17 @@ const Home: React.FC<HomeProps> = ({
           addToCart={addToCart}
         />
       )}
+      {showDetail && offerId !== undefined && (
+        <OfferInfo
+          toggle={toggle}
+          toggleDetail={toggleDetail}
+          showDetail={showDetail}
+          id={offerId} 
+        />
+      )}
     </div>
   );
 };
 
 export default Home;
+

@@ -1,6 +1,6 @@
 import BackButton from "./BackButton";
 import Logo from "./Logo";
-import { inputClass, toggleButtonColor } from "../data/helper";
+import { BACKEND_URL, inputClass, toggleButtonColor } from "../data/helper";
 import { useState } from "react";
 import axios from "axios";
 
@@ -36,10 +36,11 @@ const Login: React.FC<LoginProps> = ({
     }));
   };
 
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    axios.post("http://localhost:5002/api/login", user).then((response) => {
+    axios.post(`${BACKEND_URL}/login`, user).then((response) => {
       setUserName(response.data.userName);
 
       if (response.status === 200) {

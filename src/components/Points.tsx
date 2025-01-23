@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { getClassNames, getLogoSrc, LastOrderType } from "../data/helper";
+import {
+  BACKEND_URL,
+  getClassNames,
+  getLogoSrc,
+  LastOrderType,
+} from "../data/helper";
 import BackButton from "./BackButton";
 import Logo from "./Logo";
 import axios from "axios";
@@ -18,7 +23,7 @@ const Points: React.FC<PointsProps> = ({ toggle, setToggle, userId }) => {
     const getRecipes = async () => {
       try {
         const response = await axios.get<LastOrderType>(
-          `http://localhost:5002/api/users/${userId}/receipts`
+          `${BACKEND_URL}/users/${userId}/receipts`
         );
         setLastOrders(response.data);
       } catch (error) {
@@ -38,32 +43,32 @@ const Points: React.FC<PointsProps> = ({ toggle, setToggle, userId }) => {
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
       <BackButton toggle={toggle} />
       <div className={`border flex w-full justify-between min-h-[55rem]`}>
-       <div className={`${getClassNames(
-        toggle
-      )} flex w-1/2 items-center justify-center`}>
-       <h2
-          className={`text-6xl text-center font-bold font-mono px-8`}
+        <div
+          className={`${getClassNames(
+            toggle
+          )} flex w-1/2 items-center justify-center`}
         >
-          Your actual {points > 1 ? "BEANS are" : "BEAN is"}
-        </h2>
-       </div>
+          {points < 1 ? <h3 className="px-2 text-7xl text-center font-bold ">No Orders Yet 🫣</h3> : <h2 className={`text-5xl overflow-hidden text-left font-bold px-8`}>
+            You currently have
+          </h2>}
+        </div>
         {points > 0 ? (
-          <div className={`${getClassNames(
-            !toggle
-          )} px-6 py-4 w-1/2 flex justify-center items-center`}>
-            <h3 className="text-7xl font-bold text-center">
-              {points}
+          <div
+            className={`${getClassNames(
+              !toggle
+            )} px-6 py-4 w-1/2 flex justify-center items-center`}
+          >
+            <h3 className="text-5xl font-bold text-center">
+              {points > 1 ? `${points} BEANS` : `${points} BEAN`}
             </h3>
-            
           </div>
         ) : (
-          <div className={`${getClassNames(
-            !toggle
-          )} w-1/2 px-6 py-4 rounded-lg shadow-lg flex flex-col justify-center items-center`}>
-            <h3 className="text-3xl font-bold ">
-              No Orders Yet!
-            </h3>
-            <p className="mt-2 text-lg text-center">
+          <div
+            className={`${getClassNames(
+              !toggle
+            )} w-1/2 px-4 text-balance py-4 rounded-lg shadow-lg flex flex-col justify-center items-center`}
+          >
+            <p className="mt-2 text-4xl font-semibold text-center">
               Earn 1 BEAN for every order you place.
             </p>
           </div>
