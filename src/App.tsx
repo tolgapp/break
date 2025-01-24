@@ -12,7 +12,7 @@ import { Product, getLogoSrc, getClassNames } from "./data/helper";
 import UpdateData from "./components/UpdateData";
 import Navbar from "./components/Navbar";
 import LastOrders from "./components/LastOrders";
-import Points from "./components/Points";
+import Points from "./components/Beans";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ToggleTheme from "./components/ToggleTheme";
 
@@ -30,7 +30,6 @@ const App = () => {
 
   // TODO: Upgrade Points UI
   // TODO: After Checkout show "Thank you for your Order "Name" + ID "XY123"." message
-  // TODO: OfferContainerDetail finishing
 
   useEffect(() => {
     const storedIsLoggedIn = localStorage.getItem("isLoggedIn") === "true";
@@ -84,6 +83,7 @@ const App = () => {
         : product.price;
       return acc + productPrice;
     }, 0);
+
     setTotal(totalPrice);
     localStorage.setItem("total", totalPrice.toString());
   }, [addedProducts]);
@@ -219,12 +219,7 @@ const App = () => {
           />
           <Route
             path="/user/theme-color"
-            element={
-              <ToggleTheme
-                toggle={toggle}
-                setToggle={setToggle}
-              />
-            }
+            element={<ToggleTheme toggle={toggle} setToggle={setToggle} />}
           />
           <Route
             path="/user/points"

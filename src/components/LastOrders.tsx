@@ -32,14 +32,17 @@ const LastOrders: React.FC<LastOrdersProps> = ({
         const response = await axios.get<LastOrderType>(
           `${BACKEND_URL}/users/${userId}/receipts`
         );
-        setLastOrders(response.data);
+        const sortedOrders = response.data.sort(
+          (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+        );
+        setLastOrders(sortedOrders);
       } catch (error) {
         console.error("Checkout error:", error);
       }
     };
 
     getRecipes();
-  }, [userId]);
+  }, []);
 
   const eachOrder = lastOrders.map((order: Order, index) => (
       <div
@@ -48,7 +51,7 @@ const LastOrders: React.FC<LastOrdersProps> = ({
       >
         <div className="text-center border-b-2 border-dotted border-gray-300 pb-4 mb-4">
           <p className="font-mono text-xl font-bold text-slate-900">
-            ORDER #{index + 1}
+            ORDER #{lastOrders.length - index}
           </p>
           <p className="font-mono text-sm text-gray-600">
             {new Date(order.timestamp).toLocaleDateString()}

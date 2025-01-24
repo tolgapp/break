@@ -22,13 +22,13 @@
     },
     {
       "id": 3,
-      "name": "Café au Lait",
-      "description": "Brewed coffee mixed with steamed milk.",
-      "ingredients": ["Brewed coffee", "Steamed milk"],
-      "sizes": ["Small", "Medium", "Large"],
-      "image": "cafeaulait.png",
-      "prices": [3.45, 4.45, 4.95],
-      "tags": ["Vegetarian", "Fresh", "All"]
+      "name": "Espresso",
+      "description": "A rich and strong coffee shot, perfect for a quick energy boost.",
+      "ingredients": ["Espresso"],
+      "sizes": ["Single Shot", "Double Shot"],
+      "image": "espresso.png",
+      "prices": [2.50, 3.95],
+      "tags": ["Vegetarian", "Bold", "All"]
     },
     {
       "id": 4,

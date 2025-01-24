@@ -19,16 +19,19 @@ const RandomProducts: React.FC<RandomProductsProps> = ({
     const selectRandomProducts = () => {
       const selectedProducts: Product[] = [];
       const specialties = coffeeData.coffeeSpecialties;
-
-      while (selectedProducts.length <= 5) {
+    
+      while (selectedProducts.length < 5) {
         const randomIndex = Math.floor(Math.random() * specialties.length);
         const product = specialties[randomIndex];
-
-        if (!selectedProducts.includes(product)) {
-          selectedProducts.push(product);
+    
+        if (!selectedProducts.find((p) => p.id === product.id)) {
+          selectedProducts.push({
+            ...product,
+            price: product.prices[0] || 0, 
+          });
         }
       }
-
+    
       setRandomProducts(selectedProducts);
     };
 

@@ -9,13 +9,13 @@ import BackButton from "./BackButton";
 import Logo from "./Logo";
 import axios from "axios";
 
-type PointsProps = {
+type BeanProps = {
   toggle: boolean;
   userId: string;
   setToggle: (value: boolean) => void;
 };
 
-const Points: React.FC<PointsProps> = ({ toggle, setToggle, userId }) => {
+const Beans: React.FC<BeanProps> = ({ toggle, setToggle, userId }) => {
   const [lastOrders, setLastOrders] = useState<LastOrderType>([]);
   const points = lastOrders.length;
 
@@ -66,7 +66,7 @@ const Points: React.FC<PointsProps> = ({ toggle, setToggle, userId }) => {
           <div
             className={`${getClassNames(
               !toggle
-            )} w-1/2 px-4 text-balance py-4 rounded-lg shadow-lg flex flex-col justify-center items-center`}
+            )} w-1/2 px-4 text-balance py-4 shadow-lg flex flex-col justify-center items-center`}
           >
             <p className="mt-2 text-4xl font-semibold text-center">
               Earn 1 BEAN for every order you place.
@@ -78,4 +78,4 @@ const Points: React.FC<PointsProps> = ({ toggle, setToggle, userId }) => {
   );
 };
 
-export default Points;
+export default Beans;

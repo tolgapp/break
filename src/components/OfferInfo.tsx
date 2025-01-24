@@ -1,5 +1,3 @@
-import { getClassNames } from "../data/helper";
-
 type OfferInfoProps = {
   toggle: boolean;
   showDetail: boolean;
@@ -8,16 +6,13 @@ type OfferInfoProps = {
 };
 
 const OfferInfo: React.FC<OfferInfoProps> = ({
-  toggle,
   toggleDetail,
   showDetail,
   id,
 }) => {
   return (
     <div
-      className={`${getClassNames(
-        toggle
-      )} fixed bottom-0 left-0 min-h-[91%] rounded-t-3xl z-[51]  bg-slate-50 w-full flex flex-col items-center ${
+      className={`fixed bottom-0 left-0 min-h-[91%] rounded-t-3xl z-[51]  bg-slate-50 w-full flex flex-col items-center ${
         showDetail ? "fade-in" : "fade-out"
       }`}
     >
@@ -66,7 +61,7 @@ const OfferInfo: React.FC<OfferInfoProps> = ({
         </ul>
       </div>
       <button
-        className="right-2 top-2 text-4xl border rounded-full w-48 px-4 py-2 text-white bg-black hover:scale-95 text-center"
+        className="right-2 top-2 text-3xl border rounded-full w-60 py-4 text-white bg-black hover:scale-95 text-center mt-10"
         onClick={() => toggleDetail(id)}
       >
         Close
