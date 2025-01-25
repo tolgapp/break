@@ -22,7 +22,6 @@ const User: React.FC<UserProps> = ({
   isLoggedIn,
   userName,
 }) => {
-
   const handleLogout = () => {
     setIsLoggedIn(false);
     localStorage.removeItem("isLoggedIn");
@@ -32,18 +31,20 @@ const User: React.FC<UserProps> = ({
 
   return (
     <main
-      className={`flex flex-col items-center justify-center min-h-screen gap-10 ${getClassNames(
+      className={`flex flex-col items-center justify-center min-h-screen gap-3 ${getClassNames(
         toggle
-      )}`}
+      )} ${isLoggedIn ? "" : "bg-[url(/bg-image01.jpg)] bg-cover"}`}
     >
-      <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
-      <BackButton toggle={toggle} />
+      <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} isLoggedIn={isLoggedIn}/>
+      <BackButton toggle={toggle} isLoggedIn={isLoggedIn}/>
       {isLoggedIn ? (
         <>
           <div className="gap-6 flex px-6 upper-container justify-around items-center w-full">
-            <h2 className={`${getClassNames(toggle)} text-5xl font-semibold`}>Welcome back, {userName}</h2>
+            <h2 className={`text-5xl font-semibold`}>
+              Welcome back, {userName}
+            </h2>
             <img
-            onClick={handleLogout}
+              onClick={handleLogout}
               className="w-14 hover:grayscale"
               src="/icons/logout.png"
               alt="shutdown icon in red"
@@ -53,7 +54,7 @@ const User: React.FC<UserProps> = ({
         </>
       ) : (
         <>
-          <h1 className={`text-5xl font-bold text-center pb-6 ${getClassNames(toggle)}`}>
+          <h1 className={`text-5xl font-bold text-center pb-6 text-white`}>
             Welcome Back!
           </h1>
           <UserAction toggle={toggle} />

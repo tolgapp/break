@@ -20,7 +20,7 @@ const RandomProducts: React.FC<RandomProductsProps> = ({
       const selectedProducts: Product[] = [];
       const specialties = coffeeData.coffeeSpecialties;
     
-      while (selectedProducts.length < 5) {
+      while (selectedProducts.length < 6) {
         const randomIndex = Math.floor(Math.random() * specialties.length);
         const product = specialties[randomIndex];
     
