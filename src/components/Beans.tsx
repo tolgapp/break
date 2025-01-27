@@ -12,7 +12,7 @@ import axios from "axios";
 type BeanProps = {
   toggle: boolean;
   userId: string;
-  setToggle: (value: boolean) => void;
+  setToggle: (value: boolean | ((prevToggle: boolean) => boolean)) => void;
 };
 
 const Beans: React.FC<BeanProps> = ({ toggle, setToggle, userId }) => {

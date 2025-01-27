@@ -14,7 +14,7 @@ import { nanoid } from "nanoid";
 
 type LastOrdersProps = {
   toggle: boolean;
-  setToggle: (value: boolean) => void;
+  setToggle: (value: boolean | ((prevToggle: boolean) => boolean)) => void;
   userId: string;
 };
 

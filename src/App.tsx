@@ -1,6 +1,8 @@
 import { useEffect, useState, useCallback } from "react";
 import { nanoid } from "nanoid";
 import { Navigate, Route, Routes } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
+import { Product, getLogoSrc, getClassNames } from "./data/helper";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
@@ -8,13 +10,13 @@ import User from "./pages/User";
 import NotFound from "./pages/NotFound";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import { Product, getLogoSrc, getClassNames } from "./data/helper";
 import UpdateData from "./components/UpdateData";
 import Navbar from "./components/Navbar";
 import LastOrders from "./components/LastOrders";
 import Points from "./components/Beans";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ToggleTheme from "./components/ToggleTheme";
+
 
 const App = () => {
   const [toggle, setToggle] = useState(false);
@@ -100,6 +102,7 @@ const App = () => {
 
   return (
     <>
+    <Analytics />
       <Routes>
         <Route
           path="/"

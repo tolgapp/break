@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 type SignupProps = {
   toggle: boolean;
-  setToggle: (value: boolean) => void;
+  setToggle: (value: boolean | ((prevToggle: boolean) => boolean)) => void;
   getClassNames: (value: boolean) => string;
   getLogoSrc: (value: boolean) => string;
 };

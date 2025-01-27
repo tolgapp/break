@@ -6,7 +6,7 @@ import axios from "axios";
 
 type LoginProps = {
   toggle: boolean;
-  setToggle: (value: boolean) => void;
+  setToggle: (value: boolean | ((prevToggle: boolean) => boolean)) => void;
   getClassNames: (value: boolean) => string;
   getLogoSrc: (value: boolean) => string;
   setIsLoggedIn: (value: boolean) => void;
@@ -36,18 +36,22 @@ const Login: React.FC<LoginProps> = ({
     }));
   };
 
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    axios.post(`${BACKEND_URL}/login`, user).then((response) => {
-      setUserName(response.data.userName);
+    axios
+      .post(`${BACKEND_URL}/login`, user)
+      .then((response) => {
+        setUserName(response.data.userName);
 
-      if (response.status === 200) {
-        setIsLoggedIn(true);
-        setUserId(response.data.userId);
-      }
-    });
+        if (response.status === 200) {
+          setIsLoggedIn(true);
+          setUserId(response.data.userId);
+        }
+      })
+      .catch((error) => {
+        console.error("Login failed:", error);
+      });
   };
 
   return (

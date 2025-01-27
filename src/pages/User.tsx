@@ -5,7 +5,7 @@ import UserPage from "../components/Userpage";
 
 type UserProps = {
   toggle: boolean;
-  setToggle: (value: boolean) => void;
+  setToggle: (value: boolean | ((prevToggle: boolean) => boolean)) => void;
   getClassNames: (value: boolean) => string;
   getLogoSrc: (value: boolean) => string;
   setIsLoggedIn: (value: boolean) => void;

@@ -4,7 +4,7 @@ import Logo from "./Logo";
 
 type ThemeProps = {
   toggle: boolean;
-  setToggle: (value: boolean) => void;
+  setToggle: (value: boolean | ((prevToggle: boolean) => boolean)) => void;
 };
 
 const ToggleTheme: React.FC<ThemeProps> = ({ toggle, setToggle }) => {

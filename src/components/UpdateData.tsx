@@ -12,7 +12,7 @@ import BackButton from "./BackButton";
 
 type UpdateDataProps = {
   toggle: boolean;
-  setToggle: (value: boolean) => void;
+  setToggle: (value: boolean | ((prevToggle: boolean) => boolean)) => void;
   userId: string;
 };
 

@@ -5,7 +5,7 @@ import { toggleTextColor } from "../data/helper";
 type NotFoundProps = {
   toggle: boolean;
   getClassNames: (value: boolean) => string;
-  setToggle: (value: boolean) => void;
+  setToggle: (value: boolean | ((prevToggle: boolean) => boolean)) => void;
   getLogoSrc: (value: boolean) => string;
 };
 

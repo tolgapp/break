@@ -8,7 +8,7 @@ import OfferInfo from "../components/OfferInfo";
 
 type HomeProps = {
   toggle: boolean;
-  setToggle: (value: boolean) => void;
+  setToggle: (value: boolean | ((prevToggle: boolean) => boolean)) => void;
   getLogoSrc: (value: boolean) => string;
   getClassNames: (value: boolean) => string;
   addToCart: (product: Product) => void;
