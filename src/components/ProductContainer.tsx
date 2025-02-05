@@ -25,7 +25,7 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
 
   return (
     <div
-      className={`cursor-pointer border ${
+      className={`border ${
         toggle ? "border-slate-400" : "border-gray-300"
       } h-fit w-[16.1rem] rounded-xl flex flex-col ${getClassNames(
         toggle
@@ -43,7 +43,7 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
       <div className="flex items-center justify-between w-full px-2 py-2 mt-4">
         <button
           onClick={() => handleClick(id)}
-          className={`pointer rounded-lg px-4 py-4 w-full text-2xl font-semibold hover:bg-gray-400 hover:text-white ${toggleTextColor(
+          className={`cursor-pointer rounded-lg px-4 py-4 w-full text-2xl font-semibold hover:bg-gray-400 hover:text-white ${toggleTextColor(
             toggle
           )} ${backgroundColor(toggle)}`}
         >

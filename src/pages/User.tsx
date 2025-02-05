@@ -45,7 +45,7 @@ const User: React.FC<UserProps> = ({
             </h2>
             <img
               onClick={handleLogout}
-              className="w-14 hover:grayscale"
+              className="w-14 cursor-pointer hover:delay-200 hover:rotate-180"
               src="/icons/logout.png"
               alt="shutdown icon in red"
             />

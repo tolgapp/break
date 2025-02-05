@@ -21,9 +21,9 @@ const OfferContainer: React.FC<OfferContainerProps> = ({ toggleDetail }) => {
           src={src}
           className={`rounded-3xl ${
             index === 0
-              ? "col-span-2 w-[35rem]"
+              ? "col-span-2 w-[35rem] cursor-pointer"
               : "mx-auto mt-2 w-[17rem]"
-          }`}
+          } `}
         />
       ))}
     </div>

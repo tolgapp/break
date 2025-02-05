@@ -39,7 +39,7 @@ const UserPage: React.FC = () => {
 
 
   return (
-    <div className={`flex flex-wrap gap-8 justify-between items-center px-8`}>
+    <div className={`cursor-pointer flex flex-wrap gap-8 justify-between items-center px-8`}>
       {containers.map((container) => (
         <div
           key={container.id}
