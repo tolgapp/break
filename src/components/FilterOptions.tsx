@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { filterOptions } from "../data/helper";
 
 type FilterProps = {
@@ -9,18 +10,27 @@ const FilterOptions: React.FC<FilterProps> = ({
   toggle,
   setSelectedOption,
 }) => {
+  const [activeOption, setActiveOption] = useState<string>("");
+
+  const handleClick = (option: string) => {
+    setActiveOption(option); 
+    setSelectedOption(option);
+  };
+
   const options = filterOptions.map((option, id) => {
     return (
       <div
-        onClick={() => setSelectedOption(option)}
+        onClick={() => handleClick(option)}
         key={id}
         className={`flex cursor-pointer items-center border rounded-lg py-2 ${
+          activeOption === option ? "bg-slate-400" : ""
+        } ${
           option === "All" ? "px-11" : "px-7"
-        } mt-24 max-h-20 ${
-          toggle ? "bg-slate-800" : "bg-white border-slate-800"
-        }`}
+        } mt-24 max-h-20`}
       >
-        <p className={`${toggle ? "text-white" : "text-slate-900"} text-2xl`}>
+        <p className={` ${
+          activeOption === option && toggle ? "text-white" : "" 
+        }  ${toggle ? "text-white" : ""} text-2xl`}>
           {option}
         </p>
       </div>
