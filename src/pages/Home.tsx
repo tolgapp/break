@@ -33,12 +33,12 @@ const Home: React.FC<HomeProps> = ({
   selectedProductId,
 }) => {
   const [showDetail, setShowDetail] = useState(false);
-  const [offerId, setOfferId] = useState<number | undefined>(undefined); // Hinzugefügt
+  const [offerId, setOfferId] = useState<number | undefined>(undefined); 
 
   const toggleDetail = (id: number) => {
     if (id === 0) {
       setShowDetail((prev) => !prev);
-      setOfferId(id); // Setze die ID
+      setOfferId(id); 
     }
   };
 

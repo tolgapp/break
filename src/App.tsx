@@ -30,9 +30,6 @@ const App = () => {
     null
   );
 
-  // TODO: Upgrade Points UI
-  // TODO: After Checkout show "Thank you for your Order "Name" + ID "XY123"." message
-
   useEffect(() => {
     const storedIsLoggedIn = localStorage.getItem("isLoggedIn") === "true";
     const storedUserName = localStorage.getItem("userName");

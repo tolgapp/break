@@ -25,6 +25,7 @@ const Signup: React.FC<SignupProps> = ({
     email: "",
     password: "",
   });
+  const [isError, setIsError] = useState("");
 
   const handleData = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -40,6 +41,7 @@ const Signup: React.FC<SignupProps> = ({
     axios
       .post(`${BACKEND_URL}/signup`, value)
       .then((response) => {
+        console.log("R", response)
         if (response.status === 200 || response.status === 201) {
           setValue({
             name: "",
@@ -47,15 +49,16 @@ const Signup: React.FC<SignupProps> = ({
             email: "",
             password: "",
           });
+
+          setTimeout(() => {
+            navigate("/login");
+          }, 300);
         }
       })
       .catch((error) => {
-        console.error("Signup failed:", error);
+        console.error("Signup failed:", error.response.data);
+        setIsError(error.response.data)
       });
-
-    setTimeout(() => {
-      navigate("/login");
-    }, 300);
   };
 
   return (
@@ -112,6 +115,7 @@ const Signup: React.FC<SignupProps> = ({
           Signup
         </button>
       </form>
+      <p className="text-red-600 px-8 rounded-lg text-3xl mt-8 font-semibold">{isError}</p>
     </div>
   );
 };

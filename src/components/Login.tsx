@@ -3,6 +3,7 @@ import Logo from "./Logo";
 import { BACKEND_URL, inputClass, toggleButtonColor } from "../data/helper";
 import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 type LoginProps = {
   toggle: boolean;
@@ -27,6 +28,7 @@ const Login: React.FC<LoginProps> = ({
     email: "",
     password: "",
   });
+  const [isError, setIsError] = useState("");
 
   const handleLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -43,7 +45,6 @@ const Login: React.FC<LoginProps> = ({
       .post(`${BACKEND_URL}/login`, user)
       .then((response) => {
         setUserName(response.data.userName);
-
         if (response.status === 200) {
           setIsLoggedIn(true);
           setUserId(response.data.userId);
@@ -51,6 +52,7 @@ const Login: React.FC<LoginProps> = ({
       })
       .catch((error) => {
         console.error("Login failed:", error);
+        setIsError(error.response.data)
       });
   };
 
@@ -90,6 +92,8 @@ const Login: React.FC<LoginProps> = ({
           Login
         </button>
       </form>
+      {isError ? <p className="text-red-500 px-8 rounded-lg text-3xl mt-8 font-bold">{isError}</p>
+       : <p className="mt-8 text-3xl">New @ break? <Link to={"/signup"} className="mt-8 text-3xl cursor-pointer underline">Sign Up!</Link></p> }
     </div>
   );
 };
