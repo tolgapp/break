@@ -11,12 +11,14 @@ const CartItemContainer: React.FC<CartItemContainerProps> = ({
   addedProducts,
   setAddedProducts,
 }) => {
-
-
   const handleRemove = (instanceId: string | undefined) => {
-    setAddedProducts((prev) =>
-      prev.filter((product) => product.instanceId !== instanceId)
-    );
+    setAddedProducts((prev) => {
+      const updatedProducts = prev.filter(
+        (product) => product.instanceId !== instanceId
+      );
+      localStorage.setItem("addedProducts", JSON.stringify(updatedProducts));
+      return updatedProducts;
+    });
   };
 
   if (addedProducts.length === 0) {
@@ -37,10 +39,14 @@ const CartItemContainer: React.FC<CartItemContainerProps> = ({
         <li
           key={product.instanceId}
           className={`rounded-lg shadow-lg flex items-center justify-between py-4 px-3 ${
-            toggle ? "bg-slate-600  text-white" : "bg-slate-200 shadow-sm text-black"
+            toggle
+              ? "bg-slate-600  text-white"
+              : "bg-slate-200 shadow-sm text-black"
           }`}
         >
-          <span className="text-2xl">{product.name} - {product.size}</span>
+          <span className="text-2xl">
+            {product.name} - {product.size}
+          </span>
           <div className="flex items-center space-x-4">
             <span className="text-2xl font-semibold">{product.price} €</span>
             <button

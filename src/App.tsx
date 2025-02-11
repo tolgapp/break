@@ -97,6 +97,47 @@ const App = () => {
     setSelectedProductId(null);
   }, []);
 
+  useEffect(() => {
+    if (addedProducts.length > 3) {
+      const smallestPrice = Math.min(
+        ...addedProducts.map((product) => {
+          const originalPrice = product.prices[product.sizes.indexOf(product.size)];
+          return product.price === 0 ? originalPrice : product.price;
+        })
+      );
+  
+      setAddedProducts((prev) => {
+        let discountApplied = false;
+        const updatedProducts = prev.map((product) => {
+          const originalPrice = product.prices[product.sizes.indexOf(product.size)];
+          if (!discountApplied && originalPrice === smallestPrice) {
+            discountApplied = true;
+            return { ...product, price: 0 };
+          }
+          if (product.price === 0 && originalPrice !== smallestPrice) {
+            return { ...product, price: originalPrice };
+          }
+          return product;
+        });
+        localStorage.setItem("addedProducts", JSON.stringify(updatedProducts));
+        return updatedProducts;
+      });
+    } else {
+      setAddedProducts((prev) => {
+        const updatedProducts = prev.map((product) => {
+          if (product.price === 0) {
+            const originalPrice = product.prices[product.sizes.indexOf(product.size)];
+            return { ...product, price: originalPrice };
+          }
+          return product;
+        });
+        localStorage.setItem("addedProducts", JSON.stringify(updatedProducts));
+        return updatedProducts;
+      });
+    }
+  }, [addedProducts.length]);
+  
+
   return (
     <>
     <Analytics />

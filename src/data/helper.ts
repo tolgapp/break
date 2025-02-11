@@ -42,8 +42,9 @@ export type Product = {
   name: string;
   image: string;
   prices: number[];
+  sizes: string[];
   instanceId?: string;
-  size?: string;
+  size: string;
   price: number;
   timestamp?: string;
 };
