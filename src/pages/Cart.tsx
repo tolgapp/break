@@ -34,6 +34,7 @@ const Cart: React.FC<CartProps> = ({
       return;
     }
 
+
     const orderId = nanoid();
 
     axios

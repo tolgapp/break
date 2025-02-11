@@ -23,7 +23,7 @@ const RandomProducts: React.FC<RandomProductsProps> = ({
       while (selectedProducts.length < 6) {
         const randomIndex = Math.floor(Math.random() * specialties.length);
         const product = specialties[randomIndex];
-    
+        console.log(selectedProducts)
         if (!selectedProducts.find((p) => p.id === product.id)) {
           selectedProducts.push({
             ...product,

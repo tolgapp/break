@@ -33,7 +33,7 @@ const Logo: React.FC<LogoProps> = ({
 
   return (
     <img
-      className="fixed z-50 cursor-pointer w-32 top-0 left-1/2 translate-x-[-50%] translate-y-6"
+      className="fixed z-[101] cursor-pointer w-32 top-0 left-1/2 translate-x-[-50%] translate-y-6"
       src={getLogoSrc(toggle)}
       alt="Logo"
       onClick={() => setToggle((prevToggle) => !prevToggle)}

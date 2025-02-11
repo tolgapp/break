@@ -17,7 +17,6 @@ import Points from "./components/Beans";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ToggleTheme from "./components/ToggleTheme";
 
-
 const App = () => {
   const [toggle, setToggle] = useState(false);
   const [addedProducts, setAddedProducts] = useState<Product[]>([]);
@@ -101,15 +100,20 @@ const App = () => {
     if (addedProducts.length > 3) {
       const smallestPrice = Math.min(
         ...addedProducts.map((product) => {
-          const originalPrice = product.prices[product.sizes.indexOf(product.size)];
+          if (!product.size) return Infinity; 
+          const originalPrice =
+            product.prices[product.sizes.indexOf(product.size)];
           return product.price === 0 ? originalPrice : product.price;
         })
       );
-  
+
       setAddedProducts((prev) => {
         let discountApplied = false;
         const updatedProducts = prev.map((product) => {
-          const originalPrice = product.prices[product.sizes.indexOf(product.size)];
+          const originalPrice =
+            product.size && product.sizes.includes(product.size)
+              ? product.prices[product.sizes.indexOf(product.size)]
+              : product.price;
           if (!discountApplied && originalPrice === smallestPrice) {
             discountApplied = true;
             return { ...product, price: 0 };
@@ -126,7 +130,10 @@ const App = () => {
       setAddedProducts((prev) => {
         const updatedProducts = prev.map((product) => {
           if (product.price === 0) {
-            const originalPrice = product.prices[product.sizes.indexOf(product.size)];
+            const originalPrice =
+              product.size && product.sizes.includes(product.size)
+                ? product.prices[product.sizes.indexOf(product.size)]
+                : product.price;
             return { ...product, price: originalPrice };
           }
           return product;
@@ -136,11 +143,10 @@ const App = () => {
       });
     }
   }, [addedProducts.length]);
-  
 
   return (
     <>
-    <Analytics />
+      <Analytics />
       <Routes>
         <Route
           path="/"

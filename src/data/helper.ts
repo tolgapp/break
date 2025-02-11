@@ -44,7 +44,7 @@ export type Product = {
   prices: number[];
   sizes: string[];
   instanceId?: string;
-  size: string;
+  size?: string | undefined;
   price: number;
   timestamp?: string;
 };
