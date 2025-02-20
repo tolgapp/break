@@ -37,9 +37,9 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
       <img
         className="rounded-t-xl pt-3 pb-6 bg-gray-100"
         src={image}
-        alt="coffee cup"
+        alt={name}
       />
-      <h3 className="text-2xl text-center translate-y-3 px-3">{name}</h3>
+      <h3 className="text-2xl text-left translate-y-3 px-3">{name}</h3>
       <div className="flex items-center justify-between w-full px-2 py-2 mt-4">
         <button
           onClick={() => handleClick(id)}
