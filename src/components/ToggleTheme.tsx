@@ -16,6 +16,7 @@ const ToggleTheme: React.FC<ThemeProps> = ({ toggle, setToggle }) => {
     >
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
       <BackButton toggle={toggle} />
+      <div className="text-8xl">⬆</div>
       <h2
         className={`text-8xl font-black ${toggleTextColor(
           !toggle
@@ -30,6 +31,7 @@ const ToggleTheme: React.FC<ThemeProps> = ({ toggle, setToggle }) => {
       >
        the Logo
       </h3>
+      <h4 className="text-6xl w-1/2 text-center font-semibold">and see the magic</h4>
     </div>
   );
 };

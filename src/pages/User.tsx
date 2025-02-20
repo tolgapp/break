@@ -24,9 +24,7 @@ const User: React.FC<UserProps> = ({
 }) => {
   const handleLogout = () => {
     setIsLoggedIn(false);
-    localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("userName");
-    localStorage.removeItem("userId");
+    localStorage.clear()
   };
 
   return (
@@ -39,7 +37,7 @@ const User: React.FC<UserProps> = ({
       <BackButton toggle={toggle} isLoggedIn={isLoggedIn}/>
       {isLoggedIn ? (
         <>
-          <div className="gap-6 flex px-6 upper-container justify-around items-center w-full">
+          <div className="gap-6 flex px-6 upper-container mb-10 justify-around items-center w-full">
             <h2 className={`text-5xl font-semibold`}>
               Welcome back, {userName}
             </h2>
@@ -54,9 +52,9 @@ const User: React.FC<UserProps> = ({
         </>
       ) : (
         <>
-          <h1 className={`text-5xl font-bold text-center pb-6 text-white`}>
+          <h2 className={`text-5xl font-bold text-center pb-6 text-white`}>
             Welcome Back!
-          </h1>
+          </h2>
           <UserAction toggle={toggle} />
         </>
       )}
