@@ -1,4 +1,5 @@
-import { backgroundColor, Product, toggleTextColor } from "../data/helper";
+import { backgroundColor, toggleTextColor } from "../data/helper";
+import { Product } from "../data/types";
 
 type ProductContainerProps = {
   toggle: boolean;

@@ -1,9 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-
-type ButtonProps = {
-  toggle: boolean;
-  isLoggedIn?: boolean;
-};
+import { ButtonProps } from "../data/types";
 
 const BackButton: React.FC<ButtonProps> = ({ toggle, isLoggedIn }) => {
   const navigate = useNavigate();

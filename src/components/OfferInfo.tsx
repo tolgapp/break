@@ -1,9 +1,4 @@
-type OfferInfoProps = {
-  toggle: boolean;
-  showDetail: boolean;
-  id: number;
-  toggleDetail: (id: number) => void;
-};
+import { OfferInfoProps } from "../data/types";
 
 const OfferInfo: React.FC<OfferInfoProps> = ({
   toggleDetail,

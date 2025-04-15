@@ -2,16 +2,7 @@ import BackButton from "../components/BackButton";
 import Logo from "../components/Logo";
 import UserAction from "../components/UserAction";
 import UserPage from "../components/Userpage";
-
-type UserProps = {
-  toggle: boolean;
-  setToggle: (value: boolean | ((prevToggle: boolean) => boolean)) => void;
-  getClassNames: (value: boolean) => string;
-  getLogoSrc: (value: boolean) => string;
-  setIsLoggedIn: (value: boolean) => void;
-  isLoggedIn: boolean;
-  userName: string;
-};
+import { UserProps } from "../data/types";
 
 const User: React.FC<UserProps> = ({
   toggle,

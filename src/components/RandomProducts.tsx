@@ -1,12 +1,8 @@
 import { useState, useEffect } from "react";
 import coffeeData from "../data/coffee.json";
 import ProductContainer from "./ProductContainer";
-import { getClassNames, Product } from "../data/helper";
-
-type RandomProductsProps = {
-  toggle: boolean;
-  handleClick: (id: number) => void;
-} ;
+import { getClassNames } from "../data/helper";
+import { Product, RandomProductsProps } from "../data/types";
 
 const RandomProducts: React.FC<RandomProductsProps> = ({
   toggle,

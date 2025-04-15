@@ -1,11 +1,7 @@
 import { getClassNames, getLogoSrc, toggleTextColor } from "../data/helper";
+import { ThemeProps } from "../data/types";
 import BackButton from "./BackButton";
 import Logo from "./Logo";
-
-type ThemeProps = {
-  toggle: boolean;
-  setToggle: (value: boolean | ((prevToggle: boolean) => boolean)) => void;
-};
 
 const ToggleTheme: React.FC<ThemeProps> = ({ toggle, setToggle }) => {
   return (

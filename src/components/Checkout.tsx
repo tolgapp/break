@@ -1,8 +1,4 @@
-type CheckoutProps = {
-  toggle: boolean;
-  total: number;
-  handleCheckout: () => void;
-};
+import { CheckoutProps } from "../data/types";
 
 const Checkout: React.FC<CheckoutProps> = ({
   total,

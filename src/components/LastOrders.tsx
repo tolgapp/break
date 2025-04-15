@@ -3,14 +3,13 @@ import {
   BACKEND_URL,
   getClassNames,
   getLogoSrc,
-  LastOrderType,
-  Order,
   toggleTextColor,
 } from "../data/helper";
 import BackButton from "./BackButton";
 import Logo from "./Logo";
 import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
+import { LastOrderType, Order } from "../data/types";
 
 type LastOrdersProps = {
   toggle: boolean;

@@ -3,17 +3,11 @@ import {
   BACKEND_URL,
   getClassNames,
   getLogoSrc,
-  LastOrderType,
 } from "../data/helper";
 import BackButton from "./BackButton";
 import Logo from "./Logo";
 import axios from "axios";
-
-type BeanProps = {
-  toggle: boolean;
-  userId: string;
-  setToggle: (value: boolean | ((prevToggle: boolean) => boolean)) => void;
-};
+import { BeanProps, LastOrderType } from "../data/types";
 
 const Beans: React.FC<BeanProps> = ({ toggle, setToggle, userId }) => {
   const [lastOrders, setLastOrders] = useState<LastOrderType>([]);

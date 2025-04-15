@@ -3,23 +3,8 @@ import Logo from "../components/Logo";
 import OfferContainer from "../components/OfferContainer";
 import ProductDetail from "../components/ProductDetail";
 import RandomProducts from "../components/RandomProducts";
-import { Product } from "../data/helper";
 import OfferInfo from "../components/OfferInfo";
-
-type HomeProps = {
-  toggle: boolean;
-  setToggle: (value: boolean | ((prevToggle: boolean) => boolean)) => void;
-  getLogoSrc: (value: boolean) => string;
-  getClassNames: (value: boolean) => string;
-  addToCart: (product: Product) => void;
-  setAddedProducts: (value: Product[]) => void;
-  handleClick: (id: number) => void;
-  closeDetail: () => void;
-  openDetail: boolean;
-  selectedProductId: number | null; // Kann null sein
-  isLoggedIn: boolean;
-  userName: string;
-};
+import { HomeProps } from "../data/types";
 
 const Home: React.FC<HomeProps> = ({
   toggle,

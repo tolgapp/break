@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import { nanoid } from "nanoid";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
-import { Product, getLogoSrc, getClassNames } from "./data/helper";
+import { getLogoSrc, getClassNames } from "./data/helper";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
@@ -16,6 +16,7 @@ import LastOrders from "./components/LastOrders";
 import Points from "./components/Beans";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ToggleTheme from "./components/ToggleTheme";
+import { Product } from "./data/types";
 
 const App = () => {
   const [toggle, setToggle] = useState(false);
@@ -100,7 +101,7 @@ const App = () => {
     if (addedProducts.length > 3) {
       const smallestPrice = Math.min(
         ...addedProducts.map((product) => {
-          if (!product.size) return Infinity; 
+          if (!product.size) return Infinity;
           const originalPrice =
             product.prices[product.sizes.indexOf(product.size)];
           return product.price === 0 ? originalPrice : product.price;

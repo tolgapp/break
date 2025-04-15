@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import coffeeData from "../data/coffee.json";
-import { Product } from "../data/helper";
+import { Product } from "../data/types";
 
 type ProductDetail = {
   closeDetail: (id: number | null) => void;

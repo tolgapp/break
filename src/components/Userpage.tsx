@@ -1,10 +1,5 @@
 import { useNavigate } from "react-router-dom";
-
-type Container = {
-  id: string;
-  title: string;
-  description: string;
-};
+import { Container } from "../data/types";
 
 const UserPage: React.FC = () => {
   const navigate = useNavigate();

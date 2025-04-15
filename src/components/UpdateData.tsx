@@ -9,12 +9,8 @@ import {
 } from "../data/helper";
 import Logo from "./Logo";
 import BackButton from "./BackButton";
+import { UpdateDataProps } from "../data/types";
 
-type UpdateDataProps = {
-  toggle: boolean;
-  setToggle: (value: boolean | ((prevToggle: boolean) => boolean)) => void;
-  userId: string;
-};
 
 const UpdateData: React.FC<UpdateDataProps> = ({
   toggle,

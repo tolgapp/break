@@ -1,13 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
-import { navbarIcons, Product } from "../data/helper";
-
-type NavbarProps = {
-  toggle: boolean; // DarkMode toggle
-  getClassNames: (value: boolean) => string;
-  userName?: string;
-  isLoggedIn?: boolean;
-  addedProducts: Product[];
-};
+import { navbarIcons } from "../data/helper";
+import { NavbarProps } from "../data/types";
 
 const Navbar: React.FC<NavbarProps> = ({
   toggle,

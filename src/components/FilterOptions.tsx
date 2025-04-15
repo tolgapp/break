@@ -1,10 +1,6 @@
 import { useState } from "react";
 import { filterOptions } from "../data/helper";
-
-type FilterProps = {
-  toggle: boolean;
-  setSelectedOption: (option: string) => void;
-};
+import { FilterProps } from "../data/types";
 
 const FilterOptions: React.FC<FilterProps> = ({
   toggle,

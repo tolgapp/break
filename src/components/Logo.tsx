@@ -1,11 +1,6 @@
 import { useLocation } from "react-router-dom";
+import { LogoProps } from "../data/types";
 
-type LogoProps = {
-  toggle: boolean;
-  setToggle: (value: boolean | ((prevToggle: boolean) => boolean)) => void;
-  getLogoSrc: (toggle: boolean) => string;
-  isLoggedIn?: boolean;
-};
 const Logo: React.FC<LogoProps> = ({
   toggle,
   setToggle,

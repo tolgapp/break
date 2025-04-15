@@ -1,9 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { getClassNames } from "../data/helper";
-
-type UserActionProps = {
-  toggle: boolean;
-};
+import { UserActionProps } from "../data/types";
 
 const UserAction: React.FC<UserActionProps> = ({ toggle }) => {
   const { pathname } = useLocation();

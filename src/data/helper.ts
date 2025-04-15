@@ -26,7 +26,6 @@ export const navbarIcons = [
   },
 ];
 
-// Filter Options
 export const filterOptions: string[] = [
   "All",
   "Fresh",
@@ -35,28 +34,6 @@ export const filterOptions: string[] = [
   "Vegetarian",
   "Lactose-Free",
 ];
-
-// Order Types
-export type Product = {
-  id: number;
-  name: string;
-  image: string;
-  prices: number[];
-  sizes: string[];
-  instanceId?: string;
-  size?: string | undefined;
-  price: number;
-  timestamp?: string;
-};
-
-export type Order = {
-  receiptId: string;
-  timestamp: string;
-  total: number;
-  products: Product[];
-};
-
-export type LastOrderType = Order[];
 
 // Login & Signup
 export const inputClass = `text-3xl p-4 rounded-lg`;

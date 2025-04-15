@@ -1,13 +1,7 @@
 import BackButton from "../components/BackButton";
 import Logo from "../components/Logo";
 import { toggleTextColor } from "../data/helper";
-
-type NotFoundProps = {
-  toggle: boolean;
-  getClassNames: (value: boolean) => string;
-  setToggle: (value: boolean | ((prevToggle: boolean) => boolean)) => void;
-  getLogoSrc: (value: boolean) => string;
-};
+import { NotFoundProps } from "../data/types";
 
 const NotFound: React.FC<NotFoundProps> = ({ toggle, getClassNames, setToggle, getLogoSrc }) => {
 

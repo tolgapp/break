@@ -4,13 +4,7 @@ import Logo from "./Logo";
 import { BACKEND_URL, inputClass, toggleButtonColor } from "../data/helper";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
-type SignupProps = {
-  toggle: boolean;
-  setToggle: (value: boolean | ((prevToggle: boolean) => boolean)) => void;
-  getClassNames: (value: boolean) => string;
-  getLogoSrc: (value: boolean) => string;
-};
+import { SignupProps } from "../data/types";
 
 const Signup: React.FC<SignupProps> = ({
   toggle,

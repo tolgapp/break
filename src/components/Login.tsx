@@ -4,16 +4,7 @@ import { BACKEND_URL, inputClass, toggleButtonColor } from "../data/helper";
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
-type LoginProps = {
-  toggle: boolean;
-  setToggle: (value: boolean | ((prevToggle: boolean) => boolean)) => void;
-  getClassNames: (value: boolean) => string;
-  getLogoSrc: (value: boolean) => string;
-  setIsLoggedIn: (value: boolean) => void;
-  setUserName: (value: string) => void;
-  setUserId: (value: string) => void;
-};
+import { LoginProps } from "../data/types";
 
 const Login: React.FC<LoginProps> = ({
   toggle,

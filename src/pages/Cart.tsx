@@ -1,21 +1,12 @@
 import axios from "axios";
-import { BACKEND_URL, Product } from "../data/helper";
+import { BACKEND_URL } from "../data/helper";
 import Logo from "../components/Logo";
 import BackButton from "../components/BackButton";
 import CartItemContainer from "../components/CartItemContainer";
 import Checkout from "../components/Checkout";
 import { nanoid } from "nanoid";
+import { CartProps } from "../data/types";
 
-type CartProps = {
-  toggle: boolean;
-  setToggle: (value: boolean | ((prevToggle: boolean) => boolean)) => void;
-  getClassNames: (value: boolean) => string;
-  getLogoSrc: (value: boolean) => string;
-  addedProducts: Product[];
-  setAddedProducts: React.Dispatch<React.SetStateAction<Product[]>>;
-  total: number;
-  userId: string;
-};
 
 const Cart: React.FC<CartProps> = ({
   toggle,

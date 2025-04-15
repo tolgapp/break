@@ -1,10 +1,5 @@
-import { getClassNames, Product } from "../data/helper";
-
-type CartItemContainerProps = {
-  toggle: boolean;
-  addedProducts: Product[];
-  setAddedProducts: React.Dispatch<React.SetStateAction<Product[]>>;
-};
+import { getClassNames } from "../data/helper";
+import { CartItemContainerProps } from "../data/types";
 
 const CartItemContainer: React.FC<CartItemContainerProps> = ({
   toggle,

@@ -4,21 +4,7 @@ import ProductDetail from "../components/ProductDetail";
 import FilterOptions from "../components/FilterOptions";
 import Logo from "../components/Logo";
 import coffeeData from "../data/coffee.json";
-import { Product } from "../data/helper";
-
-type ProductsProps = {
-  toggle: boolean;
-  setToggle: (value: boolean | ((prevToggle: boolean) => boolean)) => void;
-  getLogoSrc: (value: boolean) => string;
-  getClassNames: (value: boolean) => string;
-  addToCart: (product: Product) => void;
-  setAddedProducts: (value: Product[]) => void;
-  handleClick: (id: number) => void;
-  openDetail: boolean;
-  productId: number | null;
-  closeDetail: () => void;
-  selectedProductId: number | null;
-};
+import { ProductsProps } from "../data/types";
 
 const Products: React.FC<ProductsProps> = ({
   toggle,
@@ -29,7 +15,7 @@ const Products: React.FC<ProductsProps> = ({
   openDetail,
   handleClick,
   closeDetail,
-  selectedProductId,
+  selectedProductId
 }) => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
