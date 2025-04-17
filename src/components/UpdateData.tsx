@@ -1,27 +1,22 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import {
   BACKEND_URL,
   getClassNames,
   getLogoSrc,
   inputClass,
   toggleButtonColor,
-} from "../data/helper";
-import Logo from "./Logo";
-import BackButton from "./BackButton";
-import { UpdateDataProps } from "../data/types";
+} from '../data/helper';
+import Logo from './Logo';
+import BackButton from './BackButton';
+import { UpdateDataProps } from '../data/types';
 
-
-const UpdateData: React.FC<UpdateDataProps> = ({
-  toggle,
-  setToggle,
-  userId,
-}) => {
+const UpdateData: React.FC<UpdateDataProps> = ({ toggle, setToggle, userId }) => {
   const [value, setValue] = useState({
-    name: "",
-    surname: "",
-    email: "",
-    password: "",
+    name: '',
+    surname: '',
+    email: '',
+    password: '',
   });
 
   useEffect(() => {
@@ -29,9 +24,9 @@ const UpdateData: React.FC<UpdateDataProps> = ({
       try {
         const response = await axios.get(`${BACKEND_URL}/users/${userId}`);
         const { name, surname, email } = response.data;
-        setValue((prev) => ({ ...prev, name, surname, email }));
+        setValue(prev => ({ ...prev, name, surname, email }));
       } catch (error) {
-        console.error("Fehler beim Laden der Benutzerdaten:", error);
+        console.error('Fehler beim Laden der Benutzerdaten:', error);
       }
     };
 
@@ -40,7 +35,7 @@ const UpdateData: React.FC<UpdateDataProps> = ({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setValue((prev) => ({ ...prev, [name]: value }));
+    setValue(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -53,9 +48,9 @@ const UpdateData: React.FC<UpdateDataProps> = ({
         email: value.email,
         password: value.password,
       });
-      alert("Profil erfolgreich aktualisiert!");
+      alert('Profil erfolgreich aktualisiert!');
     } catch (error) {
-      console.error("Fehler beim Aktualisieren der Benutzerdaten:", error);
+      console.error('Fehler beim Aktualisieren der Benutzerdaten:', error);
     }
   };
 
@@ -67,9 +62,7 @@ const UpdateData: React.FC<UpdateDataProps> = ({
     >
       <Logo toggle={toggle} getLogoSrc={getLogoSrc} setToggle={setToggle} />
       <BackButton toggle={toggle} />
-      <h2 className={`text-5xl text-left mb-12 ${getClassNames(toggle)}`}>
-        Update Profile
-      </h2>
+      <h2 className={`text-5xl text-left mb-12 ${getClassNames(toggle)}`}>Update Profile</h2>
       <form onSubmit={handleSubmit} className="flex flex-col w-[90%] gap-4">
         <input
           className={`${inputClass} ${toggleButtonColor(toggle)}`}
@@ -107,11 +100,7 @@ const UpdateData: React.FC<UpdateDataProps> = ({
           onChange={handleChange}
           placeholder="Password"
         />
-        <button
-          className={`py-4 rounded-lg text-4xl ${toggleButtonColor(toggle)}`}
-        >
-          Update
-        </button>
+        <button className={`py-4 rounded-lg text-4xl ${toggleButtonColor(toggle)}`}>Update</button>
       </form>
     </div>
   );

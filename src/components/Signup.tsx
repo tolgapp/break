@@ -1,29 +1,24 @@
-import { useState } from "react";
-import BackButton from "./BackButton";
-import Logo from "./Logo";
-import { BACKEND_URL, inputClass, toggleButtonColor } from "../data/helper";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { SignupProps } from "../data/types";
+import { useState } from 'react';
+import BackButton from './BackButton';
+import Logo from './Logo';
+import { BACKEND_URL, inputClass, toggleButtonColor } from '../data/helper';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { SignupProps } from '../data/types';
 
-const Signup: React.FC<SignupProps> = ({
-  toggle,
-  setToggle,
-  getLogoSrc,
-  getClassNames,
-}) => {
+const Signup: React.FC<SignupProps> = ({ toggle, setToggle, getLogoSrc, getClassNames }) => {
   const navigate = useNavigate();
   const [value, setValue] = useState({
-    name: "",
-    surname: "",
-    email: "",
-    password: "",
+    name: '',
+    surname: '',
+    email: '',
+    password: '',
   });
-  const [isError, setIsError] = useState("");
+  const [isError, setIsError] = useState('');
 
   const handleData = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setValue((prev) => ({
+    setValue(prev => ({
       ...prev,
       [name]: value,
     }));
@@ -34,24 +29,23 @@ const Signup: React.FC<SignupProps> = ({
 
     axios
       .post(`${BACKEND_URL}/signup`, value)
-      .then((response) => {
-        console.log("R", response)
+      .then(response => {
         if (response.status === 200 || response.status === 201) {
           setValue({
-            name: "",
-            surname: "",
-            email: "",
-            password: "",
+            name: '',
+            surname: '',
+            email: '',
+            password: '',
           });
 
           setTimeout(() => {
-            navigate("/login");
+            navigate('/login');
           }, 300);
         }
       })
-      .catch((error) => {
-        console.error("Signup failed:", error.response.data);
-        setIsError(error.response.data)
+      .catch(error => {
+        console.error('Signup failed:', error.response.data);
+        setIsError(error.response.data);
       });
   };
 
@@ -64,7 +58,7 @@ const Signup: React.FC<SignupProps> = ({
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
       <BackButton toggle={toggle} />
       <h2 className={`text-4xl mb-10 w-[80%] text-center font-semibold`}>
-        Sign up and get BEANS for every order ⭐️
+        Sign up and get BEANS for every order 🫘
       </h2>
       <form onSubmit={handleSubmit} className="flex flex-col w-[90%] gap-4">
         <input
@@ -103,11 +97,7 @@ const Signup: React.FC<SignupProps> = ({
           onChange={handleData}
           placeholder="Password"
         />
-        <button
-          className={`py-4 rounded-lg text-4xl ${toggleButtonColor(toggle)}`}
-        >
-          Signup
-        </button>
+        <button className={`py-4 rounded-lg text-4xl ${toggleButtonColor(toggle)}`}>Signup</button>
       </form>
       <p className="text-red-600 px-8 rounded-lg text-3xl mt-8 font-semibold">{isError}</p>
     </div>

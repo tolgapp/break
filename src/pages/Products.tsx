@@ -1,10 +1,10 @@
-import { useState } from "react";
-import ProductContainer from "../components/ProductContainer";
-import ProductDetail from "../components/ProductDetail";
-import FilterOptions from "../components/FilterOptions";
-import Logo from "../components/Logo";
-import coffeeData from "../data/coffee.json";
-import { ProductsProps } from "../data/types";
+import { useState } from 'react';
+import ProductContainer from '../components/ProductContainer';
+import ProductDetail from '../components/ProductDetail';
+import FilterOptions from '../components/FilterOptions';
+import Logo from '../components/Logo';
+import coffeeData from '../data/coffee.json';
+import { ProductsProps } from '../data/types';
 
 const Products: React.FC<ProductsProps> = ({
   toggle,
@@ -15,14 +15,12 @@ const Products: React.FC<ProductsProps> = ({
   openDetail,
   handleClick,
   closeDetail,
-  selectedProductId
+  selectedProductId,
 }) => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
   const filteredCoffee = selectedOption
-    ? coffeeData.coffeeSpecialties.filter((coffee) =>
-        coffee.tags.includes(selectedOption)
-      )
+    ? coffeeData.coffeeSpecialties.filter(coffee => coffee.tags.includes(selectedOption))
     : coffeeData.coffeeSpecialties;
 
   return (
@@ -30,7 +28,7 @@ const Products: React.FC<ProductsProps> = ({
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
       <FilterOptions toggle={toggle} setSelectedOption={setSelectedOption} />
       <div className="px-8 mt-10 flex flex-wrap justify-between gap-11">
-        {filteredCoffee.map((coffee) => (
+        {filteredCoffee.map(coffee => (
           <ProductContainer
             key={coffee.id}
             id={coffee.id}

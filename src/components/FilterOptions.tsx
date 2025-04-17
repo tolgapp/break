@@ -1,15 +1,12 @@
-import { useState } from "react";
-import { filterOptions } from "../data/helper";
-import { FilterProps } from "../data/types";
+import { useState } from 'react';
+import { filterOptions } from '../data/helper';
+import { FilterProps } from '../data/types';
 
-const FilterOptions: React.FC<FilterProps> = ({
-  toggle,
-  setSelectedOption,
-}) => {
-  const [activeOption, setActiveOption] = useState<string>("");
+const FilterOptions: React.FC<FilterProps> = ({ toggle, setSelectedOption }) => {
+  const [activeOption, setActiveOption] = useState<string>('');
 
   const handleClick = (option: string) => {
-    setActiveOption(option); 
+    setActiveOption(option);
     setSelectedOption(option);
   };
 
@@ -19,25 +16,21 @@ const FilterOptions: React.FC<FilterProps> = ({
         onClick={() => handleClick(option)}
         key={id}
         className={`flex cursor-pointer items-center border rounded-lg py-2 ${
-          activeOption === option ? "bg-slate-400" : ""
-        } ${
-          option === "All" ? "px-11" : "px-7"
-        } mt-24 max-h-20`}
+          activeOption === option ? 'bg-slate-400' : ''
+        } ${option === 'All' ? 'px-11' : 'px-7'} mt-24 max-h-20`}
       >
-        <p className={` ${
-          activeOption === option && toggle ? "text-white" : "" 
-        }  ${toggle ? "text-white" : ""} text-2xl`}>
+        <p
+          className={` ${
+            activeOption === option && toggle ? 'text-white' : ''
+          }  ${toggle ? 'text-white' : ''} text-2xl`}
+        >
           {option}
         </p>
       </div>
     );
   });
 
-  return (
-    <div className={`flex gap-4 overflow-auto no-scrollbar px-8`}>
-      {options}
-    </div>
-  );
+  return <div className={`flex gap-4 overflow-auto no-scrollbar px-8`}>{options}</div>;
 };
 
 export default FilterOptions;

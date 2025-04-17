@@ -1,10 +1,10 @@
-import BackButton from "./BackButton";
-import Logo from "./Logo";
-import { BACKEND_URL, inputClass, toggleButtonColor } from "../data/helper";
-import { useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import { LoginProps } from "../data/types";
+import BackButton from './BackButton';
+import Logo from './Logo';
+import { BACKEND_URL, inputClass, toggleButtonColor } from '../data/helper';
+import { useState } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { LoginProps } from '../data/types';
 
 const Login: React.FC<LoginProps> = ({
   toggle,
@@ -16,14 +16,14 @@ const Login: React.FC<LoginProps> = ({
   setUserId,
 }) => {
   const [user, setUser] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
-  const [isError, setIsError] = useState("");
+  const [isError, setIsError] = useState('');
 
   const handleLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setUser((prev) => ({
+    setUser(prev => ({
       ...prev,
       [name]: value,
     }));
@@ -34,16 +34,16 @@ const Login: React.FC<LoginProps> = ({
 
     axios
       .post(`${BACKEND_URL}/login`, user)
-      .then((response) => {
+      .then(response => {
         setUserName(response.data.userName);
         if (response.status === 200) {
           setIsLoggedIn(true);
           setUserId(response.data.userId);
         }
       })
-      .catch((error) => {
-        console.error("Login failed:", error);
-        setIsError(error.response.data)
+      .catch(error => {
+        console.error('Login failed:', error);
+        setIsError(error.response.data);
       });
   };
 
@@ -77,14 +77,18 @@ const Login: React.FC<LoginProps> = ({
           value={user.password}
           onChange={handleLogin}
         />
-        <button
-          className={`py-4 rounded-lg text-4xl ${toggleButtonColor(toggle)}`}
-        >
-          Login
-        </button>
+        <button className={`py-4 rounded-lg text-4xl ${toggleButtonColor(toggle)}`}>Login</button>
       </form>
-      {isError ? <p className="text-red-500 px-8 rounded-lg text-3xl mt-8 font-bold">{isError}</p>
-       : <p className="mt-8 text-3xl">New @ break? <Link to={"/signup"} className="mt-8 text-3xl cursor-pointer underline">Sign Up!</Link></p> }
+      {isError ? (
+        <p className="text-red-500 px-8 rounded-lg text-3xl mt-8 font-bold">{isError}</p>
+      ) : (
+        <p className="mt-8 text-3xl">
+          New @ break?{' '}
+          <Link to={'/signup'} className="mt-8 text-3xl cursor-pointer underline">
+            Sign Up!
+          </Link>
+        </p>
+      )}
     </div>
   );
 };

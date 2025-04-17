@@ -1,15 +1,13 @@
-import { Link, useLocation } from "react-router-dom";
-import { getClassNames } from "../data/helper";
-import { UserActionProps } from "../data/types";
+import { Link, useLocation } from 'react-router-dom';
+import { getClassNames } from '../data/helper';
+import { UserActionProps } from '../data/types';
 
 const UserAction: React.FC<UserActionProps> = ({ toggle }) => {
   const { pathname } = useLocation();
 
-  const buttonBg = toggle
-    ? "bg-gray-700 hover:bg-gray-600"
-    : "bg-gray-300 hover:bg-gray-200";
+  const buttonBg = toggle ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-300 hover:bg-gray-200';
 
-  if (pathname === "/profile") {
+  if (pathname === '/profile') {
     return (
       <div className="flex flex-wrap gap-6 justify-center">
         <Link

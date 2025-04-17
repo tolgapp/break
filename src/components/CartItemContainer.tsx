@@ -1,5 +1,5 @@
-import { getClassNames } from "../data/helper";
-import { CartItemContainerProps } from "../data/types";
+import { getClassNames } from '../data/helper';
+import { CartItemContainerProps } from '../data/types';
 
 const CartItemContainer: React.FC<CartItemContainerProps> = ({
   toggle,
@@ -7,11 +7,9 @@ const CartItemContainer: React.FC<CartItemContainerProps> = ({
   setAddedProducts,
 }) => {
   const handleRemove = (instanceId: string | undefined) => {
-    setAddedProducts((prev) => {
-      const updatedProducts = prev.filter(
-        (product) => product.instanceId !== instanceId
-      );
-      localStorage.setItem("addedProducts", JSON.stringify(updatedProducts));
+    setAddedProducts(prev => {
+      const updatedProducts = prev.filter(product => product.instanceId !== instanceId);
+      localStorage.setItem('addedProducts', JSON.stringify(updatedProducts));
       return updatedProducts;
     });
   };
@@ -19,9 +17,7 @@ const CartItemContainer: React.FC<CartItemContainerProps> = ({
   if (addedProducts.length === 0) {
     return (
       <div className="h-[70vh] flex justify-center items-center">
-        <h3 className={`text-3xl text-center ${getClassNames(toggle)}`}>
-          No caffeine detected
-        </h3>
+        <h3 className={`text-3xl text-center ${getClassNames(toggle)}`}>No caffeine detected</h3>
       </div>
     );
   }
@@ -30,13 +26,11 @@ const CartItemContainer: React.FC<CartItemContainerProps> = ({
     <ul
       className={`item-container mt-4 w-full max-w-3xl py-3 px-8 h-fit pb-80 flex gap-3 overflow-scroll flex-col`}
     >
-      {addedProducts.map((product) => (
+      {addedProducts.map(product => (
         <li
           key={product.instanceId}
           className={`rounded-lg shadow-lg flex items-center justify-between py-4 px-3 ${
-            toggle
-              ? "bg-slate-600  text-white"
-              : "bg-slate-200 shadow-sm text-black"
+            toggle ? 'bg-slate-600  text-white' : 'bg-slate-200 shadow-sm text-black'
           }`}
         >
           <span className="text-2xl">

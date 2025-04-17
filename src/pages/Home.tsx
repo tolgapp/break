@@ -1,10 +1,10 @@
-import { useState } from "react";
-import Logo from "../components/Logo";
-import OfferContainer from "../components/OfferContainer";
-import ProductDetail from "../components/ProductDetail";
-import RandomProducts from "../components/RandomProducts";
-import OfferInfo from "../components/OfferInfo";
-import { HomeProps } from "../data/types";
+import { useState } from 'react';
+import Logo from '../components/Logo';
+import OfferContainer from '../components/OfferContainer';
+import ProductDetail from '../components/ProductDetail';
+import RandomProducts from '../components/RandomProducts';
+import OfferInfo from '../components/OfferInfo';
+import { HomeProps } from '../data/types';
 
 const Home: React.FC<HomeProps> = ({
   toggle,
@@ -18,12 +18,12 @@ const Home: React.FC<HomeProps> = ({
   selectedProductId,
 }) => {
   const [showDetail, setShowDetail] = useState(false);
-  const [offerId, setOfferId] = useState<number | undefined>(undefined); 
+  const [offerId, setOfferId] = useState<number | undefined>(undefined);
 
   const toggleDetail = (id: number) => {
     if (id === 0) {
-      setShowDetail((prev) => !prev);
-      setOfferId(id); 
+      setShowDetail(prev => !prev);
+      setOfferId(id);
     }
   };
 
@@ -49,7 +49,7 @@ const Home: React.FC<HomeProps> = ({
           toggle={toggle}
           toggleDetail={toggleDetail}
           showDetail={showDetail}
-          id={offerId} 
+          id={offerId}
         />
       )}
     </div>
@@ -57,4 +57,3 @@ const Home: React.FC<HomeProps> = ({
 };
 
 export default Home;
-

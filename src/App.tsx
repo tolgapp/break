@@ -1,149 +1,29 @@
-import { useEffect, useState, useCallback } from "react";
-import { nanoid } from "nanoid";
-import { Navigate, Route, Routes } from "react-router-dom";
-import { Analytics } from "@vercel/analytics/react";
-import { getLogoSrc, getClassNames } from "./data/helper";
-import Home from "./pages/Home";
-import Products from "./pages/Products";
-import Cart from "./pages/Cart";
-import User from "./pages/User";
-import NotFound from "./pages/NotFound";
-import Login from "./components/Login";
-import Signup from "./components/Signup";
-import UpdateData from "./components/UpdateData";
-import Navbar from "./components/Navbar";
-import LastOrders from "./components/LastOrders";
-import Points from "./components/Beans";
-import ProtectedRoute from "./components/ProtectedRoute";
-import ToggleTheme from "./components/ToggleTheme";
-import { Product } from "./data/types";
+import { useState } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
+import { getLogoSrc, getClassNames } from './data/helper';
+import Home from './pages/Home';
+import Products from './pages/Products';
+import Cart from './pages/Cart';
+import User from './pages/User';
+import NotFound from './pages/NotFound';
+import Login from './components/Login';
+import Signup from './components/Signup';
+import UpdateData from './components/UpdateData';
+import Navbar from './components/Navbar';
+import LastOrders from './components/LastOrders';
+import Points from './components/Beans';
+import ProtectedRoute from './components/ProtectedRoute';
+import ToggleTheme from './components/ToggleTheme';
+import { useAuth } from './hooks/useAuth';
+import { useCart } from './hooks/useCart';
+import useProductDetail from './hooks/useProductDetail';
 
 const App = () => {
+  const { isLoggedIn, setIsLoggedIn, userName, setUserName, userId, setUserId } = useAuth();
+  const { total, addedProducts, setAddedProducts, addToCart } = useCart();
+  const { openDetail, closeDetail, selectedProductId, handleClick } = useProductDetail();
   const [toggle, setToggle] = useState(false);
-  const [addedProducts, setAddedProducts] = useState<Product[]>([]);
-  const [total, setTotal] = useState(0);
-  const [openDetail, setOpenDetail] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userName, setUserName] = useState("");
-  const [userId, setUserId] = useState("");
-  const [selectedProductId, setSelectedProductId] = useState<number | null>(
-    null
-  );
-
-  useEffect(() => {
-    const storedIsLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-    const storedUserName = localStorage.getItem("userName");
-    const storedUserId = localStorage.getItem("userId");
-
-    if (storedIsLoggedIn) {
-      setIsLoggedIn(true);
-      if (storedUserName) setUserName(storedUserName);
-      if (storedUserId) setUserId(storedUserId);
-    }
-  }, []);
-
-  useEffect(() => {
-    const storedProducts = localStorage.getItem("addedProducts");
-    const storedTotal = localStorage.getItem("total");
-
-    if (storedProducts) {
-      setAddedProducts(JSON.parse(storedProducts));
-    }
-    if (storedTotal) {
-      setTotal(Number(storedTotal));
-    }
-  }, []);
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("userName", userName);
-      localStorage.setItem("userId", userId);
-    } else {
-      localStorage.removeItem("isLoggedIn");
-      localStorage.removeItem("userName");
-      localStorage.removeItem("userId");
-    }
-  }, [isLoggedIn, userName, userId]);
-
-  const addToCart = (product: Product) => {
-    const productWithInstanceId = { ...product, instanceId: nanoid() };
-    setAddedProducts((prev) => {
-      const updatedProducts = [...prev, productWithInstanceId];
-      localStorage.setItem("addedProducts", JSON.stringify(updatedProducts));
-      return updatedProducts;
-    });
-  };
-
-  useEffect(() => {
-    const totalPrice = addedProducts.reduce((acc, product) => {
-      const productPrice = Array.isArray(product.price)
-        ? product.prices.reduce((sum, price) => sum + price, 0)
-        : product.price;
-      return acc + productPrice;
-    }, 0);
-
-    setTotal(totalPrice);
-    localStorage.setItem("total", totalPrice.toString());
-  }, [addedProducts]);
-
-  const handleClick = useCallback((id: number) => {
-    setSelectedProductId(id);
-    setOpenDetail(true);
-  }, []);
-
-  const closeDetail = useCallback(() => {
-    setOpenDetail(false);
-    setSelectedProductId(null);
-  }, []);
-
-  useEffect(() => {
-    if (addedProducts.length > 3) {
-      const smallestPrice = Math.min(
-        ...addedProducts.map((product) => {
-          if (!product.size) return Infinity;
-          const originalPrice =
-            product.prices[product.sizes.indexOf(product.size)];
-          return product.price === 0 ? originalPrice : product.price;
-        })
-      );
-
-      setAddedProducts((prev) => {
-        let discountApplied = false;
-        const updatedProducts = prev.map((product) => {
-          const originalPrice =
-            product.size && product.sizes.includes(product.size)
-              ? product.prices[product.sizes.indexOf(product.size)]
-              : product.price;
-          if (!discountApplied && originalPrice === smallestPrice) {
-            discountApplied = true;
-            return { ...product, price: 0 };
-          }
-          if (product.price === 0 && originalPrice !== smallestPrice) {
-            return { ...product, price: originalPrice };
-          }
-          return product;
-        });
-        localStorage.setItem("addedProducts", JSON.stringify(updatedProducts));
-        return updatedProducts;
-      });
-    } else {
-      setAddedProducts((prev) => {
-        const updatedProducts = prev.map((product) => {
-          if (product.price === 0) {
-            const originalPrice =
-              product.size && product.sizes.includes(product.size)
-                ? product.prices[product.sizes.indexOf(product.size)]
-                : product.price;
-            return { ...product, price: originalPrice };
-          }
-          return product;
-        });
-        localStorage.setItem("addedProducts", JSON.stringify(updatedProducts));
-        return updatedProducts;
-      });
-    }
-  }, [addedProducts.length]);
 
   return (
     <>
@@ -247,23 +127,11 @@ const App = () => {
         <Route element={<ProtectedRoute isLoggedIn={isLoggedIn} />}>
           <Route
             path="/user/update-data"
-            element={
-              <UpdateData
-                toggle={toggle}
-                setToggle={setToggle}
-                userId={userId}
-              />
-            }
+            element={<UpdateData toggle={toggle} setToggle={setToggle} userId={userId} />}
           />
           <Route
             path="/user/last-orders"
-            element={
-              <LastOrders
-                toggle={toggle}
-                setToggle={setToggle}
-                userId={userId}
-              />
-            }
+            element={<LastOrders toggle={toggle} setToggle={setToggle} userId={userId} />}
           />
           <Route
             path="/user/theme-color"
@@ -271,9 +139,7 @@ const App = () => {
           />
           <Route
             path="/user/points"
-            element={
-              <Points toggle={toggle} setToggle={setToggle} userId={userId} />
-            }
+            element={<Points toggle={toggle} setToggle={setToggle} userId={userId} />}
           />
         </Route>
         <Route

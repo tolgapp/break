@@ -1,13 +1,9 @@
-import { useEffect, useState } from "react";
-import {
-  BACKEND_URL,
-  getClassNames,
-  getLogoSrc,
-} from "../data/helper";
-import BackButton from "./BackButton";
-import Logo from "./Logo";
-import axios from "axios";
-import { BeanProps, LastOrderType } from "../data/types";
+import { useEffect, useState } from 'react';
+import { BACKEND_URL, getClassNames, getLogoSrc } from '../data/helper';
+import BackButton from './BackButton';
+import Logo from './Logo';
+import axios from 'axios';
+import { BeanProps, LastOrderType } from '../data/types';
 
 const Beans: React.FC<BeanProps> = ({ toggle, setToggle, userId }) => {
   const [lastOrders, setLastOrders] = useState<LastOrderType>([]);
@@ -16,12 +12,10 @@ const Beans: React.FC<BeanProps> = ({ toggle, setToggle, userId }) => {
   useEffect(() => {
     const getRecipes = async () => {
       try {
-        const response = await axios.get<LastOrderType>(
-          `${BACKEND_URL}/users/${userId}/receipts`
-        );
+        const response = await axios.get<LastOrderType>(`${BACKEND_URL}/users/${userId}/receipts`);
         setLastOrders(response.data);
       } catch (error) {
-        console.error("Checkout error:", error);
+        console.error('Checkout error:', error);
       }
     };
 
@@ -37,20 +31,18 @@ const Beans: React.FC<BeanProps> = ({ toggle, setToggle, userId }) => {
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
       <BackButton toggle={toggle} />
       <div className={`border flex w-full justify-between min-h-[55rem]`}>
-        <div
-          className={`${getClassNames(
-            toggle
-          )} flex w-1/2 items-center justify-center`}
-        >
-          {points < 1 ? <h3 className="px-2 text-7xl text-center font-bold ">No Orders Yet 🫣</h3> : <h2 className={`text-5xl overflow-hidden text-left font-bold px-8`}>
-            You currently have
-          </h2>}
+        <div className={`${getClassNames(toggle)} flex w-1/2 items-center justify-center`}>
+          {points < 1 ? (
+            <h3 className="px-2 text-7xl text-center font-bold ">No Orders Yet 🫣</h3>
+          ) : (
+            <h2 className={`text-5xl overflow-hidden text-left font-bold px-8`}>
+              You currently have
+            </h2>
+          )}
         </div>
         {points > 0 ? (
           <div
-            className={`${getClassNames(
-              !toggle
-            )} px-6 py-4 w-1/2 flex justify-center items-center`}
+            className={`${getClassNames(!toggle)} px-6 py-4 w-1/2 flex justify-center items-center`}
           >
             <h3 className="text-5xl font-bold text-center">
               {points > 1 ? `${points} BEANS` : `${points} BEAN`}

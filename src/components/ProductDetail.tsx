@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import coffeeData from "../data/coffee.json";
-import { Product } from "../data/types";
+import React, { useState } from 'react';
+import coffeeData from '../data/coffee.json';
+import { Product } from '../data/types';
 
 type ProductDetail = {
   closeDetail: (id: number | null) => void;
@@ -17,9 +17,7 @@ const ProductDetail: React.FC<ProductDetail> = ({
 }) => {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
 
-  const selectedCoffee = coffeeData.coffeeSpecialties.find(
-    (coffee) => coffee.id === productId
-  );
+  const selectedCoffee = coffeeData.coffeeSpecialties.find(coffee => coffee.id === productId);
 
   if (!selectedCoffee) {
     return null;
@@ -36,18 +34,16 @@ const ProductDetail: React.FC<ProductDetail> = ({
       const productWithDetails = {
         ...selectedCoffee,
         size: selectedSize,
-        price, 
+        price,
       };
       addToCart(productWithDetails);
     } else {
-      alert("Please select a size before adding to the cart.");
+      alert('Please select a size before adding to the cart.');
     }
   };
 
   return (
-    <div
-      className={`fixed inset-0 z-[100] ${openDetail ? "fade-in" : "fade-out"}`}
-    >
+    <div className={`fixed inset-0 z-[100] ${openDetail ? 'fade-in' : 'fade-out'}`}>
       <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-xl"></div>
       <div className="fixed flex flex-col justify-center items-center bottom-0 z-[200] h-[75%] w-full bg-slate-50 rounded-t-3xl rounded-xl">
         <button
@@ -58,16 +54,12 @@ const ProductDetail: React.FC<ProductDetail> = ({
         </button>
         <div className="w-full px-8">
           <img
-            className={`top-0 rounded-t-3xl translate-y-[-20rem] absolute left-0 ${selectedCoffee.name === "Iced Coffee" ? "translate-y-[-19rem]" : ""}`}
+            className={`top-0 rounded-t-3xl translate-y-[-20rem] absolute left-0 ${selectedCoffee.name === 'Iced Coffee' ? 'translate-y-[-19rem]' : ''}`}
             src={selectedCoffee.image}
             alt="coffee mockup cup"
           />
-          <h2 className="mt-10 text-black text-6xl font-bold">
-            {selectedCoffee.name}
-          </h2>
-          <p className="text-gray-700 text-2xl mt-2 mb-8">
-            {selectedCoffee.description}
-          </p>
+          <h2 className="mt-10 text-black text-6xl font-bold">{selectedCoffee.name}</h2>
+          <p className="text-gray-700 text-2xl mt-2 mb-8">{selectedCoffee.description}</p>
         </div>
         <div className="flex flex-col justify-between text-black mt-4 w-full px-8">
           <div>
@@ -91,8 +83,8 @@ const ProductDetail: React.FC<ProductDetail> = ({
                     onClick={() => handleSizeClick(size)}
                     className={`px-5 py-3 rounded-lg border-2 text-lg font-semibold ${
                       isSelected
-                        ? "bg-black text-white border-black"
-                        : "bg-gray-100 text-gray-800 border-gray-300"
+                        ? 'bg-black text-white border-black'
+                        : 'bg-gray-100 text-gray-800 border-gray-300'
                     } hover:bg-black hover:text-white transition-all`}
                   >
                     {size}: {selectedCoffee.prices[index].toFixed(2)} €

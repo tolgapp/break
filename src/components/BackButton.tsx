@@ -1,39 +1,35 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import { ButtonProps } from "../data/types";
+import { useLocation, useNavigate } from 'react-router-dom';
+import { ButtonProps } from '../data/types';
 
 const BackButton: React.FC<ButtonProps> = ({ toggle, isLoggedIn }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  if (pathname === "/profile") {
+  if (pathname === '/profile') {
     return (
       <img
         onClick={() => navigate(-1)}
         src={
           isLoggedIn && toggle
-            ? "/icons/back.png"
+            ? '/icons/back.png'
             : !isLoggedIn
-            ? "/icons/back.png"
-            : "/icons/backdark.png"
+              ? '/icons/back.png'
+              : '/icons/backdark.png'
         }
         className={`${
-          isLoggedIn && toggle
-            ? "border-white"
-            : !isLoggedIn
-            ? "border-white"
-            : "border-slate-900"
+          isLoggedIn && toggle ? 'border-white' : !isLoggedIn ? 'border-white' : 'border-slate-900'
         } border cursor-pointer fixed left-8 top-6  p-2 rounded-xl w-16`}
       />
     );
   }
 
-  if (pathname === "/login" || pathname === "/signup") {
+  if (pathname === '/login' || pathname === '/signup') {
     return (
       <img
-        onClick={() => navigate("/profile")}
-        src={toggle ? "/icons/back.png" : "/icons/backdark.png"}
+        onClick={() => navigate('/profile')}
+        src={toggle ? '/icons/back.png' : '/icons/backdark.png'}
         className={`${
-          toggle ? "border-white" : "border-slate-900"
+          toggle ? 'border-white' : 'border-slate-900'
         } border cursor-pointer fixed left-8 top-6  p-2 rounded-xl w-16`}
       />
     );
@@ -42,9 +38,9 @@ const BackButton: React.FC<ButtonProps> = ({ toggle, isLoggedIn }) => {
   return (
     <img
       onClick={() => navigate(-1)}
-      src={toggle ? "/icons/back.png" : "/icons/backdark.png"}
+      src={toggle ? '/icons/back.png' : '/icons/backdark.png'}
       className={`${
-        toggle ? "border-white" : "border-slate-900"
+        toggle ? 'border-white' : 'border-slate-900'
       } border cursor-pointer fixed left-8 top-6  p-2 rounded-xl w-16`}
     />
   );

@@ -156,7 +156,7 @@ export type HomeProps = {
   handleClick: (id: number) => void;
   closeDetail: () => void;
   openDetail: boolean;
-  selectedProductId: number | null; // Kann null sein
+  selectedProductId: number | null;
   isLoggedIn: boolean;
   userName: string;
 };
