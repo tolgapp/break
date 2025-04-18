@@ -72,6 +72,7 @@ const UpdateData: React.FC<UpdateDataProps> = ({ toggle, setToggle, userId }) =>
           value={value.name}
           onChange={handleChange}
           placeholder="Name"
+          autoComplete="name"
         />
         <input
           className={`${inputClass} ${toggleButtonColor(toggle)}`}
@@ -81,7 +82,8 @@ const UpdateData: React.FC<UpdateDataProps> = ({ toggle, setToggle, userId }) =>
           value={value.surname}
           onChange={handleChange}
           placeholder="Surname"
-        />
+          autoComplete="surname"
+          />
         <input
           className={`${inputClass} ${toggleButtonColor(toggle)}`}
           type="email"
@@ -90,7 +92,8 @@ const UpdateData: React.FC<UpdateDataProps> = ({ toggle, setToggle, userId }) =>
           value={value.email}
           onChange={handleChange}
           placeholder="Email"
-        />
+          autoComplete="email"
+          />
         <input
           className={`${inputClass} ${toggleButtonColor(toggle)}`}
           type="password"
@@ -99,6 +102,7 @@ const UpdateData: React.FC<UpdateDataProps> = ({ toggle, setToggle, userId }) =>
           value={value.password}
           onChange={handleChange}
           placeholder="Password"
+          autoComplete="password"
         />
         <button className={`py-4 rounded-lg text-4xl ${toggleButtonColor(toggle)}`}>Update</button>
       </form>

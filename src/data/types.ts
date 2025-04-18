@@ -111,7 +111,7 @@ export type OfferContainerProps = {
 };
 
 export type NavbarProps = {
-  toggle: boolean; // DarkMode toggle
+  toggle: boolean; 
   getClassNames: (value: boolean) => string;
   userName?: string;
   isLoggedIn?: boolean;

@@ -67,7 +67,8 @@ const Login: React.FC<LoginProps> = ({
           placeholder="Email"
           value={user.email}
           onChange={handleLogin}
-        />
+          autoComplete='email'
+          />
         <input
           className={` ${inputClass}  ${toggleButtonColor(toggle)}`}
           type="password"
@@ -76,6 +77,7 @@ const Login: React.FC<LoginProps> = ({
           placeholder="Password"
           value={user.password}
           onChange={handleLogin}
+          autoComplete='current-password'
         />
         <button className={`py-4 rounded-lg text-4xl ${toggleButtonColor(toggle)}`}>Login</button>
       </form>

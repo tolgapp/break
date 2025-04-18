@@ -17,7 +17,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import ToggleTheme from './components/ToggleTheme';
 import { useAuth } from './hooks/useAuth';
 import { useCart } from './hooks/useCart';
-import useProductDetail from './hooks/useProductDetail';
+import { useProductDetail } from './hooks/useProductDetail';
 
 const App = () => {
   const { isLoggedIn, setIsLoggedIn, userName, setUserName, userId, setUserId } = useAuth();

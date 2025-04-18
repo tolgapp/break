@@ -18,4 +18,3 @@ export const useProductDetail = () => {
         openDetail, selectedProductId, handleClick, closeDetail
     }
 }
-export default useProductDetail
