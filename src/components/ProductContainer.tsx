@@ -33,7 +33,7 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
       <div className="absolute top-1 bg-slate-300 rounded-lg left-1 p-2 z-50 text-slate-700">
         4 for 3
       </div>
-      <img className="rounded-t-xl pt-3 pb-6 bg-gray-100" src={image} alt={name} />
+      <img className="rounded-t-xl pt-3 pb-6 bg-gray-100" src={image} alt={name} loading='lazy'/>
       <h3 className="text-2xl text-left translate-y-3 px-3">{name}</h3>
       <div className="flex items-center justify-between w-full px-2 py-2 mt-4">
         <button

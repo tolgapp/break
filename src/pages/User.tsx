@@ -22,7 +22,7 @@ const User: React.FC<UserProps> = ({
     <main
       className={`flex flex-col items-center justify-center min-h-screen gap-3 ${getClassNames(
         toggle
-      )} ${isLoggedIn ? '' : 'bg-[url(/bg-image01.jpg)] bg-cover'}`}
+      )} ${isLoggedIn ? '' : 'bg-[url(/bg-image01.webp)] bg-cover'}`}
     >
       <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} isLoggedIn={isLoggedIn} />
       <BackButton toggle={toggle} isLoggedIn={isLoggedIn} />

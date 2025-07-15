@@ -9,7 +9,7 @@ const OfferInfo: React.FC<OfferInfoProps> = ({ toggleDetail, showDetail, id }) =
     >
       <div className="w-full">
         <img
-          src="/offer/offer01.jpg"
+          src="/offer/offer01.webp"
           alt="4Friends Offer"
           className="w-full h-72 object-cover rounded-t-3xl"
         />

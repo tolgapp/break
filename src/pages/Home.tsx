@@ -28,7 +28,7 @@ const Home: React.FC<HomeProps> = ({
   };
 
   return (
-    <div
+    <main
       className={`relative flex flex-col ${getClassNames(
         toggle
       )} min-h-dvh overflow-y-scroll pb-48`}
@@ -52,7 +52,7 @@ const Home: React.FC<HomeProps> = ({
           id={offerId}
         />
       )}
-    </div>
+    </main>
   );
 };
 

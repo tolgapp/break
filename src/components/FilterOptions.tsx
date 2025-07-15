@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { filterOptions } from '../data/helper';
 import { FilterProps } from '../data/types';
+import { v4 as uuidv4 } from 'uuid';
 
 const FilterOptions: React.FC<FilterProps> = ({ toggle, setSelectedOption }) => {
   const [activeOption, setActiveOption] = useState<string>('');
@@ -10,19 +11,19 @@ const FilterOptions: React.FC<FilterProps> = ({ toggle, setSelectedOption }) => 
     setSelectedOption(option);
   };
 
-  const options = filterOptions.map((option, id) => {
+  const options = filterOptions.map(option => {
     return (
       <div
         onClick={() => handleClick(option)}
-        key={id}
+        key={uuidv4()}
         className={`flex cursor-pointer items-center border rounded-lg py-2 ${
           activeOption === option ? 'bg-slate-400' : ''
         } ${option === 'All' ? 'px-11' : 'px-7'} mt-24 max-h-20`}
       >
         <p
-          className={` ${
-            activeOption === option && toggle ? 'text-white' : ''
-          }  ${toggle ? 'text-white' : ''} text-2xl`}
+          className={` ${activeOption === option && toggle ? 'text-white' : ''}  ${
+            toggle ? 'text-white' : ''
+          } text-2xl`}
         >
           {option}
         </p>
