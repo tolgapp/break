@@ -2,7 +2,7 @@ import { OfferContainerProps } from '../data/types';
 
 const OfferContainer: React.FC<OfferContainerProps> = ({ toggleDetail }) => {
   const offers = {
-    image: ['/offer/offer01.png', '/offer/offer02.jpg', '/offer/offer03.png'],
+    image: ['/offer/offer01.jpg', '/offer/offer02.jpg', '/offer/offer03.jpg'],
   };
 
   return (
