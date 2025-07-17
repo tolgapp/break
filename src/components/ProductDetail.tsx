@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import coffeeData from '../data/coffee.json';
 import { Product } from '../data/types';
+import { Link } from 'react-router-dom';
 
 type ProductDetail = {
   closeDetail: (id: number | null) => void;
@@ -54,7 +55,9 @@ const ProductDetail: React.FC<ProductDetail> = ({
         </button>
         <div className="w-full px-8">
           <img
-            className={`top-0 rounded-t-3xl translate-y-[-20rem] absolute left-0 ${selectedCoffee.name === 'Iced Coffee' ? 'translate-y-[-19rem]' : ''}`}
+            className={`top-0 rounded-t-3xl translate-y-[-20rem] absolute left-0 ${
+              selectedCoffee.name === 'Iced Coffee' ? 'translate-y-[-19rem]' : ''
+            }`}
             src={selectedCoffee.image}
             alt="coffee mockup cup"
           />
@@ -97,9 +100,17 @@ const ProductDetail: React.FC<ProductDetail> = ({
         <button
           onClick={handleAddToCart}
           className="mt-8 bg-black text-white text-2xl px-6 py-3 rounded-lg hover:bg-orange-800 hover:text-white"
+          aria-label="Add to cart"
         >
-          In den Warenkorb
+          Add to Cart
         </button>
+
+        <Link
+          to="/cart"
+          className="mt-4 bg-black text-white text-2xl px-6 py-3 rounded-lg hover:bg-green-700 hover:text-white"
+        >
+          Go to Checkout
+        </Link>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ const Checkout: React.FC<CheckoutProps> = ({ total, handleCheckout, toggle }) =>
       <span className={`text-3xl font-semibold text-slate-900`}>Total: {total.toFixed(2)} €</span>
       <button
         onClick={handleCheckout}
-        className="px-6 py-3 text-3xl font-medium text-white bg-green-500 rounded-lg hover:bg-green-600"
+        className="px-6 py-3 text-3xl font-medium text-white bg-green-600 rounded-lg hover:bg-green-700"
       >
         Checkout
       </button>

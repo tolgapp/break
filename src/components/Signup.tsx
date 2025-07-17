@@ -3,7 +3,7 @@ import BackButton from './BackButton';
 import Logo from './Logo';
 import { BACKEND_URL, inputClass, toggleButtonColor } from '../data/helper';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SignupProps } from '../data/types';
 
 const Signup: React.FC<SignupProps> = ({ toggle, setToggle, getLogoSrc, getClassNames }) => {
@@ -69,8 +69,8 @@ const Signup: React.FC<SignupProps> = ({ toggle, setToggle, getLogoSrc, getClass
           value={value.name}
           onChange={handleData}
           placeholder="Name"
-          autoComplete='name'
-          />
+          autoComplete="name"
+        />
         <input
           className={`${inputClass}  ${toggleButtonColor(toggle)}`}
           type="text"
@@ -79,7 +79,7 @@ const Signup: React.FC<SignupProps> = ({ toggle, setToggle, getLogoSrc, getClass
           value={value.surname}
           onChange={handleData}
           placeholder="Surname"
-          autoComplete='surname'
+          autoComplete="surname"
         />
         <input
           className={`${inputClass}  ${toggleButtonColor(toggle)}`}
@@ -89,7 +89,7 @@ const Signup: React.FC<SignupProps> = ({ toggle, setToggle, getLogoSrc, getClass
           value={value.email}
           onChange={handleData}
           placeholder="Email"
-          autoComplete='email'
+          autoComplete="email"
         />
         <input
           className={`${inputClass}  ${toggleButtonColor(toggle)}`}
@@ -103,7 +103,16 @@ const Signup: React.FC<SignupProps> = ({ toggle, setToggle, getLogoSrc, getClass
         />
         <button className={`py-4 rounded-lg text-4xl ${toggleButtonColor(toggle)}`}>Signup</button>
       </form>
-      <p className="text-red-600 px-8 rounded-lg text-3xl mt-8 font-semibold">{isError}</p>
+      {isError ? (
+        <p className="text-red-600 px-8 rounded-lg text-3xl mt-8 font-semibold">{isError}</p>
+      ) : (
+        <p className="mt-8 text-3xl">
+          Already an Account?{' '}
+          <Link to={'/login'} className="mt-8 text-3xl cursor-pointer underline">
+            Get your Break!
+          </Link>
+        </p>
+      )}
     </div>
   );
 };
