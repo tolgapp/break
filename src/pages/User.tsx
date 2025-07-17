@@ -1,3 +1,4 @@
+import QRCode from 'react-qr-code';
 import BackButton from '../components/BackButton';
 import Logo from '../components/Logo';
 import UserAction from '../components/UserAction';
@@ -28,6 +29,12 @@ const User: React.FC<UserProps> = ({
       <BackButton toggle={toggle} isLoggedIn={isLoggedIn} />
       {isLoggedIn ? (
         <>
+          <QRCode
+            size={256}
+            style={{position: "absolute", right: 20, top: 18, height: 'auto', maxWidth: '10%', width: '10%' }}
+            value={'TEST'}
+            viewBox={`0 0 256 256`}
+          />
           <div className="gap-6 flex px-6 upper-container mb-10 justify-around items-center w-full">
             <h2 className={`text-5xl font-semibold`}>Welcome back, {userName}</h2>
             <img

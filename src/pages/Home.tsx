@@ -6,6 +6,7 @@ import RandomProducts from '../components/RandomProducts';
 import OfferInfo from '../components/OfferInfo';
 import { HomeProps } from '../data/types';
 
+
 const Home: React.FC<HomeProps> = ({
   toggle,
   setToggle,
@@ -19,6 +20,7 @@ const Home: React.FC<HomeProps> = ({
 }) => {
   const [showDetail, setShowDetail] = useState(false);
   const [offerId, setOfferId] = useState<number | undefined>(undefined);
+
 
   const toggleDetail = (id: number) => {
     if (id === 0) {

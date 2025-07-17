@@ -31,7 +31,7 @@ const CheckFormat: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           Pro.
         </h2>
         <h3 className="text-2xl w-[65%] text-balance">
-          Search for “Mobile Simulator” in the Chrome Web Store.
+          For the best experience, search for “Mobile Simulator” in the Chrome Web Store.
         </h3>
         <h3 className="text-white text-2xl">
           Or click{' '}

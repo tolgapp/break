@@ -5,6 +5,8 @@ import { UserActionProps } from '../data/types';
 const UserAction: React.FC<UserActionProps> = ({ toggle }) => {
   const { pathname } = useLocation();
 
+  console.log(toggle)
+
   const buttonBg = toggle ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-300 hover:bg-gray-200';
 
   if (pathname === '/profile') {

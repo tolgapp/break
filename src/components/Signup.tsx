@@ -72,7 +72,7 @@ const Signup: React.FC<SignupProps> = ({ toggle, setToggle, getLogoSrc, getClass
           autoComplete="name"
         />
         <input
-          className={`${inputClass}  ${toggleButtonColor(toggle)}`}
+          className={`${inputClass} ${toggleButtonColor(toggle)}`}
           type="text"
           name="surname"
           id="surname"
@@ -82,7 +82,7 @@ const Signup: React.FC<SignupProps> = ({ toggle, setToggle, getLogoSrc, getClass
           autoComplete="surname"
         />
         <input
-          className={`${inputClass}  ${toggleButtonColor(toggle)}`}
+          className={`${inputClass} ${toggleButtonColor(toggle)}`}
           type="email"
           name="email"
           id="email"
@@ -92,7 +92,7 @@ const Signup: React.FC<SignupProps> = ({ toggle, setToggle, getLogoSrc, getClass
           autoComplete="email"
         />
         <input
-          className={`${inputClass}  ${toggleButtonColor(toggle)}`}
+          className={`${inputClass} ${toggleButtonColor(toggle)}`}
           type="password"
           name="password"
           id="password"

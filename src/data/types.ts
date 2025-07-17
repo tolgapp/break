@@ -65,6 +65,7 @@ export type CheckoutProps = {
   toggle: boolean;
   total: number;
   handleCheckout: () => void;
+  isLoggedIn?: boolean;
 };
 
 export type FilterProps = {
@@ -144,6 +145,7 @@ export type CartProps = {
   setAddedProducts: React.Dispatch<React.SetStateAction<Product[]>>;
   total: number;
   userId: string;
+  isLoggedIn?: boolean;
 };
 
 export type HomeProps = {

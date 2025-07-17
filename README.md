@@ -1,6 +1,6 @@
 # break - Order a break!
 
-# Created with React + Typescript and TailwindCss
+# Created with React + Typescript and Tailwind
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap; width: 100%; margin-top: 4rem">
   <img src="public/breakScreenshots/break-home.png" alt="Home" width="200" />

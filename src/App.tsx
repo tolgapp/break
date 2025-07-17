@@ -78,6 +78,7 @@ const App = () => {
               setAddedProducts={setAddedProducts}
               total={total}
               userId={userId}
+              isLoggedIn={isLoggedIn}
             />
           }
         />

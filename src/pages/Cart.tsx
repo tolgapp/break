@@ -16,6 +16,7 @@ const Cart: React.FC<CartProps> = ({
   setAddedProducts,
   total,
   userId,
+  isLoggedIn
 }) => {
   const handleCheckout = () => {
     if (!addedProducts || addedProducts.length === 0) {
@@ -59,7 +60,12 @@ const Cart: React.FC<CartProps> = ({
         addedProducts={addedProducts}
         setAddedProducts={setAddedProducts}
       />
-      <Checkout total={total} handleCheckout={handleCheckout} toggle={toggle} />
+      <Checkout
+        total={total}
+        handleCheckout={handleCheckout}
+        toggle={toggle}
+        isLoggedIn={isLoggedIn}
+      />
     </main>
   );
 };

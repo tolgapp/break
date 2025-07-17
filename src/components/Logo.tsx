@@ -4,6 +4,14 @@ import { LogoProps } from '../data/types';
 const Logo: React.FC<LogoProps> = ({ toggle, setToggle, getLogoSrc, isLoggedIn }) => {
   const { pathname } = useLocation();
 
+  const changeLogoColor = () => {
+    const height = window.innerHeight;
+
+    console.log(height);
+
+    
+  }
+
   if (pathname === '/profile') {
     return (
       <img
