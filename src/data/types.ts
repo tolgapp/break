@@ -146,6 +146,7 @@ export type CartProps = {
   total: number;
   userId: string;
   isLoggedIn?: boolean;
+  closeDetail: () => void;
 };
 
 export type HomeProps = {

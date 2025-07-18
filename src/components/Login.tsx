@@ -26,7 +26,7 @@ const Login: React.FC<LoginProps> = ({
     setUser(prev => ({
       ...prev,
       [name]: value,
-    }));
+    }))
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

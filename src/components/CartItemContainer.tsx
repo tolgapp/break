@@ -6,6 +6,7 @@ const CartItemContainer: React.FC<CartItemContainerProps> = ({
   addedProducts,
   setAddedProducts,
 }) => {
+
   const handleRemove = (instanceId: string | undefined) => {
     setAddedProducts(prev => {
       const updatedProducts = prev.filter(product => product.instanceId !== instanceId);
@@ -21,6 +22,7 @@ const CartItemContainer: React.FC<CartItemContainerProps> = ({
       </div>
     );
   }
+
 
   return (
     <ul

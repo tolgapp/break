@@ -27,7 +27,7 @@
       "ingredients": ["Espresso"],
       "sizes": ["Single Shot", "Double Shot"],
       "image": "espresso.png",
-      "prices": [2.5, 3.95],
+      "prices": [2.5, 4.45],
       "tags": ["Vegetarian", "Bold", "All"]
     },
     {

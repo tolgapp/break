@@ -16,8 +16,9 @@ const Cart: React.FC<CartProps> = ({
   setAddedProducts,
   total,
   userId,
-  isLoggedIn
+  isLoggedIn,
 }) => {
+  
   const handleCheckout = () => {
     if (!addedProducts || addedProducts.length === 0) {
       console.error('No products to checkout.');

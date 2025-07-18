@@ -79,6 +79,7 @@ const App = () => {
               total={total}
               userId={userId}
               isLoggedIn={isLoggedIn}
+              closeDetail={closeDetail}
             />
           }
         />

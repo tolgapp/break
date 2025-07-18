@@ -104,9 +104,9 @@ const ProductDetail: React.FC<ProductDetail> = ({
         >
           Add to Cart
         </button>
-
         <Link
           to="/cart"
+          onClick={() => closeDetail(null)}
           className="mt-4 bg-black text-white text-2xl px-6 py-3 rounded-lg hover:bg-green-700 hover:text-white"
         >
           Go to Checkout
