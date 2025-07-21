@@ -5,15 +5,13 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { LoginProps } from '../data/types';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
+import { setAuth } from '../store/reducers/authSlice';
 
-const Login: React.FC<LoginProps> = ({
-  setIsLoggedIn,
-  setUserName,
-  setUserId,
-}) => {
-    const toggle = useSelector((state: RootState) => state.toggle.toggle);
+const Login: React.FC<LoginProps> = () => {
+  const dispatch = useDispatch();
+  const toggle = useSelector((state: RootState) => state.toggle.toggle);
   const [user, setUser] = useState({
     email: '',
     password: '',
@@ -25,7 +23,7 @@ const Login: React.FC<LoginProps> = ({
     setUser(prev => ({
       ...prev,
       [name]: value,
-    }))
+    }));
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -34,11 +32,11 @@ const Login: React.FC<LoginProps> = ({
     axios
       .post(`${BACKEND_URL}/login`, user)
       .then(response => {
-        setUserName(response.data.userName);
-        if (response.status === 200) {
-          setIsLoggedIn(true);
-          setUserId(response.data.userId);
-        }
+        const { userName, userId } = response.data;
+        dispatch(setAuth({ isLoggedIn: true, userName, userId }));
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userName', userName);
+        localStorage.setItem('userId', userId);
       })
       .catch(error => {
         console.error('Login failed:', error);
@@ -66,8 +64,8 @@ const Login: React.FC<LoginProps> = ({
           placeholder="Email"
           value={user.email}
           onChange={handleLogin}
-          autoComplete='email'
-          />
+          autoComplete="email"
+        />
         <input
           className={` ${inputClass}  ${toggleButtonColor(toggle)}`}
           type="password"
@@ -76,7 +74,7 @@ const Login: React.FC<LoginProps> = ({
           placeholder="Password"
           value={user.password}
           onChange={handleLogin}
-          autoComplete='current-password'
+          autoComplete="current-password"
         />
         <button className={`py-4 rounded-lg text-4xl ${toggleButtonColor(toggle)}`}>Login</button>
       </form>

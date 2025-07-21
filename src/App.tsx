@@ -13,12 +13,19 @@ import LastOrders from './components/LastOrders';
 import Points from './components/Beans';
 import ProtectedRoute from './components/ProtectedRoute';
 import ToggleTheme from './components/ToggleTheme';
-import { useAuth } from './hooks/useAuth';
 import { useCart } from './hooks/useCart';
 import { useProductDetail } from './hooks/useProductDetail';
+import { useSelector } from 'react-redux';
+import { RootState } from './store/store';
+import { useEffect } from 'react';
 
 const App = () => {
-  const { isLoggedIn, setIsLoggedIn, userName, setUserName, userId, setUserId } = useAuth();
+  const { isLoggedIn, userName } = useSelector((state: RootState) => state.auth);
+
+    useEffect(() => {
+      console.log('IsLoggedIn:', isLoggedIn, 'UserName:', userName);
+    }, [isLoggedIn, userName]);
+
   const { total, addedProducts, setAddedProducts, addToCart } = useCart();
   const { openDetail, closeDetail, selectedProductId, handleClick } = useProductDetail();
 
@@ -36,8 +43,6 @@ const App = () => {
               closeDetail={closeDetail}
               selectedProductId={selectedProductId}
               handleClick={handleClick}
-              isLoggedIn={isLoggedIn}
-              userName={userName}
             />
           }
         />
@@ -62,42 +67,22 @@ const App = () => {
               addedProducts={addedProducts}
               setAddedProducts={setAddedProducts}
               total={total}
-              userId={userId}
-              isLoggedIn={isLoggedIn}
               closeDetail={closeDetail}
             />
           }
         />
         <Route path="/signup" element={<Signup />} />
-        <Route
-          path="/login"
-          element={
-            isLoggedIn ? (
-              <Navigate to="/" replace />
-            ) : (
-              <Login
-                setIsLoggedIn={setIsLoggedIn}
-                setUserName={setUserName}
-                setUserId={setUserId}
-              />
-            )
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <User isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} userName={userName} />
-          }
-        />
-        <Route element={<ProtectedRoute isLoggedIn={isLoggedIn} />}>
-          <Route path="/user/update-data" element={<UpdateData userId={userId} />} />
-          <Route path="/user/last-orders" element={<LastOrders userId={userId} />} />
+        <Route path="/login" element={isLoggedIn ? <Navigate to="/" replace /> : <Login />} />
+        <Route path="/profile" element={<User />} />
+        <Route element={<ProtectedRoute  />}>
+          <Route path="/user/update-data" element={<UpdateData />} />
+          <Route path="/user/last-orders" element={<LastOrders />} />
           <Route path="/user/theme-color" element={<ToggleTheme />} />
-          <Route path="/user/points" element={<Points userId={userId} />} />
+          <Route path="/user/points" element={<Points />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <Navbar userName={userName} isLoggedIn={isLoggedIn} addedProducts={addedProducts} />
+      <Navbar addedProducts={addedProducts} />
     </>
   );
 };

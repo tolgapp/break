@@ -17,6 +17,7 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
 
   return (
     <div
+      onClick={() => handleClick(id)}
       className={`border ${
         toggle ? 'border-slate-400' : 'border-gray-300'
       } h-fit w-[16.1rem] rounded-xl flex flex-col ${getClassNames(toggle)} relative`}

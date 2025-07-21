@@ -4,15 +4,11 @@ import { NavbarProps } from '../data/types';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 
-const Navbar: React.FC<NavbarProps> = ({
-  userName,
-  isLoggedIn,
-  addedProducts,
-}) => {
+const Navbar: React.FC<NavbarProps> = ({ addedProducts }) => {
   const location = useLocation();
-    const toggle = useSelector((state: RootState) => state.toggle.toggle);
-
-
+  const toggle = useSelector((state: RootState) => state.toggle.toggle);
+  const { isLoggedIn, userName } = useSelector((state: RootState) => state.auth);
+console.log(userName)
   const icons = navbarIcons.map((icon, id) => {
     const isActive = location.pathname === icon.pathname;
     const dynamicClass = `

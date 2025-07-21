@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BACKEND_URL } from '../data/helper';
+import { BACKEND_URL, getClassNames } from '../data/helper';
 import Logo from '../components/Logo';
 import BackButton from '../components/BackButton';
 import CartItemContainer from '../components/CartItemContainer';
@@ -9,16 +9,9 @@ import { CartProps } from '../data/types';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 
-const Cart: React.FC<CartProps> = ({
-  getLogoSrc,
-  getClassNames,
-  addedProducts,
-  setAddedProducts,
-  total,
-  userId,
-  isLoggedIn,
-}) => {
+const Cart: React.FC<CartProps> = ({ addedProducts, setAddedProducts, total }) => {
   const toggle = useSelector((state: RootState) => state.toggle.toggle);
+  const { userId } = useSelector((state: RootState) => state.auth);
   const handleCheckout = () => {
     if (!addedProducts || addedProducts.length === 0) {
       console.error('No products to checkout.');
@@ -51,13 +44,13 @@ const Cart: React.FC<CartProps> = ({
         toggle
       )}`}
     >
-      <Logo getLogoSrc={getLogoSrc} />
+      <Logo />
       <BackButton />
       <h1 className={` mt-32 mb-4 text-5xl font-bold text-left pl-8 ${getClassNames(toggle)}`}>
         Your items:
       </h1>
       <CartItemContainer addedProducts={addedProducts} setAddedProducts={setAddedProducts} />
-      <Checkout total={total} handleCheckout={handleCheckout} isLoggedIn={isLoggedIn} />
+      <Checkout total={total} handleCheckout={handleCheckout} />
     </main>
   );
 };

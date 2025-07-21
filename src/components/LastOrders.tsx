@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BACKEND_URL, getClassNames, getLogoSrc, toggleTextColor } from '../data/helper';
+import { BACKEND_URL, getClassNames, toggleTextColor } from '../data/helper';
 import BackButton from './BackButton';
 import Logo from './Logo';
 import { useEffect, useState } from 'react';
@@ -10,11 +10,11 @@ import { useSelector } from 'react-redux';
 
 type LastOrdersProps = {
   userId: string;
-
 };
 
-const LastOrders: React.FC<LastOrdersProps> = ({ userId }) => {
-      const toggle = useSelector((state: RootState) => state.toggle.toggle);
+const LastOrders: React.FC<LastOrdersProps> = () => {
+  const toggle = useSelector((state: RootState) => state.toggle.toggle);
+  const { userId } = useSelector((state: RootState) => state.auth);
 
   const [lastOrders, setLastOrders] = useState<LastOrderType>([]);
 
@@ -72,8 +72,8 @@ const LastOrders: React.FC<LastOrdersProps> = ({ userId }) => {
         toggle
       )} flex flex-col gap-4 justify-start items-center min-h-screen overflow-auto pb-48 pt-32 px-8`}
     >
-      <Logo getLogoSrc={getLogoSrc} />
-      <BackButton  />
+      <Logo  />
+      <BackButton />
       <h2 className={`${toggleTextColor} text-3xl font-mono font-bold`}>Order History</h2>
 
       {lastOrders.length > 0 ? (

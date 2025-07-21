@@ -4,16 +4,21 @@ import Logo from '../components/Logo';
 import UserAction from '../components/UserAction';
 import UserPage from '../components/Userpage';
 import { UserProps } from '../data/types';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { getClassNames } from '../data/helper';
+import { clearAuth } from '../store/reducers/authSlice';
 
-const User: React.FC<UserProps> = ({ setIsLoggedIn, isLoggedIn, userName }) => {
+const User: React.FC<UserProps> = ( ) => {
+  const { isLoggedIn, userName } = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch();
   const toggle = useSelector((state: RootState) => state.toggle.toggle);
 
   const handleLogout = () => {
-    setIsLoggedIn(false);
-    localStorage.clear();
+    dispatch(clearAuth());
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('userId');
   };
 
   return (
@@ -22,8 +27,8 @@ const User: React.FC<UserProps> = ({ setIsLoggedIn, isLoggedIn, userName }) => {
         toggle
       )} ${isLoggedIn ? '' : 'bg-[url(/bg-image01.webp)] bg-cover'}`}
     >
-      <Logo isLoggedIn={isLoggedIn} />
-      <BackButton isLoggedIn={isLoggedIn} />
+      <Logo />
+      <BackButton  />
       {isLoggedIn ? (
         <>
           <QRCode

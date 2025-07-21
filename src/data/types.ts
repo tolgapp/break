@@ -109,8 +109,6 @@ export type CartProps = {
   addedProducts: Product[];
   setAddedProducts: React.Dispatch<React.SetStateAction<Product[]>>;
   total: number;
-  userId: string;
-  isLoggedIn?: boolean;
   closeDetail: () => void;
 };
 
@@ -121,8 +119,6 @@ export type HomeProps = {
   closeDetail: () => void;
   openDetail: boolean;
   selectedProductId: number | null;
-  isLoggedIn: boolean;
-  userName: string;
 };
 
 export type UserProps = {
