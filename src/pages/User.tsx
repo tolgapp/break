@@ -4,16 +4,18 @@ import Logo from '../components/Logo';
 import UserAction from '../components/UserAction';
 import UserPage from '../components/Userpage';
 import { UserProps } from '../data/types';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 
 const User: React.FC<UserProps> = ({
-  toggle,
-  setToggle,
   getClassNames,
   getLogoSrc,
   setIsLoggedIn,
   isLoggedIn,
   userName,
 }) => {
+    const toggle = useSelector((state: RootState) => state.toggle.toggle);
+
   const handleLogout = () => {
     setIsLoggedIn(false);
     localStorage.clear();
@@ -25,8 +27,8 @@ const User: React.FC<UserProps> = ({
         toggle
       )} ${isLoggedIn ? '' : 'bg-[url(/bg-image01.webp)] bg-cover'}`}
     >
-      <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} isLoggedIn={isLoggedIn} />
-      <BackButton toggle={toggle} isLoggedIn={isLoggedIn} />
+      <Logo getLogoSrc={getLogoSrc} isLoggedIn={isLoggedIn} />
+      <BackButton  isLoggedIn={isLoggedIn} />
       {isLoggedIn ? (
         <>
           <QRCode
@@ -49,7 +51,7 @@ const User: React.FC<UserProps> = ({
       ) : (
         <>
           <h2 className={`text-5xl font-bold text-center pb-6 text-white`}>Welcome Back!</h2>
-          <UserAction toggle={toggle} />
+          <UserAction />
         </>
       )}
     </main>

@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import BackButton from './BackButton';
 import Logo from './Logo';
-import { BACKEND_URL, inputClass, toggleButtonColor } from '../data/helper';
+import { BACKEND_URL, getClassNames, inputClass, toggleButtonColor } from '../data/helper';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { SignupProps } from '../data/types';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 
-const Signup: React.FC<SignupProps> = ({ toggle, setToggle, getLogoSrc, getClassNames }) => {
+const Signup: React.FC<SignupProps> = () => {
+  const toggle = useSelector((state: RootState) => state.toggle.toggle)
   const navigate = useNavigate();
   const [value, setValue] = useState({
     name: '',
@@ -55,8 +58,8 @@ const Signup: React.FC<SignupProps> = ({ toggle, setToggle, getLogoSrc, getClass
         toggle
       )}`}
     >
-      <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
-      <BackButton toggle={toggle} />
+      <Logo  />
+      <BackButton />
       <h2 className={`text-4xl mb-10 w-[80%] text-center font-semibold`}>
         Sign up and get BEANS for every order 🫘
       </h2>

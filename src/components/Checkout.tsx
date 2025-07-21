@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom';
 import { CheckoutProps } from '../data/types';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 
-const Checkout: React.FC<CheckoutProps> = ({ total, handleCheckout, toggle, isLoggedIn }) => {
+const Checkout: React.FC<CheckoutProps> = ({ total, handleCheckout, isLoggedIn }) => {
+
+  const toggle = useSelector((state: RootState) => state.toggle.toggle);
+
   return (
     <div
       className={`flex rounded-t-3xl h-auto justify-between w-full fixed bottom-32 px-8 py-4 items-center mx-auto mt-10 gap-4 ${

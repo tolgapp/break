@@ -1,8 +1,14 @@
 import { useLocation } from 'react-router-dom';
 import { LogoProps } from '../data/types';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleSwitch } from '../store/reducers/toggleSlice';
+import type { RootState } from '../store/store';
+import { getLogoSrc } from '../data/helper';
 
-const Logo: React.FC<LogoProps> = ({ toggle, setToggle, getLogoSrc, isLoggedIn }) => {
+const Logo: React.FC<LogoProps> = ({ isLoggedIn }) => {
+  const toggle = useSelector((state: RootState) => state.toggle.toggle);
+  const dispatch = useDispatch();
   const { pathname } = useLocation();
   const [change, setChange] = useState(false);
 
@@ -13,11 +19,13 @@ const Logo: React.FC<LogoProps> = ({ toggle, setToggle, getLogoSrc, isLoggedIn }
 
   useEffect(() => {
     changeLogoColor();
-
     window.addEventListener('scroll', changeLogoColor);
-
     return () => window.removeEventListener('scroll', changeLogoColor);
   }, []);
+
+  const handleLogoClick = () => {
+    dispatch(toggleSwitch());
+  };
 
   if (pathname === '/profile') {
     return (
@@ -31,20 +39,20 @@ const Logo: React.FC<LogoProps> = ({ toggle, setToggle, getLogoSrc, isLoggedIn }
             : '/logo/breakblack.png'
         }
         alt="Logo"
-        onClick={() => setToggle(prevToggle => !prevToggle)}
+        onClick={handleLogoClick}
       />
     );
   }
 
   return (
     <img
-      className={`
-  fixed z-[101] cursor-pointer w-32 top-0 left-1/2 translate-x-[-50%] translate-y-6
-  transition-opacity duration-700 ${change ? 'opacity-0 pointer-events-none' : 'opacity-100'}
-`}
+      className={`fixed z-[101] cursor-pointer w-32 top-0 left-1/2 translate-x-[-50%] translate-y-6
+        transition-opacity duration-700 ${
+          change ? 'opacity-0 pointer-events-none' : 'opacity-100'
+        }`}
       src={getLogoSrc(toggle)}
       alt="Logo"
-      onClick={() => setToggle(prevToggle => !prevToggle)}
+      onClick={handleLogoClick}
     />
   );
 };

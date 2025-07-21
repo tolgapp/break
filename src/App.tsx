@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
 import { getLogoSrc, getClassNames } from './data/helper';
@@ -23,7 +22,6 @@ const App = () => {
   const { isLoggedIn, setIsLoggedIn, userName, setUserName, userId, setUserId } = useAuth();
   const { total, addedProducts, setAddedProducts, addToCart } = useCart();
   const { openDetail, closeDetail, selectedProductId, handleClick } = useProductDetail();
-  const [toggle, setToggle] = useState(false);
 
   return (
     <>
@@ -33,10 +31,6 @@ const App = () => {
           path="/"
           element={
             <Home
-              toggle={toggle}
-              setToggle={setToggle}
-              getLogoSrc={getLogoSrc}
-              getClassNames={getClassNames}
               addToCart={addToCart}
               setAddedProducts={setAddedProducts}
               openDetail={openDetail}
@@ -52,10 +46,6 @@ const App = () => {
           path="/products"
           element={
             <Products
-              toggle={toggle}
-              getClassNames={getClassNames}
-              setToggle={setToggle}
-              getLogoSrc={getLogoSrc}
               addToCart={addToCart}
               setAddedProducts={setAddedProducts}
               openDetail={openDetail}
@@ -70,10 +60,6 @@ const App = () => {
           path="/cart"
           element={
             <Cart
-              toggle={toggle}
-              getClassNames={getClassNames}
-              setToggle={setToggle}
-              getLogoSrc={getLogoSrc}
               addedProducts={addedProducts}
               setAddedProducts={setAddedProducts}
               total={total}
@@ -83,17 +69,7 @@ const App = () => {
             />
           }
         />
-        <Route
-          path="/signup"
-          element={
-            <Signup
-              toggle={toggle}
-              getClassNames={getClassNames}
-              setToggle={setToggle}
-              getLogoSrc={getLogoSrc}
-            />
-          }
-        />
+        <Route path="/signup" element={<Signup />} />
         <Route
           path="/login"
           element={
@@ -101,10 +77,6 @@ const App = () => {
               <Navigate to="/" replace />
             ) : (
               <Login
-                toggle={toggle}
-                getClassNames={getClassNames}
-                setToggle={setToggle}
-                getLogoSrc={getLogoSrc}
                 setIsLoggedIn={setIsLoggedIn}
                 setUserName={setUserName}
                 setUserId={setUserId}
@@ -115,54 +87,18 @@ const App = () => {
         <Route
           path="/profile"
           element={
-            <User
-              toggle={toggle}
-              getClassNames={getClassNames}
-              setToggle={setToggle}
-              getLogoSrc={getLogoSrc}
-              isLoggedIn={isLoggedIn}
-              setIsLoggedIn={setIsLoggedIn}
-              userName={userName}
-            />
+            <User isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} userName={userName} />
           }
         />
         <Route element={<ProtectedRoute isLoggedIn={isLoggedIn} />}>
-          <Route
-            path="/user/update-data"
-            element={<UpdateData toggle={toggle} setToggle={setToggle} userId={userId} />}
-          />
-          <Route
-            path="/user/last-orders"
-            element={<LastOrders toggle={toggle} setToggle={setToggle} userId={userId} />}
-          />
-          <Route
-            path="/user/theme-color"
-            element={<ToggleTheme toggle={toggle} setToggle={setToggle} />}
-          />
-          <Route
-            path="/user/points"
-            element={<Points toggle={toggle} setToggle={setToggle} userId={userId} />}
-          />
+          <Route path="/user/update-data" element={<UpdateData userId={userId} />} />
+          <Route path="/user/last-orders" element={<LastOrders userId={userId} />} />
+          <Route path="/user/theme-color" element={<ToggleTheme />} />
+          <Route path="/user/points" element={<Points userId={userId} />} />
         </Route>
-        <Route
-          path="*"
-          element={
-            <NotFound
-              toggle={toggle}
-              getClassNames={getClassNames}
-              setToggle={setToggle}
-              getLogoSrc={getLogoSrc}
-            />
-          }
-        />
+        <Route path="*" element={<NotFound />} />
       </Routes>
-      <Navbar
-        toggle={toggle}
-        getClassNames={getClassNames}
-        userName={userName}
-        isLoggedIn={isLoggedIn}
-        addedProducts={addedProducts}
-      />
+      <Navbar userName={userName} isLoggedIn={isLoggedIn} addedProducts={addedProducts} />
     </>
   );
 };

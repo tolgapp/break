@@ -1,9 +1,12 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ButtonProps } from '../data/types';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 
-const BackButton: React.FC<ButtonProps> = ({ toggle, isLoggedIn }) => {
+const BackButton: React.FC<ButtonProps> = ({ isLoggedIn }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const toggle = useSelector((state: RootState) => state.toggle.toggle)
 
   if (pathname === '/profile') {
     return (

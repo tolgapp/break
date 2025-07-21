@@ -2,9 +2,12 @@ import { useState } from 'react';
 import { filterOptions } from '../data/helper';
 import { FilterProps } from '../data/types';
 import { v4 as uuidv4 } from 'uuid';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 
-const FilterOptions: React.FC<FilterProps> = ({ toggle, setSelectedOption }) => {
+const FilterOptions: React.FC<FilterProps> = ({ setSelectedOption }) => {
   const [activeOption, setActiveOption] = useState<string>('');
+  const toggle = useSelector((state: RootState) => state.toggle.toggle)
 
   const handleClick = (option: string) => {
     setActiveOption(option);

@@ -5,16 +5,17 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { LoginProps } from '../data/types';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 
 const Login: React.FC<LoginProps> = ({
-  toggle,
-  setToggle,
   getLogoSrc,
   getClassNames,
   setIsLoggedIn,
   setUserName,
   setUserId,
 }) => {
+    const toggle = useSelector((state: RootState) => state.toggle.toggle);
   const [user, setUser] = useState({
     email: '',
     password: '',
@@ -53,8 +54,8 @@ const Login: React.FC<LoginProps> = ({
         toggle
       )}`}
     >
-      <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
-      <BackButton toggle={toggle} />
+      <Logo />
+      <BackButton />
       <h2 className="text-4xl font-semibold text-center text-balance mb-10 w-[90%]">
         Login and get BEANS for every order
       </h2>

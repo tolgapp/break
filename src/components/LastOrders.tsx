@@ -5,14 +5,17 @@ import Logo from './Logo';
 import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 import { LastOrderType, Order } from '../data/types';
+import type { RootState } from '../store/store';
+import { useSelector } from 'react-redux';
 
 type LastOrdersProps = {
-  toggle: boolean;
-  setToggle: (value: boolean | ((prevToggle: boolean) => boolean)) => void;
   userId: string;
+
 };
 
-const LastOrders: React.FC<LastOrdersProps> = ({ toggle, setToggle, userId }) => {
+const LastOrders: React.FC<LastOrdersProps> = ({ userId }) => {
+      const toggle = useSelector((state: RootState) => state.toggle.toggle);
+
   const [lastOrders, setLastOrders] = useState<LastOrderType>([]);
 
   useEffect(() => {
@@ -69,8 +72,8 @@ const LastOrders: React.FC<LastOrdersProps> = ({ toggle, setToggle, userId }) =>
         toggle
       )} flex flex-col gap-4 justify-start items-center min-h-screen overflow-auto pb-48 pt-32 px-8`}
     >
-      <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
-      <BackButton toggle={toggle} />
+      <Logo getLogoSrc={getLogoSrc} />
+      <BackButton  />
       <h2 className={`${toggleTextColor} text-3xl font-mono font-bold`}>Order History</h2>
 
       {lastOrders.length > 0 ? (

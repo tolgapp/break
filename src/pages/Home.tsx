@@ -5,13 +5,11 @@ import ProductDetail from '../components/ProductDetail';
 import RandomProducts from '../components/RandomProducts';
 import OfferInfo from '../components/OfferInfo';
 import { HomeProps } from '../data/types';
-
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
+import { getClassNames } from '../data/helper';
 
 const Home: React.FC<HomeProps> = ({
-  toggle,
-  setToggle,
-  getLogoSrc,
-  getClassNames,
   addToCart,
   handleClick,
   openDetail,
@@ -20,6 +18,7 @@ const Home: React.FC<HomeProps> = ({
 }) => {
   const [showDetail, setShowDetail] = useState(false);
   const [offerId, setOfferId] = useState<number | undefined>(undefined);
+  const toggle = useSelector((state: RootState) => state.toggle.toggle);
 
 
   const toggleDetail = (id: number) => {
@@ -35,9 +34,9 @@ const Home: React.FC<HomeProps> = ({
         toggle
       )} min-h-dvh overflow-y-scroll pb-48`}
     >
-      <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
-      <OfferContainer toggle={toggle} toggleDetail={toggleDetail} />
-      <RandomProducts toggle={toggle} handleClick={handleClick} />
+      <Logo  />
+      <OfferContainer toggleDetail={toggleDetail} />
+      <RandomProducts handleClick={handleClick} />
       {openDetail && (
         <ProductDetail
           closeDetail={closeDetail}
@@ -48,7 +47,6 @@ const Home: React.FC<HomeProps> = ({
       )}
       {showDetail && offerId !== undefined && (
         <OfferInfo
-          toggle={toggle}
           toggleDetail={toggleDetail}
           showDetail={showDetail}
           id={offerId}

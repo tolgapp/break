@@ -1,11 +1,13 @@
+import { useSelector } from 'react-redux';
 import { getClassNames } from '../data/helper';
 import { CartItemContainerProps } from '../data/types';
+import { RootState } from '../store/store';
 
 const CartItemContainer: React.FC<CartItemContainerProps> = ({
-  toggle,
   addedProducts,
   setAddedProducts,
 }) => {
+  const toggle = useSelector((state: RootState) => state.toggle.toggle);
 
   const handleRemove = (instanceId: string | undefined) => {
     setAddedProducts(prev => {

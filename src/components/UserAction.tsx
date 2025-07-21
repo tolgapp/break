@@ -1,11 +1,13 @@
 import { Link, useLocation } from 'react-router-dom';
 import { getClassNames } from '../data/helper';
 import { UserActionProps } from '../data/types';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 
-const UserAction: React.FC<UserActionProps> = ({ toggle }) => {
+const UserAction: React.FC<UserActionProps> = () => {
   const { pathname } = useLocation();
 
-  console.log(toggle)
+  const toggle = useSelector((state: RootState) => state.toggle.toggle);
 
   const buttonBg = toggle ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-300 hover:bg-gray-200';
 

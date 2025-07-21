@@ -6,10 +6,10 @@ import CartItemContainer from '../components/CartItemContainer';
 import Checkout from '../components/Checkout';
 import { nanoid } from 'nanoid';
 import { CartProps } from '../data/types';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 
 const Cart: React.FC<CartProps> = ({
-  toggle,
-  setToggle,
   getLogoSrc,
   getClassNames,
   addedProducts,
@@ -18,7 +18,7 @@ const Cart: React.FC<CartProps> = ({
   userId,
   isLoggedIn,
 }) => {
-  
+  const toggle = useSelector((state: RootState) => state.toggle.toggle);
   const handleCheckout = () => {
     if (!addedProducts || addedProducts.length === 0) {
       console.error('No products to checkout.');
@@ -51,22 +51,13 @@ const Cart: React.FC<CartProps> = ({
         toggle
       )}`}
     >
-      <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
-      <BackButton toggle={toggle} />
+      <Logo getLogoSrc={getLogoSrc} />
+      <BackButton />
       <h1 className={` mt-32 mb-4 text-5xl font-bold text-left pl-8 ${getClassNames(toggle)}`}>
         Your items:
       </h1>
-      <CartItemContainer
-        toggle={toggle}
-        addedProducts={addedProducts}
-        setAddedProducts={setAddedProducts}
-      />
-      <Checkout
-        total={total}
-        handleCheckout={handleCheckout}
-        toggle={toggle}
-        isLoggedIn={isLoggedIn}
-      />
+      <CartItemContainer addedProducts={addedProducts} setAddedProducts={setAddedProducts} />
+      <Checkout total={total} handleCheckout={handleCheckout} isLoggedIn={isLoggedIn} />
     </main>
   );
 };

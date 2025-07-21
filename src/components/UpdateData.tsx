@@ -10,8 +10,12 @@ import {
 import Logo from './Logo';
 import BackButton from './BackButton';
 import { UpdateDataProps } from '../data/types';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../store/store';
 
-const UpdateData: React.FC<UpdateDataProps> = ({ toggle, setToggle, userId }) => {
+
+const UpdateData: React.FC<UpdateDataProps> = ({ userId }) => {
+  const toggle = useSelector((state: RootState) => state.toggle.toggle);
   const [value, setValue] = useState({
     name: '',
     surname: '',
@@ -60,8 +64,8 @@ const UpdateData: React.FC<UpdateDataProps> = ({ toggle, setToggle, userId }) =>
         toggle
       )}`}
     >
-      <Logo toggle={toggle} getLogoSrc={getLogoSrc} setToggle={setToggle} />
-      <BackButton toggle={toggle} />
+      <Logo  getLogoSrc={getLogoSrc} />
+      <BackButton />
       <h2 className={`text-5xl text-left mb-12 ${getClassNames(toggle)}`}>Update Profile</h2>
       <form onSubmit={handleSubmit} className="flex flex-col w-[90%] gap-4">
         <input

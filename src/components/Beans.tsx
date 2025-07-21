@@ -4,10 +4,13 @@ import BackButton from './BackButton';
 import Logo from './Logo';
 import axios from 'axios';
 import { BeanProps, LastOrderType } from '../data/types';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../store/store';
 
-const Beans: React.FC<BeanProps> = ({ toggle, setToggle, userId }) => {
+const Beans: React.FC<BeanProps> = ({ userId }) => {
   const [lastOrders, setLastOrders] = useState<LastOrderType>([]);
   const points = lastOrders.length;
+  const toggle = useSelector((state: RootState) => state.toggle.toggle);
 
   useEffect(() => {
     const getRecipes = async () => {
@@ -28,8 +31,8 @@ const Beans: React.FC<BeanProps> = ({ toggle, setToggle, userId }) => {
         toggle
       )}`}
     >
-      <Logo toggle={toggle} setToggle={setToggle} getLogoSrc={getLogoSrc} />
-      <BackButton toggle={toggle} />
+      <Logo getLogoSrc={getLogoSrc} />
+      <BackButton />
       <div className={`border flex w-full justify-between min-h-[55rem]`}>
         <div className={`${getClassNames(toggle)} flex w-1/2 items-center justify-center`}>
           {points < 1 ? (

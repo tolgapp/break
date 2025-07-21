@@ -1,15 +1,17 @@
 import { Link, useLocation } from 'react-router-dom';
-import { navbarIcons } from '../data/helper';
+import { getClassNames, navbarIcons } from '../data/helper';
 import { NavbarProps } from '../data/types';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 
 const Navbar: React.FC<NavbarProps> = ({
-  toggle,
-  getClassNames,
   userName,
   isLoggedIn,
   addedProducts,
 }) => {
   const location = useLocation();
+    const toggle = useSelector((state: RootState) => state.toggle.toggle);
+
 
   const icons = navbarIcons.map((icon, id) => {
     const isActive = location.pathname === icon.pathname;
