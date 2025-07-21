@@ -4,11 +4,10 @@ import Logo from './Logo';
 import { BACKEND_URL, getClassNames, inputClass, toggleButtonColor } from '../data/helper';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import { SignupProps } from '../data/types';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 
-const Signup: React.FC<SignupProps> = () => {
+const Signup = () => {
   const toggle = useSelector((state: RootState) => state.toggle.toggle)
   const navigate = useNavigate();
   const [value, setValue] = useState({

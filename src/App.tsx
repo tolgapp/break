@@ -1,6 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
-import { getLogoSrc, getClassNames } from './data/helper';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import Cart from './pages/Cart';

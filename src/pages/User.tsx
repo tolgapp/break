@@ -6,15 +6,10 @@ import UserPage from '../components/Userpage';
 import { UserProps } from '../data/types';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
+import { getClassNames } from '../data/helper';
 
-const User: React.FC<UserProps> = ({
-  getClassNames,
-  getLogoSrc,
-  setIsLoggedIn,
-  isLoggedIn,
-  userName,
-}) => {
-    const toggle = useSelector((state: RootState) => state.toggle.toggle);
+const User: React.FC<UserProps> = ({ setIsLoggedIn, isLoggedIn, userName }) => {
+  const toggle = useSelector((state: RootState) => state.toggle.toggle);
 
   const handleLogout = () => {
     setIsLoggedIn(false);
@@ -27,13 +22,20 @@ const User: React.FC<UserProps> = ({
         toggle
       )} ${isLoggedIn ? '' : 'bg-[url(/bg-image01.webp)] bg-cover'}`}
     >
-      <Logo getLogoSrc={getLogoSrc} isLoggedIn={isLoggedIn} />
-      <BackButton  isLoggedIn={isLoggedIn} />
+      <Logo isLoggedIn={isLoggedIn} />
+      <BackButton isLoggedIn={isLoggedIn} />
       {isLoggedIn ? (
         <>
           <QRCode
             size={256}
-            style={{position: "absolute", right: 20, top: 18, height: 'auto', maxWidth: '10%', width: '10%' }}
+            style={{
+              position: 'absolute',
+              right: 20,
+              top: 18,
+              height: 'auto',
+              maxWidth: '10%',
+              width: '10%',
+            }}
             value={'TEST'}
             viewBox={`0 0 256 256`}
           />

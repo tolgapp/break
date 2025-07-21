@@ -75,10 +75,6 @@ export type Container = {
   description: string;
 };
 
-export type SignupProps = {
-  getClassNames: (value: boolean) => string;
-};
-
 export type ProtectedRouteProps = {
   isLoggedIn: boolean;
 };

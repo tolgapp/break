@@ -1,6 +1,6 @@
 import BackButton from './BackButton';
 import Logo from './Logo';
-import { BACKEND_URL, inputClass, toggleButtonColor } from '../data/helper';
+import { BACKEND_URL, getClassNames, inputClass, toggleButtonColor } from '../data/helper';
 import { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -9,8 +9,6 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 
 const Login: React.FC<LoginProps> = ({
-  getLogoSrc,
-  getClassNames,
   setIsLoggedIn,
   setUserName,
   setUserId,
