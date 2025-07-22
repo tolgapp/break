@@ -29,7 +29,7 @@ export type Product = {
   sizes: string[];
   instanceId?: string;
   size?: string | undefined;
-  price?: number;
+  price: number;
   timestamp?: string;
   tags: string[];
 };

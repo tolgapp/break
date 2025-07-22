@@ -4,12 +4,11 @@ import { BACKEND_URL, getClassNames, inputClass, toggleButtonColor } from '../da
 import { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { LoginProps } from '../data/types';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { setAuth } from '../store/reducers/authSlice';
 
-const Login: React.FC<LoginProps> = () => {
+const Login= () => {
   const dispatch = useDispatch();
   const toggle = useSelector((state: RootState) => state.toggle.toggle);
   const [user, setUser] = useState({

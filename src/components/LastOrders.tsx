@@ -50,7 +50,7 @@ const LastOrders = () => {
               <span className="font-medium text-slate-900">{product.name}</span>
               <span className="text-gray-500">({product.size || 'N/A'})</span>
             </div>
-            <span className="font-semibold text-slate-900">{product.price.toFixed(2)} €</span>
+            <span className="font-semibold text-slate-900">{product.price?.toFixed(2)} €</span>
           </div>
         ))}
       </div>
