@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BACKEND_URL, getClassNames, getLogoSrc } from '../data/helper';
+import { BACKEND_URL, getClassNames } from '../data/helper';
 import BackButton from './BackButton';
 import Logo from './Logo';
 import axios from 'axios';
@@ -7,7 +7,8 @@ import { BeanProps, LastOrderType } from '../data/types';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../store/store';
 
-const Beans: React.FC<BeanProps> = ({ userId }) => {
+const Beans: React.FC<BeanProps> = () => {
+  const { userId } = useSelector((state: RootState) => state.auth);
   const [lastOrders, setLastOrders] = useState<LastOrderType>([]);
   const points = lastOrders.length;
   const toggle = useSelector((state: RootState) => state.toggle.toggle);
@@ -31,7 +32,7 @@ const Beans: React.FC<BeanProps> = ({ userId }) => {
         toggle
       )}`}
     >
-      <Logo getLogoSrc={getLogoSrc} />
+      <Logo />
       <BackButton />
       <div className={`border flex w-full justify-between min-h-[55rem]`}>
         <div className={`${getClassNames(toggle)} flex w-1/2 items-center justify-center`}>

@@ -6,8 +6,9 @@ import { toggleSwitch } from '../store/reducers/toggleSlice';
 import type { RootState } from '../store/store';
 import { getLogoSrc } from '../data/helper';
 
-const Logo: React.FC<LogoProps> = ({ isLoggedIn }) => {
-  const toggle = useSelector((state: RootState) => state.toggle.toggle);
+const Logo: React.FC<LogoProps> = () => {
+  const {toggle} = useSelector((state: RootState) => state.toggle);
+  const {isLoggedIn} = useSelector((state: RootState) => state.auth)
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   const [change, setChange] = useState(false);

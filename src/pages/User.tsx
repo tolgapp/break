@@ -1,4 +1,3 @@
-import QRCode from 'react-qr-code';
 import BackButton from '../components/BackButton';
 import Logo from '../components/Logo';
 import UserAction from '../components/UserAction';
@@ -12,7 +11,7 @@ import { clearAuth } from '../store/reducers/authSlice';
 const User: React.FC<UserProps> = ( ) => {
   const { isLoggedIn, userName } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
-  const toggle = useSelector((state: RootState) => state.toggle.toggle);
+  const {toggle} = useSelector((state: RootState) => state.toggle);
 
   const handleLogout = () => {
     dispatch(clearAuth());
@@ -31,19 +30,6 @@ const User: React.FC<UserProps> = ( ) => {
       <BackButton  />
       {isLoggedIn ? (
         <>
-          <QRCode
-            size={256}
-            style={{
-              position: 'absolute',
-              right: 20,
-              top: 18,
-              height: 'auto',
-              maxWidth: '10%',
-              width: '10%',
-            }}
-            value={'TEST'}
-            viewBox={`0 0 256 256`}
-          />
           <div className="gap-6 flex px-6 upper-container mb-10 justify-around items-center w-full">
             <h2 className={`text-5xl font-semibold`}>Welcome back, {userName}</h2>
             <img

@@ -14,7 +14,9 @@ import { useSelector } from 'react-redux';
 import type { RootState } from '../store/store';
 
 
-const UpdateData: React.FC<UpdateDataProps> = ({ userId }) => {
+const UpdateData: React.FC<UpdateDataProps> = () => {
+  const {userId} = useSelector((state: RootState) => state.auth)
+  console.log(userId)
   const toggle = useSelector((state: RootState) => state.toggle.toggle);
   const [value, setValue] = useState({
     name: '',
@@ -28,6 +30,7 @@ const UpdateData: React.FC<UpdateDataProps> = ({ userId }) => {
       try {
         const response = await axios.get(`${BACKEND_URL}/users/${userId}`);
         const { name, surname, email } = response.data;
+        console.log(response.data)
         setValue(prev => ({ ...prev, name, surname, email }));
       } catch (error) {
         console.error('Fehler beim Laden der Benutzerdaten:', error);
@@ -64,7 +67,7 @@ const UpdateData: React.FC<UpdateDataProps> = ({ userId }) => {
         toggle
       )}`}
     >
-      <Logo  getLogoSrc={getLogoSrc} />
+      <Logo  />
       <BackButton />
       <h2 className={`text-5xl text-left mb-12 ${getClassNames(toggle)}`}>Update Profile</h2>
       <form onSubmit={handleSubmit} className="flex flex-col w-[90%] gap-4">
