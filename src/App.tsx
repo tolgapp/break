@@ -15,12 +15,20 @@ import ProtectedRoute from './components/ProtectedRoute';
 import ToggleTheme from './components/ToggleTheme';
 import { useCart } from './hooks/useCart';
 import { useProductDetail } from './hooks/useProductDetail';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './store/store';
+import coffeeData from './data/coffee.json'
+import { useEffect } from 'react';
+import { setProducts } from './store/reducers/productSlice';
 
 const App = () => {
-  const { isLoggedIn } = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch()
 
+  useEffect(() => {
+    dispatch(setProducts(coffeeData.coffeeSpecialties))
+  }, [])
+
+  const { isLoggedIn } = useSelector((state: RootState) => state.auth);
   const { total, addedProducts, setAddedProducts, addToCart } = useCart();
   const { openDetail, closeDetail, selectedProductId, handleClick } = useProductDetail();
 

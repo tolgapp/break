@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import coffeeData from '../data/coffee.json';
 import ProductContainer from './ProductContainer';
 import { getClassNames } from '../data/helper';
 import { Product, RandomProductsProps } from '../data/types';
@@ -7,17 +6,17 @@ import { useSelector } from 'react-redux';
 import type { RootState } from '../store/store';
 
 const RandomProducts: React.FC<RandomProductsProps> = ({ handleClick }) => {
+  const products = useSelector((state: RootState) => state.products.products);
   const [randomProducts, setRandomProducts] = useState<Product[]>([]);
   const toggle = useSelector((state: RootState) => state.toggle.toggle);
 
   useEffect(() => {
     const selectRandomProducts = () => {
       const selectedProducts: Product[] = [];
-      const specialties = coffeeData.coffeeSpecialties;
 
       while (selectedProducts.length < 6) {
-        const randomIndex = Math.floor(Math.random() * specialties.length);
-        const product = specialties[randomIndex];
+        const randomIndex = Math.floor(Math.random() * products.length);
+        const product = products[randomIndex];
         if (!selectedProducts.find(p => p.id === product.id)) {
           selectedProducts.push({
             ...product,
@@ -42,7 +41,6 @@ const RandomProducts: React.FC<RandomProductsProps> = ({ handleClick }) => {
           <ProductContainer
             key={coffee.id}
             id={coffee.id}
-            getClassNames={getClassNames}
             name={coffee.name}
             image={coffee.image}
             prices={coffee.prices}
