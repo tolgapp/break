@@ -2,16 +2,15 @@ import BackButton from '../components/BackButton';
 import Logo from '../components/Logo';
 import UserAction from '../components/UserAction';
 import UserPage from '../components/Userpage';
-import { UserProps } from '../data/types';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { getClassNames } from '../data/helper';
 import { clearAuth } from '../store/reducers/authSlice';
 
-const User: React.FC<UserProps> = ( ) => {
+const User = () => {
   const { isLoggedIn, userName } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
-  const {toggle} = useSelector((state: RootState) => state.toggle);
+  const { toggle } = useSelector((state: RootState) => state.toggle);
 
   const handleLogout = () => {
     dispatch(clearAuth());
@@ -27,7 +26,7 @@ const User: React.FC<UserProps> = ( ) => {
       )} ${isLoggedIn ? '' : 'bg-[url(/bg-image01.webp)] bg-cover'}`}
     >
       <Logo />
-      <BackButton  />
+      <BackButton />
       {isLoggedIn ? (
         <>
           <div className="gap-6 flex px-6 upper-container mb-10 justify-around items-center w-full">

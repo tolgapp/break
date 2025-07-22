@@ -3,11 +3,11 @@ import { BACKEND_URL, getClassNames } from '../data/helper';
 import BackButton from './BackButton';
 import Logo from './Logo';
 import axios from 'axios';
-import { BeanProps, LastOrderType } from '../data/types';
+import { LastOrderType } from '../data/types';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../store/store';
 
-const Beans: React.FC<BeanProps> = () => {
+const Beans = () => {
   const { userId } = useSelector((state: RootState) => state.auth);
   const [lastOrders, setLastOrders] = useState<LastOrderType>([]);
   const points = lastOrders.length;

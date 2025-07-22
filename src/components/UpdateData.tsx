@@ -3,20 +3,17 @@ import { useEffect, useState } from 'react';
 import {
   BACKEND_URL,
   getClassNames,
-  getLogoSrc,
   inputClass,
   toggleButtonColor,
 } from '../data/helper';
 import Logo from './Logo';
 import BackButton from './BackButton';
-import { UpdateDataProps } from '../data/types';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../store/store';
 
 
-const UpdateData: React.FC<UpdateDataProps> = () => {
+const UpdateData = () => {
   const {userId} = useSelector((state: RootState) => state.auth)
-  console.log(userId)
   const toggle = useSelector((state: RootState) => state.toggle.toggle);
   const [value, setValue] = useState({
     name: '',
@@ -30,7 +27,6 @@ const UpdateData: React.FC<UpdateDataProps> = () => {
       try {
         const response = await axios.get(`${BACKEND_URL}/users/${userId}`);
         const { name, surname, email } = response.data;
-        console.log(response.data)
         setValue(prev => ({ ...prev, name, surname, email }));
       } catch (error) {
         console.error('Fehler beim Laden der Benutzerdaten:', error);

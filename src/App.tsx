@@ -17,14 +17,9 @@ import { useCart } from './hooks/useCart';
 import { useProductDetail } from './hooks/useProductDetail';
 import { useSelector } from 'react-redux';
 import { RootState } from './store/store';
-import { useEffect } from 'react';
 
 const App = () => {
-  const { isLoggedIn, userName } = useSelector((state: RootState) => state.auth);
-
-    useEffect(() => {
-      console.log('IsLoggedIn:', isLoggedIn, 'UserName:', userName);
-    }, [isLoggedIn, userName]);
+  const { isLoggedIn } = useSelector((state: RootState) => state.auth);
 
   const { total, addedProducts, setAddedProducts, addToCart } = useCart();
   const { openDetail, closeDetail, selectedProductId, handleClick } = useProductDetail();

@@ -46,14 +46,6 @@ export type RandomProductsProps = {
   handleClick: (id: number) => void;
 };
 
-export type ButtonProps = {
-  isLoggedIn?: boolean;
-};
-
-export type BeanProps = {
-  userId: string;
-};
-
 export type CartItemContainerProps = {
   addedProducts: Product[];
   setAddedProducts: React.Dispatch<React.SetStateAction<Product[]>>;
@@ -99,12 +91,6 @@ export type LogoProps = {
   isLoggedIn?: boolean;
 };
 
-export type LoginProps = {
-  setIsLoggedIn: (value: boolean) => void;
-  setUserName: (value: string) => void;
-  setUserId: (value: string) => void;
-};
-
 export type CartProps = {
   addedProducts: Product[];
   setAddedProducts: React.Dispatch<React.SetStateAction<Product[]>>;
@@ -119,10 +105,4 @@ export type HomeProps = {
   closeDetail: () => void;
   openDetail: boolean;
   selectedProductId: number | null;
-};
-
-export type UserProps = {
-  setIsLoggedIn: (value: boolean) => void;
-  isLoggedIn: boolean;
-  userName: string;
 };

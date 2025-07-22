@@ -1,11 +1,10 @@
 import { useSelector } from 'react-redux';
 import BackButton from '../components/BackButton';
 import Logo from '../components/Logo';
-import { toggleTextColor } from '../data/helper';
-import { NotFoundProps } from '../data/types';
+import { getClassNames, toggleTextColor } from '../data/helper';
 import { RootState } from '../store/store';
 
-const NotFound: React.FC<NotFoundProps> = ({ getClassNames }) => {
+const NotFound = () => {
   const toggle = useSelector((state: RootState) => state.toggle.toggle);
 
   return (

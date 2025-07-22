@@ -8,11 +8,7 @@ import { LastOrderType, Order } from '../data/types';
 import type { RootState } from '../store/store';
 import { useSelector } from 'react-redux';
 
-type LastOrdersProps = {
-  userId: string;
-};
-
-const LastOrders: React.FC<LastOrdersProps> = () => {
+const LastOrders = () => {
   const toggle = useSelector((state: RootState) => state.toggle.toggle);
   const { userId } = useSelector((state: RootState) => state.auth);
 
@@ -72,7 +68,7 @@ const LastOrders: React.FC<LastOrdersProps> = () => {
         toggle
       )} flex flex-col gap-4 justify-start items-center min-h-screen overflow-auto pb-48 pt-32 px-8`}
     >
-      <Logo  />
+      <Logo />
       <BackButton />
       <h2 className={`${toggleTextColor} text-3xl font-mono font-bold`}>Order History</h2>
 
