@@ -22,15 +22,22 @@ import { useEffect } from 'react';
 import { setProducts } from './store/reducers/productSlice';
 
 const App = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setProducts(coffeeData.coffeeSpecialties))
-  }, [])
+    dispatch(setProducts(coffeeData.coffeeSpecialties));
+  }, []);
+  const products = useSelector((state: RootState) => state.products.products); 
 
   const { isLoggedIn } = useSelector((state: RootState) => state.auth);
   const { total, addedProducts, setAddedProducts, addToCart } = useCart();
   const { openDetail, closeDetail, selectedProductId, handleClick } = useProductDetail();
+
+  const isProductsLoaded = products && products.length > 0;
+
+  if (!isProductsLoaded) {
+    return <div>Loading Products</div>;
+  }
 
   return (
     <>
@@ -77,7 +84,7 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={isLoggedIn ? <Navigate to="/" replace /> : <Login />} />
         <Route path="/profile" element={<User />} />
-        <Route element={<ProtectedRoute  />}>
+        <Route element={<ProtectedRoute />}>
           <Route path="/user/update-data" element={<UpdateData />} />
           <Route path="/user/last-orders" element={<LastOrders />} />
           <Route path="/user/theme-color" element={<ToggleTheme />} />

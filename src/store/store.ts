@@ -1,13 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 import toggleReducer from './reducers/toggleSlice';
 import authReducer from "./reducers/authSlice"
-import productSlice from './reducers/productSlice';
+import filterReducer from "./reducers/filterSlice"
+import productReducer from './reducers/productSlice';
 
 export const store = configureStore({
   reducer: {
     toggle: toggleReducer,
     auth: authReducer,
-    products: productSlice
+    products: productReducer,
+    filter: filterReducer,
   },
 });
 

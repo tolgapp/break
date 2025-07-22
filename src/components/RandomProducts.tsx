@@ -11,6 +11,8 @@ const RandomProducts: React.FC<RandomProductsProps> = ({ handleClick }) => {
   const toggle = useSelector((state: RootState) => state.toggle.toggle);
 
   useEffect(() => {
+  if (products.length === 0) return;
+
     const selectRandomProducts = () => {
       const selectedProducts: Product[] = [];
 
