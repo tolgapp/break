@@ -3,6 +3,28 @@
 @tailwind utilities;
 
 @layer utilities {
+  .w-clamp {
+    width: clamp(16.1rem, 25vw + 10rem, 18.1rem);
+  }
+}
+
+.product-container {
+  flex-basis: calc(50% - 1.25rem); 
+}
+
+@media (max-width: 768px) {
+  .product-container {
+    flex: 0 0 100%; 
+  }
+}
+
+@media (max-width: 1024px) {
+  .product-container {
+    flex: 0 0 calc(50% - 1.25rem); 
+  }
+}
+
+@layer utilities {
   /* Hide scrollbar for Chrome, Safari, and Opera */
   .no-scrollbar::-webkit-scrollbar {
     display: none;

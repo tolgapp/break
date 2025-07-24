@@ -6,7 +6,7 @@ const CheckFormat: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const checkFormat = () => {
     const width = window.innerWidth;
 
-    if (width > 350 && width < 400) {
+    if (width > 350 && width < 430) {
       setIsCorrectFormat(true);
     } else {
       setIsCorrectFormat(false);
