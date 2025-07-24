@@ -3,9 +3,10 @@ import { CheckoutProps } from '../data/types';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 
-const Checkout: React.FC<CheckoutProps> = ({ total, handleCheckout, isLoggedIn }) => {
+const Checkout: React.FC<CheckoutProps> = ({ total, handleCheckout }) => {
 
   const toggle = useSelector((state: RootState) => state.toggle.toggle);
+  const isLoggedIn = useSelector((state: RootState) => state.auth)
 
   return (
     <div

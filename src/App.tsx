@@ -13,11 +13,11 @@ import LastOrders from './components/LastOrders';
 import Points from './components/Beans';
 import ProtectedRoute from './components/ProtectedRoute';
 import ToggleTheme from './components/ToggleTheme';
+import coffeeData from './data/coffee.json'
 import { useCart } from './hooks/useCart';
 import { useProductDetail } from './hooks/useProductDetail';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './store/store';
-import coffeeData from './data/coffee.json'
 import { useEffect } from 'react';
 import { setProducts } from './store/reducers/productSlice';
 

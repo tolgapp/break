@@ -6,7 +6,7 @@ const CheckFormat: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const checkFormat = () => {
     const width = window.innerWidth;
 
-    if (width === 390) {
+    if (width > 350 && width < 400) {
       setIsCorrectFormat(true);
     } else {
       setIsCorrectFormat(false);
@@ -27,11 +27,10 @@ const CheckFormat: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <img src="/logo/breakwhite.png" alt="break logo white" className="w-32 absolute top-5" />
         <h2 className="text-3xl w-[65%]">
           Unsupported device dimension. Please use a device with a width of
-          <span className="text-3xl text-red-500 font-semibold"> 390px</span> such as the iPhone 13
-          Pro.
+          <span className="text-3xl text-red-500 font-semibold"> 390px.</span>
         </h2>
         <h3 className="text-2xl w-[65%] text-balance">
-          For the best experience, search for “Mobile Simulator” in the Chrome Web Store.
+          For best experience, search for “Mobile Simulator” in the Chrome Web Store.
         </h3>
         <h3 className="text-white text-2xl">
           Or click{' '}

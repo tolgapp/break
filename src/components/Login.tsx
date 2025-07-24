@@ -39,7 +39,14 @@ const Login= () => {
       })
       .catch(error => {
         console.error('Login failed:', error);
-        setIsError(error.response.data);
+
+        if (error.response && error.response.data) {
+          setIsError(error.response.data.message || 'Login failed.');
+        } else if (error.message) {
+          setIsError(error.message);
+        } else {
+          setIsError('Undefined Error!');
+        }
       });
   };
 

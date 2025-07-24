@@ -13,7 +13,6 @@ type Product = {
   tags: string[];
 };
 
-
 interface ProductState {
   products: Product[];
 }

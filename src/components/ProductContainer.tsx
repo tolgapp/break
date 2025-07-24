@@ -20,9 +20,9 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
       onClick={() => handleClick(id)}
       className={`border ${
         toggle ? 'border-slate-400' : 'border-gray-300'
-      } h-fit w-[16.1rem] rounded-xl flex flex-col ${getClassNames(toggle)} relative`}
+      } h-fit w-[16.1rem] rounded-xl flex flex-col ${getClassNames(toggle)} relative `}
     >
-      <div className="absolute top-1 bg-slate-300 rounded-lg left-1 p-2 z-50 text-slate-700">
+      <div className="absolute top-2 bg-slate-300 rounded-lg left-2 p-2 z-50 text-slate-700">
         4 for 3
       </div>
       <img className="rounded-t-xl pt-3 pb-6 bg-gray-100" src={image} alt={name} loading="lazy" />

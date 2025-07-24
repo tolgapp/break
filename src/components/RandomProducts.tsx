@@ -34,11 +34,11 @@ const RandomProducts: React.FC<RandomProductsProps> = ({ handleClick }) => {
   }, []);
 
   return (
-    <div className="px-8 flex flex-col gap-4">
+    <div className="px-8 flex flex-col gap-4 min-h-dvh overflow-y-scroll pb-5 sm:px-4 md:px-8 lg:px-16">
       <h2 className={`mt-6 text-3xl font-medium ${getClassNames(toggle)}`}>
         Selected Coffee Specialties
       </h2>
-      <ul className="flex flex-wrap overflow-auto justify-between gap-10">
+      <ul className="flex flex-wrap overflow-auto justify-between gap-5">
         {randomProducts.map(coffee => (
           <ProductContainer
             key={coffee.id}
