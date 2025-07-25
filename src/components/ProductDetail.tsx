@@ -44,7 +44,9 @@ const ProductDetail: React.FC<ProductDetail> = ({
   };
 
   return (
-    <div className={`fixed inset-0 z-[100] ${openDetail ? 'fade-in' : 'fade-out'}`}>
+    <div
+      className={`product-container fixed inset-0 z-[100] ${openDetail ? 'fade-in' : 'fade-out'}`}
+    >
       <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-xl"></div>
       <div className="fixed flex flex-col justify-center items-center bottom-0 z-[200] h-[75%] w-full bg-slate-50 rounded-t-3xl rounded-xl">
         <button

@@ -31,7 +31,7 @@ const FilterOptions: React.FC = () => {
     </div>
   ));
 
-  return <div className="flex gap-4 overflow-auto no-scrollbar ">{options}</div>;
+  return <div className="px-8 flex gap-4 overflow-auto no-scrollbar ">{options}</div>;
 };
 
 export default FilterOptions;

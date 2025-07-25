@@ -10,14 +10,19 @@ import type { RootState } from '../store/store';
 const Beans = () => {
   const { userId } = useSelector((state: RootState) => state.auth);
   const [lastOrders, setLastOrders] = useState<LastOrderType>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const points = lastOrders.length;
   const toggle = useSelector((state: RootState) => state.toggle.toggle);
 
   useEffect(() => {
     const getRecipes = async () => {
       try {
+        setLoading(true);
         const response = await axios.get<LastOrderType>(`${BACKEND_URL}/users/${userId}/receipts`);
-        setLastOrders(response.data);
+        if (response.data) {
+          setLoading(false);
+          setLastOrders(response.data);
+        }
       } catch (error) {
         console.error('Checkout error:', error);
       }
@@ -36,7 +41,9 @@ const Beans = () => {
       <BackButton />
       <div className={`border flex w-full justify-between min-h-[55rem]`}>
         <div className={`${getClassNames(toggle)} flex w-1/2 items-center justify-center`}>
-          {points < 1 ? (
+          {loading ? (
+            <h3 className="px-2 text-5xl text-center font-bold">Loading..</h3>
+          ) : points < 1 ? (
             <h3 className="px-2 text-7xl text-center font-bold ">No Orders Yet 🫣</h3>
           ) : (
             <h2 className={`text-5xl overflow-hidden text-left font-bold px-8`}>
@@ -44,7 +51,7 @@ const Beans = () => {
             </h2>
           )}
         </div>
-        {points > 0 ? (
+        {!loading && points > 0 ? (
           <div
             className={`${getClassNames(!toggle)} px-6 py-4 w-1/2 flex justify-center items-center`}
           >
@@ -52,7 +59,7 @@ const Beans = () => {
               {points > 1 ? `${points} BEANS` : `${points} BEAN`}
             </h3>
           </div>
-        ) : (
+        ) : !loading && points < 1 ? (
           <div
             className={`${getClassNames(
               !toggle
@@ -62,6 +69,8 @@ const Beans = () => {
               Earn 1 BEAN for every order you place.
             </p>
           </div>
+        ) : (
+          <div className="w-1/2" />
         )}
       </div>
     </div>

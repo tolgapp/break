@@ -24,10 +24,10 @@ const Products: React.FC<ProductsProps> = ({
       : products;
 
   return (
-    <main className={`${getClassNames(toggle)} px-8 pb-48 min-h-screen`}>
+    <main className={`${getClassNames(toggle)} pb-48 min-h-screen`}>
       <Logo />
       <FilterOptions />
-      <div className="mt-10 flex flex-wrap justify-between gap-5">
+      <div className="mt-10 flex flex-wrap justify-between gap-5 px-8">
         {filteredCoffee.map(coffee => (
           <ProductContainer
             key={coffee.id}

@@ -6,7 +6,9 @@ import { RootState } from '../store/store';
 const Checkout: React.FC<CheckoutProps> = ({ total, handleCheckout }) => {
 
   const toggle = useSelector((state: RootState) => state.toggle.toggle);
-  const isLoggedIn = useSelector((state: RootState) => state.auth)
+  const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
+
+  console.log(isLoggedIn)
 
   return (
     <div
