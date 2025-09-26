@@ -8,8 +8,6 @@ const Checkout: React.FC<CheckoutProps> = ({ total, handleCheckout }) => {
   const toggle = useSelector((state: RootState) => state.toggle.toggle);
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
 
-  console.log(isLoggedIn)
-
   return (
     <div
       className={`flex rounded-t-3xl h-auto justify-between w-full fixed bottom-32 px-8 py-4 items-center mx-auto mt-10 gap-4 ${

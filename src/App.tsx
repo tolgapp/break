@@ -1,7 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
 import Home from './pages/Home';
-import Products from './pages/Products';
 import Cart from './pages/Cart';
 import User from './pages/User';
 import NotFound from './pages/NotFound';
@@ -20,6 +19,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './store/store';
 import { useEffect } from 'react';
 import { setProducts } from './store/reducers/productSlice';
+import { lazy, Suspense } from 'react';
+const Products = lazy(() => import('./pages/Products'));
+
 
 const App = () => {
   const dispatch = useDispatch();
@@ -59,17 +61,20 @@ const App = () => {
         <Route
           path="/products"
           element={
-            <Products
-              addToCart={addToCart}
-              setAddedProducts={setAddedProducts}
-              openDetail={openDetail}
-              productId={selectedProductId}
-              handleClick={handleClick}
-              closeDetail={closeDetail}
-              selectedProductId={selectedProductId}
-            />
+            <Suspense fallback={<div>Loading Products...</div>}>
+              <Products
+                addToCart={addToCart}
+                setAddedProducts={setAddedProducts}
+                openDetail={openDetail}
+                productId={selectedProductId}
+                handleClick={handleClick}
+                closeDetail={closeDetail}
+                selectedProductId={selectedProductId}
+              />
+            </Suspense>
           }
         />
+
         <Route
           path="/cart"
           element={
@@ -81,7 +86,7 @@ const App = () => {
             />
           }
         />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/signup" element={isLoggedIn ? <Navigate to="/" replace /> : <Signup />} />
         <Route path="/login" element={isLoggedIn ? <Navigate to="/" replace /> : <Login />} />
         <Route path="/profile" element={<User />} />
         <Route element={<ProtectedRoute />}>

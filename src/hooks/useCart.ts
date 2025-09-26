@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Product } from '../data/types';
 import { nanoid } from 'nanoid';
 
@@ -77,14 +77,14 @@ export const useCart = () => {
     }
   }, [addedProducts.length]);
 
-  const addToCart = (product: Product) => {
+  const addToCart = useCallback((product: Product) => {
     const productWithInstanceId = { ...product, instanceId: nanoid() };
     setAddedProducts(prev => {
       const updatedProducts = [...prev, productWithInstanceId];
       localStorage.setItem('addedProducts', JSON.stringify(updatedProducts));
       return updatedProducts;
     });
-  };
+  }, []);;
 
   return {
     total,

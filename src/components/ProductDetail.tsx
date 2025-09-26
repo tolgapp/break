@@ -57,8 +57,8 @@ const ProductDetail: React.FC<ProductDetail> = ({
           <img
             className={`top-0 absolute left-0 ${
               selectedCoffee.name === 'Iced Coffee'
-                ? 'translate-y-[-21rem]'
-                : ' translate-y-[-18rem]'
+                ? 'translate-y-[-20rem]'
+                : ' translate-y-[-22rem]'
             }`}
             src={selectedCoffee.image}
             alt="coffee mockup cup"

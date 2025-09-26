@@ -8,8 +8,8 @@ interface AuthState {
 
 const initialState: AuthState = {
   isLoggedIn: localStorage.getItem('isLoggedIn') === 'true', 
-  userName: localStorage.getItem('userName') || '',
   userId: localStorage.getItem('userId') || '',
+  userName: localStorage.getItem('userName') || '',
 };
 
 const authSlice = createSlice({
