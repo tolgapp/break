@@ -33,16 +33,17 @@ export const useCart = () => {
   useEffect(() => {
     if (addedProducts.length > 3) {
       const smallestPrice = Math.min(
-        ...addedProducts.map(product => {
+        ...addedProducts.map((product) => {
           if (!product.size) return Infinity;
-          const originalPrice = product.prices[product.sizes.indexOf(product.size)];
+          const originalPrice =
+            product.prices[product.sizes.indexOf(product.size)];
           return product.price === 0 ? originalPrice : product.price;
         })
       );
 
-      setAddedProducts(prev => {
+      setAddedProducts((prev) => {
         let discountApplied = false;
-        const updatedProducts = prev.map(product => {
+        const updatedProducts = prev.map((product) => {
           const originalPrice =
             product.size && product.sizes.includes(product.size)
               ? product.prices[product.sizes.indexOf(product.size)]
@@ -60,8 +61,8 @@ export const useCart = () => {
         return updatedProducts;
       });
     } else {
-      setAddedProducts(prev => {
-        const updatedProducts = prev.map(product => {
+      setAddedProducts((prev) => {
+        const updatedProducts = prev.map((product) => {
           if (product.price === 0) {
             const originalPrice =
               product.size && product.sizes.includes(product.size)
@@ -75,16 +76,17 @@ export const useCart = () => {
         return updatedProducts;
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [addedProducts.length]);
 
   const addToCart = useCallback((product: Product) => {
     const productWithInstanceId = { ...product, instanceId: nanoid() };
-    setAddedProducts(prev => {
+    setAddedProducts((prev) => {
       const updatedProducts = [...prev, productWithInstanceId];
       localStorage.setItem('addedProducts', JSON.stringify(updatedProducts));
       return updatedProducts;
     });
-  }, []);;
+  }, []);
 
   return {
     total,

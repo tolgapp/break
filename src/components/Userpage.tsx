@@ -32,8 +32,10 @@ const UserPage: React.FC = () => {
   };
 
   return (
-    <div className={`cursor-pointer flex flex-wrap gap-5 justify-between items-center px-8`}>
-      {containers.map(container => (
+    <div
+      className={`cursor-pointer flex flex-wrap gap-5 justify-between items-center px-8`}
+    >
+      {containers.map((container) => (
         <div
           key={container.id}
           className={`flex flex-col product-container w-64 h-80 items-center justify-center border rounded-xl gap-3`}

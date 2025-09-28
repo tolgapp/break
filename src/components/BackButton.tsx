@@ -5,9 +5,8 @@ import { RootState } from '../store/store';
 const BackButton = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const {toggle} = useSelector((state: RootState) => state.toggle)
-    const { isLoggedIn } = useSelector((state: RootState) => state.auth);
-
+  const { toggle } = useSelector((state: RootState) => state.toggle);
+  const { isLoggedIn } = useSelector((state: RootState) => state.auth);
 
   if (pathname === '/profile') {
     return (
@@ -21,7 +20,11 @@ const BackButton = () => {
               : '/icons/backdark.png'
         }
         className={`${
-          isLoggedIn && toggle ? 'border-white' : !isLoggedIn ? 'border-white' : 'border-slate-900'
+          isLoggedIn && toggle
+            ? 'border-white'
+            : !isLoggedIn
+              ? 'border-white'
+              : 'border-slate-900'
         } border cursor-pointer fixed left-8 top-6  p-2 rounded-xl w-16`}
       />
     );

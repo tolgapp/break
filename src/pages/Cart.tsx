@@ -9,7 +9,11 @@ import { CartProps } from '../data/types';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 
-const Cart: React.FC<CartProps> = ({ addedProducts, setAddedProducts, total }) => {
+const Cart: React.FC<CartProps> = ({
+  addedProducts,
+  setAddedProducts,
+  total,
+}) => {
   const toggle = useSelector((state: RootState) => state.toggle.toggle);
   const { userId } = useSelector((state: RootState) => state.auth);
   const handleCheckout = () => {
@@ -27,10 +31,10 @@ const Cart: React.FC<CartProps> = ({ addedProducts, setAddedProducts, total }) =
         total,
         products: addedProducts,
       })
-      .then(response => {
+      .then((response) => {
         console.log('Checkout successful:', response.data);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Checkout error:', error);
       });
 
@@ -46,10 +50,15 @@ const Cart: React.FC<CartProps> = ({ addedProducts, setAddedProducts, total }) =
     >
       <Logo />
       <BackButton />
-      <h1 className={` mt-32 mb-4 text-5xl font-bold text-left pl-8 ${getClassNames(toggle)}`}>
+      <h1
+        className={` mt-32 mb-4 text-5xl font-bold text-left pl-8 ${getClassNames(toggle)}`}
+      >
         Your items:
       </h1>
-      <CartItemContainer addedProducts={addedProducts} setAddedProducts={setAddedProducts} />
+      <CartItemContainer
+        addedProducts={addedProducts}
+        setAddedProducts={setAddedProducts}
+      />
       <Checkout total={total} handleCheckout={handleCheckout} />
     </main>
   );

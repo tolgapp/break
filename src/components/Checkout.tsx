@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 
 const Checkout: React.FC<CheckoutProps> = ({ total, handleCheckout }) => {
-
   const toggle = useSelector((state: RootState) => state.toggle.toggle);
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
 
@@ -32,7 +31,7 @@ const Checkout: React.FC<CheckoutProps> = ({ total, handleCheckout }) => {
             Total: {total.toFixed(2)} €
           </span>
           <Link
-          to={"/login"}
+            to={'/login'}
             className="px-6 py-3 text-3xl font-medium text-white bg-green-600 rounded-lg hover:bg-green-700"
           >
             Order? Login →

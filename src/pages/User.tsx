@@ -8,7 +8,9 @@ import { getClassNames } from '../data/helper';
 import { clearAuth } from '../store/reducers/authSlice';
 
 const User = () => {
-  const { isLoggedIn, userName } = useSelector((state: RootState) => state.auth);
+  const { isLoggedIn, userName } = useSelector(
+    (state: RootState) => state.auth
+  );
   const dispatch = useDispatch();
   const { toggle } = useSelector((state: RootState) => state.toggle);
 
@@ -30,7 +32,9 @@ const User = () => {
       {isLoggedIn ? (
         <>
           <div className="gap-6 flex px-6 upper-container mb-10 justify-around items-center w-full">
-            <h2 className={`text-5xl font-semibold`}>Welcome back, {userName}</h2>
+            <h2 className={`text-5xl font-semibold`}>
+              Welcome back, {userName}
+            </h2>
             <img
               onClick={handleLogout}
               className="w-14 cursor-pointer hover:delay-200 hover:rotate-180"
@@ -42,7 +46,9 @@ const User = () => {
         </>
       ) : (
         <>
-          <h2 className={`text-5xl font-bold text-center pb-6 text-white`}>Welcome Back!</h2>
+          <h2 className={`text-5xl font-bold text-center pb-6 text-white`}>
+            Welcome Back!
+          </h2>
           <UserAction />
         </>
       )}

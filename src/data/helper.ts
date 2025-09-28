@@ -45,12 +45,14 @@ export const getClassNames = (toggle: boolean): string =>
 export const getLogoSrc = (toggle: boolean): string =>
   `/logo${toggle ? '/breakwhite' : '/breakblack'}.png`;
 
-export const toggleTextColor = (toggle: boolean): string => (toggle ? 'text-black' : 'text-white');
+export const toggleTextColor = (toggle: boolean): string =>
+  toggle ? 'text-black' : 'text-white';
 
 export const toggleButtonColor = (toggle: boolean): string =>
   toggle ? 'bg-slate-100 text-slate-900' : 'text-white bg-slate-900';
 
-export const backgroundColor = (toggle: boolean) => (toggle ? 'bg-white' : 'bg-slate-900');
+export const backgroundColor = (toggle: boolean) =>
+  toggle ? 'bg-white' : 'bg-slate-900';
 
 // Backend URL
 export const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;

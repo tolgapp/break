@@ -18,7 +18,9 @@ const Beans = () => {
     const getRecipes = async () => {
       try {
         setLoading(true);
-        const response = await axios.get<LastOrderType>(`${BACKEND_URL}/users/${userId}/receipts`);
+        const response = await axios.get<LastOrderType>(
+          `${BACKEND_URL}/users/${userId}/receipts`
+        );
         if (response.data) {
           setLoading(false);
           setLastOrders(response.data);
@@ -40,11 +42,15 @@ const Beans = () => {
       <Logo />
       <BackButton />
       <div className={`border flex w-full justify-between min-h-[55rem]`}>
-        <div className={`${getClassNames(toggle)} flex w-1/2 items-center justify-center`}>
+        <div
+          className={`${getClassNames(toggle)} flex w-1/2 items-center justify-center`}
+        >
           {loading ? (
             <h3 className="px-2 text-5xl text-center font-bold">Loading..</h3>
           ) : points < 1 ? (
-            <h3 className="px-2 text-7xl text-center font-bold ">No Orders Yet 🫣</h3>
+            <h3 className="px-2 text-7xl text-center font-bold ">
+              No Orders Yet 🫣
+            </h3>
           ) : (
             <h2 className={`text-5xl overflow-hidden text-left font-bold px-8`}>
               You currently have

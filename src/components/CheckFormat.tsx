@@ -24,16 +24,21 @@ const CheckFormat: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   if (!isCorrectFormat) {
     return (
       <div className="flex flex-col justify-center items-center h-screen bg-gradient-to-r from-black to-slate-800 text-white text-center gap-8 p-4">
-        <img src="/logo/breakwhite.png" alt="break logo white" className="w-32 mb-6" />
+        <img
+          src="/logo/breakwhite.png"
+          alt="break logo white"
+          className="w-32 mb-6"
+        />
         <h2 className="text-3xl font-semibold leading-tight w-[70%] md:w-[60%]">
           Unsupported Device Dimensions!
         </h2>
         <p className="text-xl md:text-2xl w-[80%] mb-4">
-          This app is designed for devices with a screen width between <strong>370px</strong> and{' '}
-          <strong>430px</strong>.
+          This app is designed for devices with a screen width between{' '}
+          <strong>370px</strong> and <strong>430px</strong>.
         </p>
         <h3 className="text-lg mb-4">
-          For the best experience, try using a mobile simulator or adjust your device width.
+          For the best experience, try using a mobile simulator or adjust your
+          device width.
         </h3>
         <div className="flex flex-col items-center gap-3">
           <a

@@ -11,9 +11,8 @@ import BackButton from './BackButton';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../store/store';
 
-
 const UpdateData = () => {
-  const {userId} = useSelector((state: RootState) => state.auth)
+  const { userId } = useSelector((state: RootState) => state.auth);
   const toggle = useSelector((state: RootState) => state.toggle.toggle);
   const [value, setValue] = useState({
     name: '',
@@ -27,7 +26,7 @@ const UpdateData = () => {
       try {
         const response = await axios.get(`${BACKEND_URL}/users/${userId}`);
         const { name, surname, email } = response.data;
-        setValue(prev => ({ ...prev, name, surname, email }));
+        setValue((prev) => ({ ...prev, name, surname, email }));
       } catch (error) {
         console.error('Fehler beim Laden der Benutzerdaten:', error);
       }
@@ -38,7 +37,7 @@ const UpdateData = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setValue(prev => ({ ...prev, [name]: value }));
+    setValue((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -63,9 +62,11 @@ const UpdateData = () => {
         toggle
       )}`}
     >
-      <Logo  />
+      <Logo />
       <BackButton />
-      <h2 className={`text-5xl text-left mb-12 ${getClassNames(toggle)}`}>Update Profile</h2>
+      <h2 className={`text-5xl text-left mb-12 ${getClassNames(toggle)}`}>
+        Update Profile
+      </h2>
       <form onSubmit={handleSubmit} className="flex flex-col w-[90%] gap-4">
         <input
           className={`${inputClass} ${toggleButtonColor(toggle)}`}
@@ -86,7 +87,7 @@ const UpdateData = () => {
           onChange={handleChange}
           placeholder="Surname"
           autoComplete="surname"
-          />
+        />
         <input
           className={`${inputClass} ${toggleButtonColor(toggle)}`}
           type="email"
@@ -96,7 +97,7 @@ const UpdateData = () => {
           onChange={handleChange}
           placeholder="Email"
           autoComplete="email"
-          />
+        />
         <input
           className={`${inputClass} ${toggleButtonColor(toggle)}`}
           type="password"
@@ -107,7 +108,11 @@ const UpdateData = () => {
           placeholder="Password"
           autoComplete="password"
         />
-        <button className={`py-4 rounded-lg text-4xl ${toggleButtonColor(toggle)}`}>Update</button>
+        <button
+          className={`py-4 rounded-lg text-4xl ${toggleButtonColor(toggle)}`}
+        >
+          Update
+        </button>
       </form>
     </div>
   );

@@ -1,6 +1,11 @@
 import BackButton from './BackButton';
 import Logo from './Logo';
-import { BACKEND_URL, getClassNames, inputClass, toggleButtonColor } from '../data/helper';
+import {
+  BACKEND_URL,
+  getClassNames,
+  inputClass,
+  toggleButtonColor,
+} from '../data/helper';
 import { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -8,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { setAuth } from '../store/reducers/authSlice';
 
-const Login= () => {
+const Login = () => {
   const dispatch = useDispatch();
   const toggle = useSelector((state: RootState) => state.toggle.toggle);
   const [user, setUser] = useState({
@@ -19,7 +24,7 @@ const Login= () => {
 
   const handleLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setUser(prev => ({
+    setUser((prev) => ({
       ...prev,
       [name]: value,
     }));
@@ -30,14 +35,14 @@ const Login= () => {
 
     axios
       .post(`${BACKEND_URL}/login`, user)
-      .then(response => {
+      .then((response) => {
         const { userName, userId } = response.data;
         dispatch(setAuth({ isLoggedIn: true, userName, userId }));
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('userName', userName);
         localStorage.setItem('userId', userId);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Login failed:', error);
 
         if (error.response && error.response.data) {
@@ -82,14 +87,23 @@ const Login= () => {
           onChange={handleLogin}
           autoComplete="current-password"
         />
-        <button className={`py-4 rounded-lg text-4xl ${toggleButtonColor(toggle)}`}>Login</button>
+        <button
+          className={`py-4 rounded-lg text-4xl ${toggleButtonColor(toggle)}`}
+        >
+          Login
+        </button>
       </form>
       {isError ? (
-        <p className="text-red-500 px-8 rounded-lg text-3xl mt-8 font-bold">{isError}</p>
+        <p className="text-red-500 px-8 rounded-lg text-3xl mt-8 font-bold">
+          {isError}
+        </p>
       ) : (
         <p className="mt-8 text-3xl">
           New @ break?{' '}
-          <Link to={'/signup'} className="mt-8 text-3xl cursor-pointer underline">
+          <Link
+            to={'/signup'}
+            className="mt-8 text-3xl cursor-pointer underline"
+          >
             Sign Up!
           </Link>
         </p>

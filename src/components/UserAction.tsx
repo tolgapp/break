@@ -8,7 +8,9 @@ const UserAction = () => {
 
   const toggle = useSelector((state: RootState) => state.toggle);
 
-  const buttonBg = toggle ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-300 hover:bg-gray-200';
+  const buttonBg = toggle
+    ? 'bg-gray-700 hover:bg-gray-600'
+    : 'bg-gray-300 hover:bg-gray-200';
 
   if (pathname === '/profile') {
     return (

@@ -12,7 +12,7 @@ import LastOrders from './components/LastOrders';
 import Points from './components/Beans';
 import ProtectedRoute from './components/ProtectedRoute';
 import ToggleTheme from './components/ToggleTheme';
-import coffeeData from './data/coffee.json'
+import coffeeData from './data/coffee.json';
 import { useCart } from './hooks/useCart';
 import { useProductDetail } from './hooks/useProductDetail';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,18 +22,19 @@ import { setProducts } from './store/reducers/productSlice';
 import { lazy, Suspense } from 'react';
 const Products = lazy(() => import('./pages/Products'));
 
-
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(setProducts(coffeeData.coffeeSpecialties));
-  }, []);
-  const products = useSelector((state: RootState) => state.products.products); 
+  }, [dispatch]);
+
+  const products = useSelector((state: RootState) => state.products.products);
 
   const { isLoggedIn } = useSelector((state: RootState) => state.auth);
   const { total, addedProducts, setAddedProducts, addToCart } = useCart();
-  const { openDetail, closeDetail, selectedProductId, handleClick } = useProductDetail();
+  const { openDetail, closeDetail, selectedProductId, handleClick } =
+    useProductDetail();
 
   const isProductsLoaded = products && products.length > 0;
 
@@ -86,8 +87,14 @@ const App = () => {
             />
           }
         />
-        <Route path="/signup" element={isLoggedIn ? <Navigate to="/" replace /> : <Signup />} />
-        <Route path="/login" element={isLoggedIn ? <Navigate to="/" replace /> : <Login />} />
+        <Route
+          path="/signup"
+          element={isLoggedIn ? <Navigate to="/" replace /> : <Signup />}
+        />
+        <Route
+          path="/login"
+          element={isLoggedIn ? <Navigate to="/" replace /> : <Login />}
+        />
         <Route path="/profile" element={<User />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/user/update-data" element={<UpdateData />} />

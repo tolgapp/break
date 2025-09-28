@@ -84,7 +84,12 @@
       "id": 9,
       "name": "Mocha",
       "description": "Chocolate-flavored coffee with milk and foam.",
-      "ingredients": ["Espresso", "Steamed milk", "Chocolate syrup", "Whipped cream"],
+      "ingredients": [
+        "Espresso",
+        "Steamed milk",
+        "Chocolate syrup",
+        "Whipped cream"
+      ],
       "sizes": ["Small", "Medium", "Large"],
       "image": "mocha.png",
       "prices": [4.45, 5.45, 6.95],

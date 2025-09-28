@@ -20,10 +20,9 @@ const Home: React.FC<HomeProps> = ({
   const [offerId, setOfferId] = useState<number | undefined>(undefined);
   const toggle = useSelector((state: RootState) => state.toggle.toggle);
 
-
   const toggleDetail = (id: number) => {
     if (id === 0) {
-      setShowDetail(prev => !prev);
+      setShowDetail((prev) => !prev);
       setOfferId(id);
     }
   };
@@ -32,7 +31,7 @@ const Home: React.FC<HomeProps> = ({
     <main
       className={`relative flex flex-col ${getClassNames(
         toggle
-      )} min-h-dvh overflow-y-scroll pb-48 sm:px-4 md:px-8 lg:px-16`} 
+      )} min-h-dvh overflow-y-scroll pb-48 sm:px-4 md:px-8 lg:px-16`}
     >
       <Logo />
       <OfferContainer toggleDetail={toggleDetail} />
@@ -46,7 +45,11 @@ const Home: React.FC<HomeProps> = ({
         />
       )}
       {showDetail && offerId !== undefined && (
-        <OfferInfo toggleDetail={toggleDetail} showDetail={showDetail} id={offerId} />
+        <OfferInfo
+          toggleDetail={toggleDetail}
+          showDetail={showDetail}
+          id={offerId}
+        />
       )}
     </main>
   );

@@ -7,7 +7,7 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  isLoggedIn: localStorage.getItem('isLoggedIn') === 'true', 
+  isLoggedIn: localStorage.getItem('isLoggedIn') === 'true',
   userId: localStorage.getItem('userId') || '',
   userName: localStorage.getItem('userName') || '',
 };
@@ -18,7 +18,11 @@ const authSlice = createSlice({
   reducers: {
     setAuth(
       state,
-      action: PayloadAction<{ isLoggedIn: boolean; userName: string; userId: string }>
+      action: PayloadAction<{
+        isLoggedIn: boolean;
+        userName: string;
+        userId: string;
+      }>
     ) {
       const { isLoggedIn, userName, userId } = action.payload;
       state.isLoggedIn = isLoggedIn;

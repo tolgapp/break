@@ -18,7 +18,9 @@ const ProductDetail: React.FC<ProductDetail> = ({
 }) => {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
 
-  const selectedCoffee = coffeeData.coffeeSpecialties.find(coffee => coffee.id === productId);
+  const selectedCoffee = coffeeData.coffeeSpecialties.find(
+    (coffee) => coffee.id === productId
+  );
 
   if (!selectedCoffee) {
     return null;
@@ -44,7 +46,9 @@ const ProductDetail: React.FC<ProductDetail> = ({
   };
 
   return (
-    <div className={`fixed inset-0 z-[100] ${openDetail ? 'fade-in' : 'fade-out'}`}>
+    <div
+      className={`fixed inset-0 z-[100] ${openDetail ? 'fade-in' : 'fade-out'}`}
+    >
       <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-xl"></div>
       <div className="fixed flex flex-col justify-center items-center bottom-0 z-[200] h-[73%] w-full bg-slate-50 rounded-t-3xl rounded-xl">
         <button
@@ -63,8 +67,12 @@ const ProductDetail: React.FC<ProductDetail> = ({
             src={selectedCoffee.image}
             alt="coffee mockup cup"
           />
-          <h2 className="mt-10 text-black text-6xl font-bold">{selectedCoffee.name}</h2>
-          <p className="text-gray-700 text-2xl mt-2 mb-8">{selectedCoffee.description}</p>
+          <h2 className="mt-10 text-black text-6xl font-bold">
+            {selectedCoffee.name}
+          </h2>
+          <p className="text-gray-700 text-2xl mt-2 mb-8">
+            {selectedCoffee.description}
+          </p>
         </div>
         <div className="flex flex-col justify-between text-black mt-4 w-full px-8">
           <div>

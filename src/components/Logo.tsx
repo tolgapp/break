@@ -7,8 +7,8 @@ import type { RootState } from '../store/store';
 import { getLogoSrc } from '../data/helper';
 
 const Logo: React.FC<LogoProps> = () => {
-  const {toggle} = useSelector((state: RootState) => state.toggle);
-  const {isLoggedIn} = useSelector((state: RootState) => state.auth)
+  const { toggle } = useSelector((state: RootState) => state.toggle);
+  const { isLoggedIn } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   const [change, setChange] = useState(false);
@@ -36,8 +36,8 @@ const Logo: React.FC<LogoProps> = () => {
           isLoggedIn && toggle
             ? '/logo/breakwhite.png'
             : !isLoggedIn
-            ? '/logo/breakwhite.png'
-            : '/logo/breakblack.png'
+              ? '/logo/breakwhite.png'
+              : '/logo/breakblack.png'
         }
         alt="Logo"
         onClick={handleLogoClick}

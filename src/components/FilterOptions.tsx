@@ -6,14 +6,16 @@ import { setFilter } from '../store/reducers/filterSlice';
 
 const FilterOptions: React.FC = () => {
   const dispatch = useDispatch();
-  const activeOption = useSelector((state: RootState) => state.filter.selectedOption);
+  const activeOption = useSelector(
+    (state: RootState) => state.filter.selectedOption
+  );
   const toggle = useSelector((state: RootState) => state.toggle.toggle);
 
   const handleClick = (option: string) => {
     dispatch(setFilter(option));
   };
 
-  const options = filterOptions.map(option => (
+  const options = filterOptions.map((option) => (
     <div
       onClick={() => handleClick(option)}
       key={uuidv4()}
@@ -31,7 +33,9 @@ const FilterOptions: React.FC = () => {
     </div>
   ));
 
-  return <div className="px-8 flex gap-4 overflow-auto no-scrollbar ">{options}</div>;
+  return (
+    <div className="px-8 flex gap-4 overflow-auto no-scrollbar ">{options}</div>
+  );
 };
 
 export default FilterOptions;

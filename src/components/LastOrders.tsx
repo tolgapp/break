@@ -17,9 +17,12 @@ const LastOrders = () => {
   useEffect(() => {
     const getRecipes = async () => {
       try {
-        const response = await axios.get<LastOrderType>(`${BACKEND_URL}/users/${userId}/receipts`);
+        const response = await axios.get<LastOrderType>(
+          `${BACKEND_URL}/users/${userId}/receipts`
+        );
         const sortedOrders = response.data.sort(
-          (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+          (a, b) =>
+            new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
         );
         setLastOrders(sortedOrders);
       } catch (error) {
@@ -28,7 +31,7 @@ const LastOrders = () => {
     };
 
     getRecipes();
-  }, []);
+  }, [userId]);
 
   const eachOrder = lastOrders.map((order: Order, index) => (
     <div
@@ -44,20 +47,27 @@ const LastOrders = () => {
         </p>
       </div>
       <div className="space-y-3 mb-6">
-        {order.products.map(product => (
-          <div key={nanoid()} className="flex justify-between items-center font-mono text-sm">
+        {order.products.map((product) => (
+          <div
+            key={nanoid()}
+            className="flex justify-between items-center font-mono text-sm"
+          >
             <div className="flex gap-2">
               <span className="font-medium text-slate-900">{product.name}</span>
               <span className="text-gray-500">({product.size || 'N/A'})</span>
             </div>
-            <span className="font-semibold text-slate-900">{product.price?.toFixed(2)} €</span>
+            <span className="font-semibold text-slate-900">
+              {product.price?.toFixed(2)} €
+            </span>
           </div>
         ))}
       </div>
       <div className="border-t-2 border-dotted border-gray-300 my-4"></div>
       <div className="flex justify-between items-center pt-2">
         <p className="font-mono font-bold text-2xl text-slate-900">TOTAL</p>
-        <p className="font-mono font-bold text-2xl text-slate-900">{order.total.toFixed(2)} €</p>
+        <p className="font-mono font-bold text-2xl text-slate-900">
+          {order.total.toFixed(2)} €
+        </p>
       </div>
     </div>
   ));
@@ -70,12 +80,18 @@ const LastOrders = () => {
     >
       <Logo />
       <BackButton />
-      <h2 className={`${toggleTextColor} text-3xl font-mono font-bold`}>Order History</h2>
+      <h2 className={`${toggleTextColor} text-3xl font-mono font-bold`}>
+        Order History
+      </h2>
 
       {lastOrders.length > 0 ? (
-        <div className="flex flex-col items-center w-full gap-6">{eachOrder}</div>
+        <div className="flex flex-col items-center w-full gap-6">
+          {eachOrder}
+        </div>
       ) : (
-        <p className={`${toggleTextColor} text-xl font-mono`}>No orders found</p>
+        <p className={`${toggleTextColor} text-xl font-mono`}>
+          No orders found
+        </p>
       )}
     </div>
   );

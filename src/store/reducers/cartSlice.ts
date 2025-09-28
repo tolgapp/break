@@ -19,7 +19,7 @@ const calculateTotal = (products: Product[]) => {
 
 const applyDiscount = (products: Product[]): Product[] => {
   if (products.length <= 3)
-    return products.map(p => {
+    return products.map((p) => {
       if (p.price === 0 && p.size) {
         const originalPrice = p.prices[p.sizes.indexOf(p.size)];
         return { ...p, price: originalPrice };
@@ -28,20 +28,22 @@ const applyDiscount = (products: Product[]): Product[] => {
     });
 
   const smallestPrice = Math.min(
-    ...products.map(product => {
+    ...products.map((product) => {
       if (!product.size) return Infinity;
       const originalPrice = product.prices[product.sizes.indexOf(product.size)];
-      return product.price === 0 ? originalPrice : product.price ?? originalPrice;
+      return product.price === 0
+        ? originalPrice
+        : (product.price ?? originalPrice);
     })
   );
 
   let discountApplied = false;
 
-  return products.map(product => {
+  return products.map((product) => {
     const originalPrice =
       product.size && product.sizes.includes(product.size)
         ? product.prices[product.sizes.indexOf(product.size)]
-        : product.price ?? 0;
+        : (product.price ?? 0);
 
     if (!discountApplied && originalPrice === smallestPrice) {
       discountApplied = true;
@@ -70,13 +72,16 @@ const cartSlice = createSlice({
     },
     removeFromCart(state, action: PayloadAction<string>) {
       const updatedProducts = state.addedProducts.filter(
-        product => product.instanceId !== action.payload
+        (product) => product.instanceId !== action.payload
       );
       const discountedProducts = applyDiscount(updatedProducts);
       state.addedProducts = discountedProducts;
       state.total = calculateTotal(discountedProducts);
     },
-    loadCartFromStorage(state, action: PayloadAction<{ products: Product[]; total: number }>) {
+    loadCartFromStorage(
+      state,
+      action: PayloadAction<{ products: Product[]; total: number }>
+    ) {
       state.addedProducts = action.payload.products;
       state.total = action.payload.total;
     },
@@ -87,5 +92,6 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, removeFromCart, loadCartFromStorage, clearCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, loadCartFromStorage, clearCart } =
+  cartSlice.actions;
 export default cartSlice.reducer;

@@ -1,14 +1,19 @@
 import { useState } from 'react';
 import BackButton from './BackButton';
 import Logo from './Logo';
-import { BACKEND_URL, getClassNames, inputClass, toggleButtonColor } from '../data/helper';
+import {
+  BACKEND_URL,
+  getClassNames,
+  inputClass,
+  toggleButtonColor,
+} from '../data/helper';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 
 const Signup = () => {
-  const toggle = useSelector((state: RootState) => state.toggle.toggle)
+  const toggle = useSelector((state: RootState) => state.toggle.toggle);
   const navigate = useNavigate();
   const [value, setValue] = useState({
     name: '',
@@ -20,7 +25,7 @@ const Signup = () => {
 
   const handleData = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setValue(prev => ({
+    setValue((prev) => ({
       ...prev,
       [name]: value,
     }));
@@ -31,7 +36,7 @@ const Signup = () => {
 
     axios
       .post(`${BACKEND_URL}/signup`, value)
-      .then(response => {
+      .then((response) => {
         if (response.status === 200 || response.status === 201) {
           setValue({
             name: '',
@@ -45,7 +50,7 @@ const Signup = () => {
           }, 300);
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Signup failed:', error.response.data);
         setIsError(error.response.data);
       });
@@ -57,7 +62,7 @@ const Signup = () => {
         toggle
       )}`}
     >
-      <Logo  />
+      <Logo />
       <BackButton />
       <h2 className={`text-4xl mb-10 w-[80%] text-center font-semibold`}>
         Sign up and get BEANS for every order 🫘
@@ -103,14 +108,23 @@ const Signup = () => {
           placeholder="Password"
           autoComplete="new-password"
         />
-        <button className={`py-4 rounded-lg text-4xl ${toggleButtonColor(toggle)}`}>Signup</button>
+        <button
+          className={`py-4 rounded-lg text-4xl ${toggleButtonColor(toggle)}`}
+        >
+          Signup
+        </button>
       </form>
       {isError ? (
-        <p className="text-red-600 px-8 rounded-lg text-3xl mt-8 font-semibold">{isError}</p>
+        <p className="text-red-600 px-8 rounded-lg text-3xl mt-8 font-semibold">
+          {isError}
+        </p>
       ) : (
         <p className="mt-8 text-3xl">
           Already an Account?{' '}
-          <Link to={'/login'} className="mt-8 text-3xl cursor-pointer underline">
+          <Link
+            to={'/login'}
+            className="mt-8 text-3xl cursor-pointer underline"
+          >
             Get your Break!
           </Link>
         </p>

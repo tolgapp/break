@@ -16,11 +16,13 @@ const Products: React.FC<ProductsProps> = ({
 }) => {
   const products = useSelector((state: RootState) => state.products.products);
   const toggle = useSelector((state: RootState) => state.toggle.toggle);
-  const selectedOption = useSelector((state: RootState) => state.filter.selectedOption);
+  const selectedOption = useSelector(
+    (state: RootState) => state.filter.selectedOption
+  );
 
   const filteredCoffee =
     selectedOption && selectedOption !== 'All'
-      ? products.filter(coffee => coffee.tags?.includes(selectedOption))
+      ? products.filter((coffee) => coffee.tags?.includes(selectedOption))
       : products;
 
   return (
@@ -28,7 +30,7 @@ const Products: React.FC<ProductsProps> = ({
       <Logo />
       <FilterOptions />
       <div className="mt-10 flex flex-wrap justify-between gap-5 px-8">
-        {filteredCoffee.map(coffee => (
+        {filteredCoffee.map((coffee) => (
           <ProductContainer
             key={coffee.id}
             id={coffee.id}

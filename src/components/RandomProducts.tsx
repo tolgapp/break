@@ -11,7 +11,7 @@ const RandomProducts: React.FC<RandomProductsProps> = ({ handleClick }) => {
   const toggle = useSelector((state: RootState) => state.toggle.toggle);
 
   useEffect(() => {
-  if (products.length === 0) return;
+    if (products.length === 0) return;
 
     const selectRandomProducts = () => {
       const selectedProducts: Product[] = [];
@@ -19,7 +19,7 @@ const RandomProducts: React.FC<RandomProductsProps> = ({ handleClick }) => {
       while (selectedProducts.length < 6) {
         const randomIndex = Math.floor(Math.random() * products.length);
         const product = products[randomIndex];
-        if (!selectedProducts.find(p => p.id === product.id)) {
+        if (!selectedProducts.find((p) => p.id === product.id)) {
           selectedProducts.push({
             ...product,
             price: product.prices[0] || 0,
@@ -31,7 +31,7 @@ const RandomProducts: React.FC<RandomProductsProps> = ({ handleClick }) => {
     };
 
     selectRandomProducts();
-  }, []);
+  }, [products]);
 
   return (
     <div className="px-8 flex flex-col gap-4 min-h-dvh overflow-y-scroll pb-5 sm:px-4 md:px-8 lg:px-16">
@@ -39,7 +39,7 @@ const RandomProducts: React.FC<RandomProductsProps> = ({ handleClick }) => {
         Selected Coffee Specialties
       </h2>
       <ul className="flex flex-wrap overflow-auto justify-between gap-5">
-        {randomProducts.map(coffee => (
+        {randomProducts.map((coffee) => (
           <ProductContainer
             key={coffee.id}
             id={coffee.id}
