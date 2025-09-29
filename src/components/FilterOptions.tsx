@@ -1,5 +1,5 @@
 import { filterOptions } from '../data/helper';
-import { v4 as uuidv4 } from 'uuid';
+import { nanoid } from 'nanoid';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store/store';
 import { setFilter } from '../store/reducers/filterSlice';
@@ -18,7 +18,7 @@ const FilterOptions: React.FC = () => {
   const options = filterOptions.map((option) => (
     <div
       onClick={() => handleClick(option)}
-      key={uuidv4()}
+      key={nanoid()}
       className={`flex cursor-pointer items-center border rounded-lg py-2 ${
         activeOption === option ? 'bg-slate-400' : ''
       } ${option === 'All' ? 'px-11' : 'px-7'} mt-24 max-h-20`}

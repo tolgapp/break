@@ -37,8 +37,8 @@ const CheckFormat: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           <strong>370px</strong> and <strong>430px</strong>.
         </p>
         <h3 className="text-lg mb-4">
-          For the best experience, try using a mobile simulator or adjust your
-          device width.
+          For best experience, open up dev tools, with width between as
+          mentioned above or download the extenson below.
         </h3>
         <div className="flex flex-col items-center gap-3">
           <a

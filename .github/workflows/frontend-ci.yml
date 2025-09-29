@@ -29,8 +29,8 @@ jobs:
       - name: 🧹 Run ESLint
         run: npm run lint
 
-      # - name: ⚙️ Run Test
-      #   run: npm run test
+      - name: ⚙️ Run Test
+        run: npm run test
 
       - name: 🛠 TypeScript Build
         run: npm run build

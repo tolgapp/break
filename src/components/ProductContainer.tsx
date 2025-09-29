@@ -38,6 +38,8 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
       <div className="flex items-center justify-between w-full px-2 py-2 mt-4">
         <button
           onClick={() => handleClick(id)}
+          aria-label={name}
+          data-testid={`product-button-${id}`}
           className={`cursor-pointer rounded-lg px-4 py-4 w-full text-2xl font-semibold hover:bg-gray-400 hover:text-white ${toggleTextColor(
             toggle
           )} ${backgroundColor(toggle)}`}

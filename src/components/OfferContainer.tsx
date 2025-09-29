@@ -13,6 +13,7 @@ const OfferContainer: React.FC<OfferContainerProps> = ({ toggleDetail }) => {
       {offers.image.map((src, index) => (
         <img
           loading="lazy"
+          aria-label={`offerImage-${index}`}
           onClick={() => toggleDetail(index)}
           key={index}
           id={index.toString()}
