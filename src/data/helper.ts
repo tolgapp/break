@@ -31,7 +31,6 @@ export const filterOptions: string[] = [
   'Fresh',
   'Vegan',
   'Sugar-Free',
-  'Vegetarian',
   'Lactose-Free',
 ];
 
