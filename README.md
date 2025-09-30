@@ -40,3 +40,6 @@ project by [Tolgapp](https://tolgapp.de)
     <h3>For best experience use Chrome Dev Tools and change it to mobile view to iPhone 12 PRO (optimized for iPhone 12/13/14 PRO)</h3>
     <h3>or download the Mobile Simulator from Chrome web store: https://shorturl.at/H0o0w</h3>
 </section>
+
+
+Icons by @icons8

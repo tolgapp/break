@@ -1,12 +1,14 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { configureStore } from '@reduxjs/toolkit';
 import { MemoryRouter } from 'react-router-dom';
 import toggleReducer from '../src/store/reducers/toggleSlice';
 import authReducer from '../src/store/reducers/authSlice';
 import productReducer from '../src/store/reducers/productSlice';
 import Home from '../src/pages/Home';
+import Cart from '../src/pages/Cart';
+import { Routes, Route } from 'react-router-dom';
 
 const mockProducts = [
   {
@@ -72,7 +74,11 @@ const mockProducts = [
   },
 ];
 
-const renderHome = () => {
+const mockAddToCart = vi.fn();
+const mockHandleClick = vi.fn();
+const mockCloseDetail = vi.fn();
+
+const renderWithRouter = (propsOverride = {}) => {
   const store = configureStore({
     reducer: {
       toggle: toggleReducer,
@@ -88,26 +94,49 @@ const renderHome = () => {
     },
   });
 
-  return render(
+  const utils = render(
     <Provider store={store}>
-      <MemoryRouter>
-        <Home
-          addToCart={() => {}}
-          handleClick={() => {}}
-          openDetail={false}
-          closeDetail={() => {}}
-          selectedProductId={1}
-          setAddedProducts={() => {}}
-        />
+      <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Home
+                addToCart={() => {}}
+                handleClick={() => {}}
+                openDetail={false}
+                closeDetail={() => {}}
+                selectedProductId={1}
+                setAddedProducts={() => {}}
+                {...propsOverride}
+              />
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <Cart
+                total={0}
+                addedProducts={[]}
+                closeDetail={() => {}}
+                setAddedProducts={() => {}}
+              />
+            }
+          />
+        </Routes>
       </MemoryRouter>
     </Provider>
   );
-};
 
+  return {
+    store,
+    ...utils,
+  };
+};
 
 describe('Home', () => {
   it('renders Logo and random product header text', async () => {
-    renderHome();
+    renderWithRouter();
 
     expect(await screen.findByAltText('Logo')).toBeInTheDocument();
     const images = await screen.findAllByRole('img');
@@ -117,18 +146,8 @@ describe('Home', () => {
     ).toBeInTheDocument();
   });
 
-  it('shows an specified product & product details on button click', async () => {
-    renderHome();
-
-    const button = screen.getByTestId('product-button-4');
-    fireEvent.click(button);
-
-    const heading = await screen.findByRole('heading', { name: /Espresso/i });
-    expect(heading).toBeInTheDocument();
-  });
-
   it('shows offer details after click on the offer image', async () => {
-    renderHome();
+    renderWithRouter();
 
     const image = await screen.findByLabelText(/offerImage-0/i);
     fireEvent.click(image);
@@ -139,10 +158,56 @@ describe('Home', () => {
       })
     );
 
-    const closeButton = screen.getByRole('button', {name: /close/i});
+    const closeButton = screen.getByRole('button', { name: /close/i });
     fireEvent.click(closeButton);
 
     const heading = await screen.findByRole('heading', { name: /Espresso/i });
     expect(heading).toBeInTheDocument();
+  });
+
+  it('shows an specified product & product details on button click', async () => {
+    renderWithRouter();
+
+    const button = screen.getByTestId('product-button-4');
+    fireEvent.click(button);
+
+    const heading = await screen.findByRole('heading', { name: /Espresso/i });
+    expect(heading).toBeInTheDocument();
+  });
+
+  it('navigates to Cart page after clicking Go to Checkout', async () => {
+    vi.spyOn(window, 'alert').mockImplementation(() => {});
+
+    renderWithRouter({
+      addToCart: mockAddToCart,
+      handleClick: mockHandleClick,
+      closeDetail: mockCloseDetail,
+      openDetail: true,
+      selectedProductId: 3,
+    });
+
+    const heading = await screen.findByRole('heading', {
+      level: 3,
+      name: /Espresso/i,
+    });
+    expect(heading).toBeInTheDocument();
+
+    const espressoButton = await screen.findByTestId('product-button-3');
+    fireEvent.click(espressoButton);
+
+    const sizeButton = await screen.findByRole('button', {
+      name: /Single Shot/i,
+    });
+    fireEvent.click(sizeButton);
+
+    const addToCartBtn = await screen.findByLabelText(/add to cart/i);
+    fireEvent.click(addToCartBtn);
+
+    const goToCartBtn = await screen.findByLabelText(/go to checkout/i);
+    fireEvent.click(goToCartBtn);
+
+    expect(
+      await screen.findByText(/no caffeine detected/i)
+    ).toBeInTheDocument();
   });
 });

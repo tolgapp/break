@@ -16,7 +16,7 @@ const Checkout: React.FC<CheckoutProps> = ({ total, handleCheckout }) => {
       {isLoggedIn ? (
         <>
           <span className={`text-3xl font-semibold text-slate-900`}>
-            Total: {total.toFixed(2)} €
+            Total: {(total ?? 0).toFixed(2)} €
           </span>
           <button
             onClick={handleCheckout}
@@ -28,7 +28,7 @@ const Checkout: React.FC<CheckoutProps> = ({ total, handleCheckout }) => {
       ) : (
         <>
           <span className={`text-3xl font-semibold text-slate-900`}>
-            Total: {total.toFixed(2)} €
+            Total: {(total ?? 0).toFixed(2)} €
           </span>
           <Link
             to={'/login'}

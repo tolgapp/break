@@ -117,6 +117,7 @@ const ProductDetail: React.FC<ProductDetail> = ({
           </button>
           <Link
             to="/cart"
+            aria-label="Go to Checkout"
             onClick={() => closeDetail(null)}
             className="bg-black text-white text-2xl px-6 py-3 rounded-lg hover:bg-green-700 hover:text-white"
           >
