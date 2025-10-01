@@ -34,7 +34,7 @@ const RandomProducts: React.FC<RandomProductsProps> = ({ handleClick }) => {
   }, [products]);
 
   return (
-    <div className="px-8 flex flex-col gap-4 min-h-dvh overflow-y-scroll pb-5 sm:px-4 md:px-8 lg:px-16">
+    <div className="px-8 mt-2 flex flex-col gap-5 min-h-dvh overflow-y-scroll pb-5 sm:px-4 md:px-8 lg:px-16">
       <h2 className={`mt-6 text-3xl font-medium ${getClassNames(toggle)}`}>
         Selected Coffee Specialties
       </h2>

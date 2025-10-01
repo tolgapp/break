@@ -91,10 +91,7 @@ const App = () => {
           path="/signup"
           element={isLoggedIn ? <Navigate to="/" replace /> : <Signup />}
         />
-        <Route
-          path="/login"
-          element={isLoggedIn ? <Navigate to="/" replace /> : <Login />}
-        />
+        <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<User />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/user/update-data" element={<UpdateData />} />

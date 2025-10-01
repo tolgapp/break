@@ -1,4 +1,5 @@
 import BackButton from './BackButton';
+import { Navigate } from 'react-router-dom';
 import Logo from './Logo';
 import {
   BACKEND_URL,
@@ -54,6 +55,12 @@ const Login = () => {
         }
       });
   };
+
+  const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
+
+  if (isLoggedIn) {
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <div

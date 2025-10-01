@@ -1,6 +1,6 @@
 project by [Tolgapp](https://tolgapp.de)
 
-# break - Order a break!
+# break - Feel the taste!
 
 #### Created with React + Typescript and Tailwind
 
@@ -41,5 +41,8 @@ project by [Tolgapp](https://tolgapp.de)
     <h3>or download the Mobile Simulator from Chrome web store: https://shorturl.at/H0o0w</h3>
 </section>
 
+# Credits
 
-Icons by @icons8
+- Icons by @icons8
+- Coffee speciality images by Starbucks
+- Images on the Home page from Unsplashed / Pexels
