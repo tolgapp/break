@@ -34,6 +34,10 @@ const Signup = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (!value.name || !value.surname || !value.email || !value.password) {
+      setIsError('Please fill out all fields.');
+      return;
+    }
     axios
       .post(`${BACKEND_URL}/signup`, value)
       .then((response) => {

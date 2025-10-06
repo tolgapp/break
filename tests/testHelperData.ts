@@ -61,3 +61,10 @@ export const mockProducts = [
     tags: ['Vegetarian', 'Fresh', 'All'],
   },
 ];
+
+export const mockUser = {
+  name: 'Mock',
+  surname: 'mocked',
+  email: 'mock@user.com',
+  password: '123',
+};

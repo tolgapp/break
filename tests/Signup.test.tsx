@@ -1,21 +1,15 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import Signup from '../src/components/Signup';
-import axios from 'axios';
-import type { Mock } from 'vitest';
-import { vi } from 'vitest';
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from '../src/store/reducers/authSlice';
-import toggleReducer from '../src/store/reducers/toggleSlice';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import axios from 'axios';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
+import type { Mock } from 'vitest';
+import { vi } from 'vitest';
+import Signup from '../src/components/Signup';
 import { BACKEND_URL } from '../src/data/helper';
-
-const mockUser = {
-  name: 'Mock',
-  surname: 'mocked',
-  email: 'mock@user.com',
-  password: '123',
-};
+import authReducer from '../src/store/reducers/authSlice';
+import toggleReducer from '../src/store/reducers/toggleSlice';
+import { mockUser } from './testHelperData';
 
 vi.mock('axios');
 
@@ -84,6 +78,32 @@ describe('user can sign up with mockData', () => {
           password: mockUser.password,
         })
       );
+    });
+  });
+
+  it('should not submit if some of fields are empty', async () => {
+    renderWithProviders(<Signup />);
+
+    fireEvent.change(screen.getByPlaceholderText('Name'), {
+      target: { value: mockUser.name },
+    });
+  
+    fireEvent.change(screen.getByPlaceholderText('Email'), {
+      target: { value: mockUser.email },
+    });
+    
+    fireEvent.click(screen.getByRole('button', { name: /signup/i }));
+
+    await waitFor(() => {
+      expect(axios.post).not.toHaveBeenCalled();
+    });
+  });
+
+  it('should not submit if all fields are empty', async () => {
+    renderWithProviders(<Signup />);
+    fireEvent.click(screen.getByRole('button', { name: /signup/i }));
+    await waitFor(() => {
+      expect(axios.post).not.toHaveBeenCalled();
     });
   });
 });
